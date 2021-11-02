@@ -9,10 +9,12 @@
 </head>
 
 <body>
-  <!-- 확인용 버튼 -->
+  <!-- S: 확인용 버튼 -->
   <button type="button" class="btn btn-primary js-signup">@Sign Up</button> <!-- 회원가입 모달 확인용 버튼 -->
   <button type="button" class="btn btn-primary js-login">@Login</button> <!-- 로그인 모달 확인용 버튼 -->
   <button type="button" class="btn btn-primary js-addPost">@add Post</button> <!-- 게시물 추가 모달 확인용 버튼 -->
+  <!-- E: 확인용 버튼 -->
+
 
   <!-- S: 회원가입 모달 -->
   <div id="signupModal" class="modal-bg">
@@ -31,7 +33,7 @@
         <div class="form form-id">
           <div>
             <input type="text" placeholder="ID" style="width: 75%;">
-            <button type="button" class="btn-light form__idcheck">중복체크</button>
+            <button type="button" class="btn btn-small btn-light form__idcheck">ID 체크</button>
           </div>
           <p class="form__alert-msg">아이디를 입력해주세요!</p>
         </div>
@@ -62,6 +64,7 @@
     </div>
     <!-- E: Modal Container -->
   </div>
+  <!-- E: 회원가입 모달 -->
 
   <!-- S: 로그인 모달 -->
   <div id="loginModal" class="modal-bg">
@@ -102,9 +105,11 @@
     </div>
     <!-- E: Modal Container -->
   </div>
+  <!-- E: 로그인 모달 -->
+
 
   <!-- S: 게시물 추가 모달 -->
-  <div id="addPost" class="modal-bg show">
+  <div id="addPost" class="modal-bg">
     <!-- S: Modal Container -->
     <div class="modal-container">
       <!-- S: Modal Header -->
@@ -118,24 +123,25 @@
         <div class="thumbnail-area">
           이미지 영역
         </div>
-        <div class="form attach-file">
-          <input type="file" required>
+        <div class="form form-file js-form-file">
+          <label for="input-file" class="input-file">파일 선택</label>
+          <input id="input-file" type="file" required>
         </div>
         <div class="options-wrap">
           <select name="" id="">
-            <option value="" selected>여행지 선택</option>
+            <option value="" disabled selected>여행지</option>
             <option value="">여행지1</option>
             <option value="">여행지2</option>
             <option value="">여행지3</option>
           </select>
           <select name="" id="">
-            <option value="" selected>대륙 선택</option>
+            <option value="" disabled selected>대륙</option>
             <option value="">대륙1</option>
             <option value="">대륙2</option>
             <option value="">대륙3</option>
           </select>
           <select name="" id="">
-            <option value="" selected>날짜 선택</option>
+            <option value="" selected>날짜</option>
           </select>
         </div>
         <textarea name="" id="addPostTextarea" rows="10"> 내용을 입력하세요.</textarea>
@@ -150,6 +156,7 @@
     </div>
     <!-- E: Modal Container -->
   </div>
+  <!-- E: 게시물 추가 모달 -->
 
 
   <script>
@@ -192,7 +199,6 @@
       modal_closeAddPost.addEventListener('click', () => {
         addPost_background.classList.remove('show');
       });
-
     })();
   </script>
 </body>
