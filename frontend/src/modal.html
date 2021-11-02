@@ -9,6 +9,59 @@
 </head>
 
 <body>
+  <!-- 확인용 버튼 -->
+  <button type="button" class="btn btn-primary js-signup">@Sign up</button> <!-- 회원가입 모달 확인용 버튼 -->
+  <button type="button" class="btn btn-primary js-login">@Login</button> <!-- 로그인 확인용 버튼 -->
+  <!-- S: 회원가입 모달 -->
+  <div class="modal-bg">
+    <!-- S: Modal Container -->
+    <div class="modal-container">
+      <!-- S: Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title">Sign up</h5>
+        <button type="button" class="btn-close">닫기</button>
+      </div>
+
+      <!-- S: Modal Body -->
+      <div class="modal-body">
+
+        <!-- S: Modal ID -->
+        <div class="form form-id">
+          <div>
+            <input type="text" placeholder="ID">
+            <button type="button" class="btn-light form__idcheck">중복체크</button>
+          </div>
+          <p class="form__alert-msg">아이디를 입력해주세요!</p>
+        </div>
+
+        <!-- S: Modal PW -->
+        <div class="form form-pw">
+          <div>
+            <input type="password" placeholder="PASSWORD">
+          </div>
+          <p class="form__alert-msg">비밀번호를 입력해주세요!</p>
+        </div>
+
+        <!-- S: Modal PW check -->
+        <div class="form form-pwcheck">
+          <div>
+            <input type="password" placeholder="PASSWORD CHECK">
+          </div>
+          <p class="form__alert-msg">비밀번호를 입력해주세요!</p>
+        </div>
+      </div>
+
+      <!-- S: Modal Footer -->
+      <div class="modal-footer">
+        <a href="javascript:();">이미 계정이 있으신가요?</a>
+        <button class="btn btn-primary">회원가입</button>
+      </div>
+
+    </div>
+    <!-- E: Modal Container -->
+  </div>
+
+  <!-- S: 로그인 모달 -->
   <div class="modal-bg">
     <!-- S: Modal Container -->
     <div class="modal-container">
@@ -58,11 +111,19 @@
   </div>
   <script>
     (() => {
-      const modal_close = document.querySelector('.btn-close');
+      const signup = document.querySelector('.js-signup');
+      const login = document.querySelector('.js-login');
       const background = document.querySelector('.modal-bg');
 
+      const modal_close = document.querySelector('.btn-close');
+
+      signup.addEventListener('click', () => {
+        background.classList.toggle('show');
+      });
+
+
       modal_close.addEventListener('click', () => {
-        background.attributes.display = 'none'
+        background.classList.remove('show');
       });
     })();
   </script>
