@@ -12,6 +12,7 @@
   <!-- 확인용 버튼 -->
   <button type="button" class="btn btn-primary js-signup">@Sign Up</button> <!-- 회원가입 모달 확인용 버튼 -->
   <button type="button" class="btn btn-primary js-login">@Login</button> <!-- 로그인 모달 확인용 버튼 -->
+  <button type="button" class="btn btn-primary js-addPost">@add Post</button> <!-- 게시물 추가 모달 확인용 버튼 -->
 
   <!-- S: 회원가입 모달 -->
   <div id="signupModal" class="modal-bg">
@@ -102,6 +103,55 @@
     <!-- E: Modal Container -->
   </div>
 
+  <!-- S: 게시물 추가 모달 -->
+  <div id="addPost" class="modal-bg show">
+    <!-- S: Modal Container -->
+    <div class="modal-container">
+      <!-- S: Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title">Create Post</h5>
+        <button type="button" class="btn-close">닫기</button>
+      </div>
+
+      <!-- S: Modal Body -->
+      <div class="modal-body" style=" padding-bottom: 30px;">
+        <div class="thumbnail-area">
+          이미지 영역
+        </div>
+        <div class="form attach-file">
+          <input type="file" required>
+        </div>
+        <div class="options-wrap">
+          <select name="" id="">
+            <option value="" selected>여행지 선택</option>
+            <option value="">여행지1</option>
+            <option value="">여행지2</option>
+            <option value="">여행지3</option>
+          </select>
+          <select name="" id="">
+            <option value="" selected>대륙 선택</option>
+            <option value="">대륙1</option>
+            <option value="">대륙2</option>
+            <option value="">대륙3</option>
+          </select>
+          <select name="" id="">
+            <option value="" selected>날짜 선택</option>
+          </select>
+        </div>
+        <textarea name="" id="addPostTextarea" rows="10"> 내용을 입력하세요.</textarea>
+      </div>
+
+      <!-- S: Modal Footer -->
+      <div class="modal-footer">
+        <button class="btn btn-light">취소</button>
+        <button class="btn btn-primary">추가</button>
+      </div>
+
+    </div>
+    <!-- E: Modal Container -->
+  </div>
+
+
   <script>
     (() => {
       //S:회원가입 모달
@@ -128,6 +178,19 @@
 
       modal_closeLogin.addEventListener('click', () => {
         login_background.classList.remove('show');
+      });
+
+      //S:게시물 추가 모달
+      const addPost = document.querySelector('.js-addPost');
+      const addPost_background = document.querySelector('#addPost.modal-bg');
+      const modal_closeAddPost = document.querySelector('#addPost .btn-close');
+
+      addPost.addEventListener('click', () => {
+        addPost_background.classList.toggle('show');
+      });
+
+      modal_closeAddPost.addEventListener('click', () => {
+        addPost_background.classList.remove('show');
       });
 
     })();
