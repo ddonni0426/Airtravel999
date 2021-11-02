@@ -41,7 +41,7 @@
         <!-- S: Modal PW check -->
         <div class="form form-pwcheck">
           <div>
-            <input type="text" placeholder="PASSWORD CHECK">
+            <input type="password" placeholder="PASSWORD CHECK">
           </div>
           <p class="form__alert-msg">비밀번호를 입력해주세요!</p>
         </div>
@@ -58,7 +58,12 @@
   </div>
   <script>
     (() => {
+      const modal_close = document.querySelector('.btn-close');
+      const background = document.querySelector('.modal-bg');
 
+      modal_close.addEventListener('click', () => {
+        background.attributes.display = 'none'
+      });
     })();
   </script>
 </body>
