@@ -1,0 +1,105 @@
+{
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+
+  "editor.tabSize": 2,
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "editor.formatOnSave": true,
+
+  "[javascript]": {
+    "editor.formatOnSave": false
+  },
+
+  "eslint.alwaysShowStatus": true,
+
+  "files.autoSave": "onFocusChange",
+
+  "javascript.validate.enable": false,
+
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "git.autofetch": true,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "explorer.confirmDelete": false,
+  "git.confirmSync": false,
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "window.zoomLevel": -1,
+  "workbench.colorTheme": "Bear Theme",
+
+  "csscomb.formatOnSave": true,
+  "csscomb.syntaxAssociations": {
+    "postcss": "scss"
+  },
+
+  "csscomb.preset": {
+    "always-semicolon": true,
+    "block-indent": 2,
+    "eof-newline": true,
+    "leading-zero": true,
+    "lines-between-rulesets": 1,
+    "space-between-declarations": "\n",
+    "strip-spaces": true,
+    "space-before-colon": "",
+    "space-after-colon": " ",
+    "space-before-combinator": " ",
+    "space-after-combinator": " ",
+    "space-before-opening-brace": " ",
+    "space-after-opening-brace": "\n",
+    "space-before-selector-delimiter": "",
+    "space-after-selector-delimiter": "\n",
+    "space-before-closing-brace": "\n",
+    "color-case": "lower",
+    "sort-order": [
+      "content",
+      "overflow",
+      "position",
+      "top",
+      "right",
+      "bottom",
+      "left",
+      "display",
+      "align-items",
+      "justify-content",
+      "transform",
+      "float",
+      "clear",
+      "width",
+      "height",
+      "margin",
+      "margin-top",
+      "margin-right",
+      "margin-bottom",
+      "margin-right",
+      "padding",
+      "padding-top",
+      "padding-right",
+      "padding-bottom",
+      "padding-left",
+      "border-top",
+      "border-right",
+      "border-bottom",
+      "border-left",
+      "border-radius",
+      "background",
+      "background-repeat",
+      "background-poistion",
+      "background-size",
+      "color",
+      "font",
+      "font-family",
+      "font-size",
+      "font-weight",
+      "line-height",
+      "letter-spacing",
+      "text-decoration",
+      "text-align",
+      "verticla-align",
+      "white-space",
+      "animation",
+      "list-style"
+    ]
+  }
+}
