@@ -1,5 +1,3 @@
-/* TODO: 경준님 컬러 사용하신 것 참고해서 색상 변경할 것*/
-
 /* S: MODAL  */
 .modal-bg {
   position: absolute;
@@ -27,6 +25,7 @@
 }
 .modal-bg.show .modal-container {
   transform: translateY(25%);
+  margin-top: -5%;
 }
 
 /* S: MODAL-HEADER 스타일 */
@@ -60,12 +59,47 @@
   z-index: 999999999999999;
   text-indent: -9999999em;
 }
+/* E: MODAL-HEADER 스타일 */
 
 /* S: MODAL-BODY 스타일 */
 .modal-container .modal-body {
   height: 100%;
   padding: 30px;
   padding-bottom: 80px;
+}
+
+.thumbnail-area {
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  line-height: 200px;
+  background-color: #efefef;
+}
+
+.options-wrap {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 30px;
+  margin: 20px 0;
+}
+
+.options-wrap select {
+  width: 120px;
+  height: 30px;
+  border: 1px solid #efefef;
+  font-size: 16px;
+  border-radius: 3px;
+}
+
+#addPostTextarea {
+  width: 100%;
+  resize: none;
+  overflow-y: auto;
+  /* border: 2px solid #b1b1b1; */
+  border: 2px solid #efefef;
+  font-size: 16px;
+  border-radius: 3px;
 }
 
 /* S: MODAL-FOOTER 스타일 */
@@ -85,6 +119,10 @@
 }
 
 /* BUTTON 공통 스타일 */
+.btn + .btn {
+  margin-left: 10px;
+}
+
 .btn {
   cursor: pointer;
   border-radius: 5px;
@@ -93,6 +131,16 @@
   border: none;
 }
 
+/* btn size */
+.btn.btn-small {
+  padding: 6px 17px;
+}
+
+/* btn color */
+.btn-green {
+  background-color: #2cae00;
+  color: #fff;
+}
 .btn-light {
   background-color: #efefef;
   color: #333;
@@ -149,7 +197,27 @@
   border-bottom: 1px solid #dee2e6;
   padding-left: 10px;
 }
-
+.form.form-file {
+  cursor: pointer;
+  border: 1px solid #efefef;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.form input[type="file"] {
+  display: none;
+}
+.form .input-file {
+  border-radius: 5px;
+  display: inline-block;
+  padding: 8px 15px;
+  margin: -1px;
+  cursor: pointer;
+  color: #000;
+  background-color: #efefef;
+  border: 1px solid #efefef;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
 .form__alert-msg {
   margin: 8px 0;
   font-size: 14px;
