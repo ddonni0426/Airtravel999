@@ -17,8 +17,7 @@ db.card.insert_one(doc)
 
 @app.route('/')
 def home():
-
-	return 'This is Home!'
+	return render_template('index.html')
 
 if __name__ == '__main__':
 	app.run('0.0.0.0',port=5050,debug=True)
