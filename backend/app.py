@@ -2,7 +2,16 @@ from pymongo import MongoClient
 
 from flask import Flask, render_template, jsonify, request
 
+from like import like
+from auth import auth
+from tour import tour
+
+
 app = Flask(__name__, template_folder='../frontend/src')
+app.register_blueprint(tour, url_prefix="/tour")
+app.register_blueprint(like, url_prefix="/like")
+app.register_blueprint(auth, url_prefix="/auth")
+
 
 client = MongoClient('localhost', 27017)
 db = client.airtravel
