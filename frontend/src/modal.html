@@ -178,6 +178,7 @@
       modal_closeSignup.addEventListener('click', () => {
         signup_background.classList.remove('show');
       });
+      //E:회원가입 모달
 
       // form 검증
       const formcheck = document.querySelectorAll('.btn.formcheck'); // 사용시 querySelectorAll 대신 querySelector로 적절하게 변경해서 사용해주세여!
@@ -203,6 +204,11 @@
 
       });
 
+      //첨부 파일 삭제
+      $(document).on("click", ".file-badge", function (e) {
+        e.target.classList.contains('file-badge') === true ? e.target.remove() : e.target.closest('.file-badge').remove();
+      });
+
       //첨부파일 뱃지 추가
       const inputs = document.querySelector('.modal-addpost .form  input[type="file"]');
       inputs.addEventListener('change', () => {
@@ -214,9 +220,6 @@
         const formData = new FormData();
         formData.set('file_', file);
       });
-
-      //E:회원가입 모달
-
 
       //S:로그인 모달
       const login = document.querySelector('.js-login');
