@@ -5,6 +5,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link rel="stylesheet" href="./assets/styled.css" />
+  <script src="assets/js/jquery-3.6.0.min.js"></script>
+
   <title>Airtravel999</title>
 </head>
 
@@ -127,7 +129,6 @@
         <div class="form form-file js-form-file">
           <label for="input-file" class="input-file">파일 선택</label>
           <input id="input-file" type="file" required>
-          <span class="file-badge ellipse"><a href="#">파일파일파일파일.jpg</a></span>
         </div>
         <p class="form__alert-msg">여행사진을 첨부해주세요!</p>
         <div class="options-wrap">
@@ -194,12 +195,26 @@
           item.value.length === 0 ? item.parentNode.classList.add('empty-input') : item.parentNode.classList.remove('empty-input');
         });
       })
+
       //파일첨부 체크
       formcheck[2].addEventListener('click', () => {
         const inputs = document.querySelector('.modal-addpost .form  input[type="file"]');
         inputs.value.length === 0 ? inputs.parentNode.classList.add('empty-input') : item.parentNode.classList.remove('empty-input');
 
-      })
+      });
+
+      //첨부파일 뱃지 추가
+      const inputs = document.querySelector('.modal-addpost .form  input[type="file"]');
+      inputs.addEventListener('change', () => {
+        const file = inputs.value.split('\\'); //경로
+
+        const fileBadge_element = '<span class="file-badge ellipse"><a href="#">' + file[file.length - 1] + '</a></span >';
+        $('.js-form-file').append(fileBadge_element);
+        //백엔드에서 확인 가능    
+        const formData = new FormData();
+        formData.set('file_', file);
+      });
+
       //E:회원가입 모달
 
 
