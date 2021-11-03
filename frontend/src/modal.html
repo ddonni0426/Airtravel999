@@ -131,6 +131,8 @@
           <input id="input-file" type="file" required>
         </div>
         <p class="form__alert-msg">여행사진을 첨부해주세요!</p>
+        <p class="form__guide-msg">이미지는 하나만 첨부해주세요.</p>
+
         <div class="options-wrap">
           <select name="" id="">
             <option value="" disabled selected>여행지</option>
@@ -213,10 +215,13 @@
       const inputs = document.querySelector('.modal-addpost .form  input[type="file"]');
       inputs.addEventListener('change', () => {
         const file = inputs.value.split('\\'); //경로
+        if (!file[0].length) return; //첨부된 사진이 없다면 뱃지 추가 로직 실행되지 않도록
+        $('.file-badge').length > 0 && $('.file-badge').remove(); // 사진 첨부되었는데 또 했을 경우 새로 추가한 사진만 남기기
 
         const fileBadge_element = '<span class="file-badge ellipse"><a href="#">' + file[file.length - 1] + '</a></span >';
         $('.js-form-file').append(fileBadge_element);
-        //백엔드에서 확인 가능    
+        $('.empty-input').removeClass('empty-input')
+        //formData에 저장된 이미지 경로는 백엔드에서만 확인 가능    
         const formData = new FormData();
         formData.set('file_', file);
       });
