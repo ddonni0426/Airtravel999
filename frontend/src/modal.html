@@ -5,6 +5,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link rel="stylesheet" href="./assets/styled.css" />
+  <script src="assets/js/jquery-3.6.0.min.js"></script>
+
   <title>Airtravel999</title>
 </head>
 
@@ -176,6 +178,7 @@
       modal_closeSignup.addEventListener('click', () => {
         signup_background.classList.remove('show');
       });
+      //E:회원가입 모달
 
       // form 검증
       const formcheck = document.querySelectorAll('.btn.formcheck'); // 사용시 querySelectorAll 대신 querySelector로 적절하게 변경해서 사용해주세여!
@@ -193,14 +196,30 @@
           item.value.length === 0 ? item.parentNode.classList.add('empty-input') : item.parentNode.classList.remove('empty-input');
         });
       })
+
       //파일첨부 체크
       formcheck[2].addEventListener('click', () => {
         const inputs = document.querySelector('.modal-addpost .form  input[type="file"]');
         inputs.value.length === 0 ? inputs.parentNode.classList.add('empty-input') : item.parentNode.classList.remove('empty-input');
 
-      })
-      //E:회원가입 모달
+      });
 
+      //첨부 파일 삭제
+      $(document).on("click", ".file-badge", function (e) {
+        e.target.classList.contains('file-badge') === true ? e.target.remove() : e.target.closest('.file-badge').remove();
+      });
+
+      //첨부파일 뱃지 추가
+      const inputs = document.querySelector('.modal-addpost .form  input[type="file"]');
+      inputs.addEventListener('change', () => {
+        const file = inputs.value.split('\\'); //경로
+
+        const fileBadge_element = '<span class="file-badge ellipse"><a href="#">' + file[file.length - 1] + '</a></span >';
+        $('.js-form-file').append(fileBadge_element);
+        //백엔드에서 확인 가능    
+        const formData = new FormData();
+        formData.set('file_', file);
+      });
 
       //S:로그인 모달
       const login = document.querySelector('.js-login');

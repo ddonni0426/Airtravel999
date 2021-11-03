@@ -10,7 +10,9 @@
 }
 .modal-bg.show {
   top: 0;
+  bottom: 0;
   background-color: rgba(0, 0, 0, 0.45);
+  z-index: 909090;
 }
 .modal-container {
   position: fixed;
@@ -201,6 +203,8 @@
   padding-left: 10px;
 }
 .form.form-file {
+  display: flex;
+  align-items: center;
   cursor: pointer;
   border: 1px solid #efefef;
   border-radius: 5px;
@@ -211,16 +215,53 @@
 }
 .form .input-file {
   border-radius: 5px;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   padding: 8px 15px;
+  height: 40px;
   margin: -1px;
   cursor: pointer;
   color: #000;
   background-color: #efefef;
-  border: 1px solid #efefef;
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
 }
+
+.form.form-file .file-badge {
+  position: relative;
+  display: inline-block;
+  max-width: 100px;
+  height: 30px;
+  background-color: #ffc107;
+  color: #fff;
+  border-radius: 10px;
+  padding: 0 10px;
+  margin-left: 6px;
+}
+
+.form.form-file .file-badge::after {
+  position: absolute;
+  right: 5%;
+  top: 0;
+  font-weight: bold;
+  font-size: 13px;
+  width: 10px;
+  line-height: 30px;
+  display: inline-block;
+  content: "X";
+}
+
+.form.form-file .file-badge a {
+  display: inline-block;
+  width: 90%;
+  height: 30px;
+  line-height: 30px;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .form__alert-msg {
   margin: 8px 0;
   font-size: 14px;
