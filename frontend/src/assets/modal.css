@@ -230,13 +230,13 @@
 .form.form-file .file-badge {
   position: relative;
   display: inline-block;
-  max-width: 100px;
+  max-width: 250px;
   height: 30px;
   background-color: #ffc107;
   color: #fff;
   border-radius: 10px;
   padding: 0 10px;
-  margin-left: 6px;
+  margin-left: 10px;
 }
 
 .form.form-file .file-badge::after {
@@ -262,15 +262,28 @@
   white-space: nowrap;
 }
 
+.form__guide-msg {
+  display: block;
+  margin: 8px 0;
+  font-size: 14px;
+  margin: 15px 0;
+  color: #333;
+  padding-left: 10px;
+}
+
 .form__alert-msg {
+  display: none;
   margin: 8px 0;
   font-size: 14px;
   margin: 15px 0;
   color: #dc3545;
   padding-left: 10px;
-  visibility: hidden;
 }
 
 .empty-input + .form__alert-msg {
-  visibility: visible;
+  display: block;
+}
+
+.empty-input + .form__alert-msg + .form__guide-msg {
+  display: none;
 }
