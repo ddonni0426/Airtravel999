@@ -1,0 +1,158 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f4f7f6;
+}
+
+/* header */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+header {
+  border-bottom: 1px solid #ddd;
+}
+
+header > div {
+  width: 900%;
+  min-width: 1500px;
+  max-width: 1200px;
+  height: 80px;
+  margin: 0 auto;
+}
+
+header .logo {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 50px;
+  letter-spacing: 10px;
+  font-family: "Dancing Script", cursive;
+  font-family: "Lobster", cursive;
+  font-family: "Work Sans", sans-serif;
+}
+
+header .gnb li {
+  display: inline-block;
+  margin-left: 30px;
+}
+
+header .gnb li:first-child {
+  margin-left: 0;
+}
+
+header .gnb {
+  float: right;
+}
+
+/* container */
+
+#idx_top {
+  width: 100%;
+  height: 400px;
+  background: url(images/container.png);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+#text1 {
+  text-align: right;
+  margin-right: 500px;
+  margin-bottom: 20px;
+}
+
+#text2 {
+  text-align: right;
+  margin-right: 300px;
+  margin-bottom: 20px;
+}
+
+#text3 {
+  text-align: right;
+  margin-right: 200px;
+}
+
+#idx_top p {
+  color: #fff;
+  font-size: 40px;
+  padding-top: 50px;
+}
+
+/* card-box */
+
+ul,
+li {
+  list-style: none;
+}
+
+.card-box {
+  padding: 100px;
+}
+
+.card-box ul {
+  font-size: 0;
+}
+
+.card-box .item1 .image {
+  background-image: url(images/img1.jpg);
+}
+.card-box .item2 .image {
+  background-image: url(images/img2.jpg);
+}
+.card-box .item3 .image {
+  background-image: url(images/img3.jpg);
+}
+.card-box .item4 .image {
+  background-image: url(images/img4.jpg);
+}
+.card-box .item5 .image {
+  background-image: url(images/img5.jpg);
+}
+.card-box .item6 .image {
+  background-image: url(images/img6.jpg);
+}
+
+.card-box .item {
+  display: inline-block;
+  width: 13%;
+  margin-top: 40px;
+  margin-left: 3%;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+.card-box .item:nth-child(-n + 6) {
+  margin-top: 0;
+}
+
+.card-box .item:nth-child(6n) {
+  margin-left: 3%;
+}
+
+.card-box .item .image {
+  width: 100%;
+  height: 170px;
+  background-color: #ddd;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+.card-box .item .cont {
+  padding: 20px;
+}
+
+.card-box .item strong {
+  display: block;
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  letter-spacing: -1px;
+}
+
+.card-box .item p {
+  font-size: 13px;
+  letter-spacing: -1px;
+}
