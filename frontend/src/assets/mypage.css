@@ -77,14 +77,14 @@ section.mypage-header {
 }
 
 .contents-wrap .posts-wrap {
-  width: 1600px;
-  margin: 0 auto;
+  width: 1700px;
+  margin: 0 auto auto 135px;
 }
 
 .contents-wrap .posts-wrap .post {
   position: relative;
   display: inline-block;
-  width: 500px;
+  width: 520px;
   height: 400px;
   border: 1px solid #ddd;
   border-radius: 20px;
@@ -93,11 +93,11 @@ section.mypage-header {
 }
 
 .contents-wrap .posts-wrap .post:nth-child(2n + 1) {
-  margin-top: 25px;
+  margin-top: 20px;
 }
 
 .contents-wrap .posts-wrap .post:nth-child(n) {
-  margin-left: 21px;
+  margin-left: 15px;
 }
 
 .contents-wrap .posts-wrap .post:hover::after {
