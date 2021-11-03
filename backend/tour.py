@@ -1,15 +1,16 @@
 from flask import Blueprint, jsonify, request
 from pymongo import MongoClient
 from bson import ObjectId
+from config import config
 
 import jwt
 import datetime
 import hashlib
-SECRET_KEY = "AirTravel_AweSome_Team"
+
 
 tour = Blueprint('tour', __name__)
 
-client = MongoClient('localhost', 27017)
+client = MongoClient(config["DB_URL"], 27017)
 db = client.airtravel
 
 # 투어 카드 다 받아오기
@@ -31,7 +32,7 @@ def createTour():
   tour_content = request.form['tour_content']
 
   token_receive = request.cookies.get('mytoken')
-  payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+  payload = jwt.decode(token_receive, config["SECRET_KEY"], algorithms=['HS256'])
   print(payload)
 
   doc = {
@@ -80,7 +81,7 @@ def updateTour(tour_id):
   tour_content = request.form["tour_content"]
 
   token_receive = request.cookies.get('mytoken')
-  payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+  payload = jwt.decode(token_receive, config["SECRET_KEY"], algorithms=['HS256'])
   print(payload)
 
   selected_card = db.card.find_one({"_id": ObjectId(tour_id)})
@@ -103,7 +104,7 @@ def updateTour(tour_id):
 @tour.route('/<tour_id>', methods=["DELETE"])
 def deleteTour(tour_id):
   token_receive = request.cookies.get('mytoken')
-  payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+  payload = jwt.decode(token_receive, config["SECRET_KEY"], algorithms=['HS256'])
   print(payload)
 
   selected_card = db.card.find_one({"_id": ObjectId(tour_id)})

@@ -5,6 +5,8 @@
   height: 100%;
   display: flex;
   justify-content: center;
+  z-index: 999;
+  left: 0;
 }
 .modal-bg.show {
   top: 0;
@@ -24,6 +26,7 @@
   border: 1px solid #fff;
   background-color: #fff;
   z-index: 999;
+  top: 65px;
 }
 .modal-bg.show .modal-container {
   transform: translateY(25%);
