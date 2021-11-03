@@ -30,7 +30,8 @@ def createTour():
     "location": tour_location,
     "continent": tour_continent,
     "date": tour_date,
-    "content": tour_content
+    "content": tour_content,
+    "like": False
   }
 
   db.card.insert_one(doc)
@@ -73,7 +74,7 @@ def updateTour(tour_id):
     "location": tour_location,
     "continent": tour_continent,
     "date": tour_date,
-    "content": tour_content
+    "content": tour_content,
   }
   db.card.update_one({"_id": ObjectId(tour_id)}, {"$set": doc })
   return jsonify({"msg": "수정완료"})
