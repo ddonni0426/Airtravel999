@@ -29,7 +29,7 @@
       </div>
 
       <!-- S: Modal Body -->
-      <div class="modal-body">
+      <div class="modal-body js-formcheck modal-signup">
 
         <!-- S: Modal ID -->
         <div class="form form-id">
@@ -60,9 +60,8 @@
       <!-- S: Modal Footer -->
       <div class="modal-footer">
         <a href="javascript:();">이미 계정이 있으신가요?</a>
-        <button class="btn btn-primary">회원가입</button>
+        <button class="btn btn-primary signup formcheck">회원가입</button>
       </div>
-
     </div>
     <!-- E: Modal Container -->
   </div>
@@ -79,7 +78,7 @@
       </div>
 
       <!-- S: Modal Body -->
-      <div class="modal-body">
+      <div class="modal-body modal-login">
 
         <!-- S: Modal ID -->
         <div class="form form-id">
@@ -101,7 +100,7 @@
       <!-- S: Modal Footer -->
       <div class="modal-footer">
         <a href="javascript:();">아직 계정이 없으신가요?</a>
-        <button class="btn btn-primary">로그인</button>
+        <button class="btn btn-primary formcheck">로그인</button>
       </div>
 
     </div>
@@ -121,7 +120,7 @@
       </div>
 
       <!-- S: Modal Body -->
-      <div class="modal-body" style=" padding-bottom: 30px;">
+      <div class="modal-body modal-addpost" style=" padding-bottom: 30px;">
         <div class="thumbnail-area">
           이미지 영역
         </div>
@@ -152,7 +151,7 @@
       <!-- S: Modal Footer -->
       <div class="modal-footer">
         <button class="btn btn-light">취소</button>
-        <button class="btn btn-primary">추가</button>
+        <button class="btn btn-primary formcheck">추가</button>
       </div>
 
     </div>
@@ -177,6 +176,32 @@
       modal_closeSignup.addEventListener('click', () => {
         signup_background.classList.remove('show');
       });
+
+      // form 검증
+      const formcheck = document.querySelectorAll('.btn.formcheck'); // 사용시 querySelectorAll 대신 querySelector로 적절하게 변경해서 사용해주세여!
+
+      formcheck[0].addEventListener('click', () => {
+        const inputs = Array.from(document.querySelectorAll('.modal-signup .form  input'));
+        const empty__inputs = inputs.map((item, idx) => {
+          item.value.length === 0 ? item.parentNode.classList.add('empty-input') : item.parentNode.classList.remove('empty-input');
+        });
+      })
+
+      formcheck[1].addEventListener('click', () => {
+        const inputs = Array.from(document.querySelectorAll('.modal-login .form  input'));
+        const empty__inputs = inputs.map((item, idx) => {
+          item.value.length === 0 ? item.parentNode.classList.add('empty-input') : item.parentNode.classList.remove('empty-input');
+        });
+      })
+
+      formcheck[2].addEventListener('click', () => {
+        const inputs = Array.from(document.querySelectorAll('.modal-addpost .form  input'));
+        const empty__inputs = inputs.map((item, idx) => {
+          item.value.length === 0 ? item.parentNode.classList.add('empty-input') : item.parentNode.classList.remove('empty-input');
+        });
+      })
+      //E:회원가입 모달
+
 
       //S:로그인 모달
       const login = document.querySelector('.js-login');
