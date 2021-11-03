@@ -10,10 +10,6 @@ auth = Blueprint("auth", __name__)
 client = MongoClient(config["DB_URL"], 27017)
 db = client.airtravel
 
-@auth.route('/')
-def getTour():
-  return "auth"
-
 # 아이디 중복확인 체크 API
 @auth.route("/checkid", methods=["POST"])
 def api_checkid():
