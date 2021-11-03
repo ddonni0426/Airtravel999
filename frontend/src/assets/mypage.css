@@ -124,7 +124,7 @@ section.mypage-header {
   height: 280px;
   overflow: hidden;
   background-color: white;
-  border-bottom: 1px solid #ddd;
+  /* border-bottom: 1px solid #ddd; */
 }
 
 .contents-wrap .posts-wrap .post .thumbnail-mypage .create-button {
