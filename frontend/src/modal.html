@@ -128,6 +128,7 @@
           <label for="input-file" class="input-file">파일 선택</label>
           <input id="input-file" type="file" required>
         </div>
+        <p class="form__alert-msg">여행사진을 첨부해주세요!</p>
         <div class="options-wrap">
           <select name="" id="">
             <option value="" disabled selected>여행지</option>
@@ -158,7 +159,6 @@
     <!-- E: Modal Container -->
   </div>
   <!-- E: 게시물 추가 모달 -->
-
 
   <script>
     (() => {
@@ -193,12 +193,11 @@
           item.value.length === 0 ? item.parentNode.classList.add('empty-input') : item.parentNode.classList.remove('empty-input');
         });
       })
-
+      //파일첨부 체크
       formcheck[2].addEventListener('click', () => {
-        const inputs = Array.from(document.querySelectorAll('.modal-addpost .form  input'));
-        const empty__inputs = inputs.map((item, idx) => {
-          item.value.length === 0 ? item.parentNode.classList.add('empty-input') : item.parentNode.classList.remove('empty-input');
-        });
+        const inputs = document.querySelector('.modal-addpost .form  input[type="file"]');
+        inputs.value.length === 0 ? inputs.parentNode.classList.add('empty-input') : item.parentNode.classList.remove('empty-input');
+
       })
       //E:회원가입 모달
 
