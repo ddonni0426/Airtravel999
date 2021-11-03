@@ -62,10 +62,11 @@ section.mypage-header {
   margin-top: 80px;
   width: 100%;
   height: 45vh;
-  background-image: url("./images/@img-visual1.jpg");
+  /* background-image: url("./images/@img-visual1.jpg");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: cover; */
+  background-color: black;
 }
 
 .contents-wrap {
@@ -97,19 +98,24 @@ section.mypage-header {
 .contents-wrap .posts-wrap .post .post-desc {
   padding: 16px 20px;
 }
+
 .contents-wrap .posts-wrap .post .post-location {
   line-height: 1.7em;
   font-size: 20px;
   font-weight: bold;
   color: #333;
 }
+
 .contents-wrap .posts-wrap .post .thumbnail {
   height: 280px;
   overflow: hidden;
+  background-color: #333;
 }
+
 .contents-wrap .posts-wrap .post .thumbnail img {
   max-width: 100%;
 }
+
 .contents-wrap .posts-wrap .post .post-detail {
   line-height: 1.5em;
 }
