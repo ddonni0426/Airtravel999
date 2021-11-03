@@ -17,7 +17,7 @@ def getTour():
   return "auth"
 
 # 회원가입 API
-@auth.route("/register", methods=["POST"])
+@auth.route("/signup", methods=["POST"])
 def api_register():
     id = request.form["id"]
     pw = request.form["pw"]
