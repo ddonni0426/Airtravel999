@@ -224,5 +224,9 @@
   margin: 15px 0;
   color: #dc3545;
   padding-left: 10px;
+  visibility: hidden;
+}
+
+.empty-input + .form__alert-msg {
   visibility: visible;
 }
