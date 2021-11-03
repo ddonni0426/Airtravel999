@@ -12,14 +12,11 @@
 </head>
 
 <body>
-
-
-
   <!-- S: HEADER -->
-  <section class="mypage-header">
-    <div class="mypage-nav">
-      <h1 class="mypage-logo"><a href="#">Airtravel</a></h1>
-      <ul class="mypage-utils">
+  <section class="mainpage-header">
+    <div class="mainpage-nav">
+      <h1 class="mainpage-logo"><a href="#">Airtravel</a></h1>
+      <ul class="mainpage-utils">
         <li><button type="button" class="btn js-login">Login</button></li>
         <li><button type="button" class="btn js-signup">Sign-up</button></li>
       </ul>
@@ -255,6 +252,84 @@
         <!-- E: 회원가입 모달 -->
       </div>
       <!-- E: Post Elem -->
+      <!-- S: Post Elem -->
+      <div class="post">
+        <div class="thumbnail">
+          <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
+        </div>
+        <div class="post-desc">
+          <strong class="post-location">샌프란시스코</strong>
+          <span class="">금문교</span>
+          <p class="post-detail ellipse">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est excepturorem
+            ipsumolor sit amet consectetur adipisicing elit. Est exceptuicing elit. Est exceptu</p>
+        </div>
+      </div>
+      <!-- E: Post Elem -->
+      <!-- S: Post Elem -->
+      <div class="post">
+        <div class="thumbnail">
+          <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
+        </div>
+        <div class="post-desc">
+          <strong class="post-location">샌프란시스코</strong>
+          <span class="">금문교</span>
+          <p class="post-detail ellipse">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est excepturorem
+            ipsumolor sit amet consectetur adipisicing elit. Est exceptuicing elit. Est exceptu</p>
+        </div>
+      </div>
+      <!-- E: Post Elem -->
+      <!-- S: Post Elem -->
+      <div class="post">
+        <div class="thumbnail">
+          <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
+        </div>
+        <div class="post-desc">
+          <strong class="post-location">샌프란시스코</strong>
+          <span class="">금문교</span>
+          <p class="post-detail ellipse">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est excepturorem
+            ipsumolor sit amet consectetur adipisicing elit. Est exceptuicing elit. Est exceptu</p>
+        </div>
+      </div>
+      <!-- E: Post Elem -->
+      <!-- S: Post Elem -->
+      <div class="post">
+        <div class="thumbnail">
+          <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
+        </div>
+        <div class="post-desc">
+          <strong class="post-location">샌프란시스코</strong>
+          <span class="">금문교</span>
+          <p class="post-detail ellipse">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est excepturorem
+            ipsumolor sit amet consectetur adipisicing elit. Est exceptuicing elit. Est exceptu</p>
+        </div>
+      </div>
+      <!-- E: Post Elem -->
+      <!-- S: Post Elem -->
+      <div class="post">
+        <div class="thumbnail">
+          <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
+        </div>
+        <div class="post-desc">
+          <strong class="post-location">샌프란시스코</strong>
+          <span class="">금문교</span>
+          <p class="post-detail ellipse">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est excepturorem
+            ipsumolor sit amet consectetur adipisicing elit. Est exceptuicing elit. Est exceptu</p>
+        </div>
+      </div>
+      <!-- E: Post Elem -->
+      <!-- S: Post Elem -->
+      <div class="post">
+        <div class="thumbnail">
+          <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
+        </div>
+        <div class="post-desc">
+          <strong class="post-location">샌프란시스코</strong>
+          <span class="">금문교</span>
+          <p class="post-detail ellipse">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est excepturorem
+            ipsumolor sit amet consectetur adipisicing elit. Est exceptuicing elit. Est exceptu</p>
+        </div>
+      </div>
+      <!-- E: Post Elem -->
       <!-- <span class="scrolltop">
         <a href="#">스크롤탑</a>
       </span>-->
@@ -275,6 +350,7 @@
     modal_closeLogin.addEventListener('click', () => {
       login_background.classList.remove('show');
     });
+
     //S:회원가입 모달
     const signup = document.querySelector('.js-signup');
     const signup_background = document.querySelector('#signupModal.modal-bg');
@@ -289,7 +365,8 @@
     });
 
     // form 검증
-    const formcheck = document.querySelectorAll('.btn.formcheck'); // 사용시 querySelectorAll 대신 querySelector로 적절하게 변경해서 사용해주세여!
+    const formcheck = document.querySelectorAll('.btn.formcheck');
+    // 사용시 querySelectorAll 대신 querySelector로 적절하게 변경해서 사용해주세여!
 
     formcheck[0].addEventListener('click', () => {
       const inputs = Array.from(document.querySelectorAll('.modal-signup .form  input'));
@@ -304,11 +381,11 @@
         item.value.length === 0 ? item.parentNode.classList.add('empty-input') : item.parentNode.classList.remove('empty-input');
       });
     })
+
     //파일첨부 체크
     formcheck[2].addEventListener('click', () => {
       const inputs = document.querySelector('.modal-addpost .form  input[type="file"]');
       inputs.value.length === 0 ? inputs.parentNode.classList.add('empty-input') : item.parentNode.classList.remove('empty-input');
-
     })
       //E:회원가입 모달
 

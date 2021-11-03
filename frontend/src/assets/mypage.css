@@ -13,6 +13,11 @@ section.mypage-header {
   z-index: 999;
 }
 
+.mypage-nav .mypage-logo a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .mypage-nav {
   position: relative;
   width: 1600px;
@@ -92,7 +97,7 @@ section.mypage-header {
   cursor: pointer;
 }
 
-.contents-wrap .posts-wrap .post:nth-child(2n + 1) {
+.contents-wrap .posts-wrap .post:nth-child(3n + 1) {
   margin-top: 20px;
 }
 
@@ -115,10 +120,17 @@ section.mypage-header {
   color: #333;
 }
 
-.contents-wrap .posts-wrap .post .thumbnail {
+.contents-wrap .posts-wrap .post .thumbnail-mypage {
   height: 280px;
   overflow: hidden;
-  background-color: #333;
+  background-color: white;
+  border-bottom: 1px solid #ddd;
+}
+
+.contents-wrap .posts-wrap .post .thumbnail-mypage .create-button {
+  text-align: center;
+  margin-top: 90px;
+  font-size: 80px;
 }
 
 .contents-wrap .posts-wrap .post .thumbnail img {
