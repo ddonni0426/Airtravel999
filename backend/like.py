@@ -1,9 +1,10 @@
 from flask import Blueprint, jsonify, request
 from pymongo import MongoClient
 from bson import ObjectId
+from config import config
 
 like = Blueprint('like', __name__ )
-client = MongoClient('localhost', 27017)
+client = MongoClient(config["DB_URL"], 27017)
 db = client.airtravel
 
 

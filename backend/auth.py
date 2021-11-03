@@ -1,16 +1,14 @@
 from flask import Blueprint, request, jsonify
 from pymongo import MongoClient
-
-auth = Blueprint("auth", __name__)
-
-client = MongoClient('localhost', 27017)
-db = client.airtravel
-
-SECRET_KEY = "AirTravel_AweSome_Team"
-
+from config import config
 import jwt
 import datetime
 import hashlib
+
+auth = Blueprint("auth", __name__)
+
+client = MongoClient(config["DB_URL"], 27017)
+db = client.airtravel
 
 @auth.route('/')
 def getTour():
@@ -61,7 +59,7 @@ def api_login():
             'user_id': user_id,
             'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=60*60*60)
         }
-        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+        token = jwt.encode(payload, config["SECRET_KEY"], algorithm='HS256')
 
         return jsonify({'result': 'success', 'token': token})
     else:
@@ -73,7 +71,7 @@ def api_valid():
     token_receive = request.cookies.get('mytoken')
 
     try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        payload = jwt.decode(token_receive, config["SECRET_KEY"], algorithms=['HS256'])
         print(payload)
 
         userinfo = db.user.find_one({'user_id': payload['user_id']}, {'_id': 0})
