@@ -16,32 +16,49 @@ import hashlib
 def getTour():
   return "auth"
 
+# 아이디 중복확인 체크 API
+@auth.route("/checkid", methods=["POST"])
+def api_checkid():
+    user_id = request.form["user_id"]
+		
+    result = db.user.find_one({"user_id": user_id})
+
+    if result is not None:
+      return jsonify({"result": "success", "msg": "아이디가 이미 사용중입니다."})
+    else:
+      return jsonify({"result": "success", "msg": "사용가능한 아이디입니다."})
+
 # 회원가입 API
 @auth.route("/signup", methods=["POST"])
 def api_register():
-    id = request.form["id"]
-    pw = request.form["pw"]
+    user_id = request.form["user_id"]
+    user_pw = request.form["user_pw"]
     nickname = request.form["nickname"]
 
-    pw_hash = hashlib.sha256(pw.encode("utf-8")).hexdigest()
+    result = db.user.find_one({"user_id": user_id})
 
-    db.user.insert_one({"id": id, "pw": pw_hash, "nick": nickname})
+    if result is not None:
+      return jsonify({"result": "fail", "msg": "아이디가 이미 사용중입니다."})
+    else:
+      pw_hash = hashlib.sha256(user_pw.encode("utf-8")).hexdigest()
 
-    return jsonify({"result": "success"})
+      db.user.insert_one({"user_id": user_id, "user_pw": pw_hash, "nick": nickname})
+
+      return jsonify({"result": "success"})
 	
 # 로그인 API
 @auth.route('/login', methods=['POST'])
 def api_login():
-    id = request.form['id']
-    pw = request.form['pw']
+    user_id = request.form['user_id']
+    user_pw = request.form['user_pw']
 
-    pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
+    pw_hash = hashlib.sha256(user_pw.encode('utf-8')).hexdigest()
 
-    result = db.user.find_one({'id': id, 'pw': pw_hash})
+    result = db.user.find_one({'user_id': user_id, 'user_pw': pw_hash})
 
     if result is not None:
         payload = {
-            'id': id,
+            'user_id': user_id,
             'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=60*60*60)
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
@@ -59,7 +76,7 @@ def api_valid():
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         print(payload)
 
-        userinfo = db.user.find_one({'id': payload['id']}, {'_id': 0})
+        userinfo = db.user.find_one({'user_id': payload['user_id']}, {'_id': 0})
         return jsonify({'result': 'success', 'nickname': userinfo['nick']})
     except jwt.ExpiredSignatureError:
         return jsonify({'result': 'fail', 'msg': '로그인 시간이 만료되었습니다.'})
