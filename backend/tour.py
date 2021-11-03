@@ -2,6 +2,11 @@ from flask import Blueprint, jsonify, request
 from pymongo import MongoClient
 from bson import ObjectId
 
+import jwt
+import datetime
+import hashlib
+SECRET_KEY = "AirTravel_AweSome_Team"
+
 tour = Blueprint('tour', __name__)
 
 client = MongoClient('localhost', 27017)
@@ -24,6 +29,11 @@ def createTour():
   tour_continent = request.form['tour_continent']
   tour_date = request.form['tour_date']
   tour_content = request.form['tour_content']
+
+  token_receive = request.cookies.get('mytoken')
+  payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+  print(payload)
+
   doc = {
     "url": tour_url,
     "title": tour_title,
@@ -31,7 +41,8 @@ def createTour():
     "continent": tour_continent,
     "date": tour_date,
     "content": tour_content,
-    "like": False
+    "like": False,
+    "author_id": payload["user_id"]
   }
 
   db.card.insert_one(doc)
@@ -68,19 +79,39 @@ def updateTour(tour_id):
   tour_date = request.form["tour_date"]
   tour_content = request.form["tour_content"]
 
-  doc = {
-    "url": tour_url,
-    "title": tour_title,
-    "location": tour_location,
-    "continent": tour_continent,
-    "date": tour_date,
-    "content": tour_content,
-  }
-  db.card.update_one({"_id": ObjectId(tour_id)}, {"$set": doc })
-  return jsonify({"msg": "수정완료"})
+  token_receive = request.cookies.get('mytoken')
+  payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+  print(payload)
+
+  selected_card = db.card.find_one({"_id": ObjectId(tour_id)})
+
+  if (payload["user_id"] == selected_card["author_id"]):
+    doc = {
+      "url": tour_url,
+      "title": tour_title,
+      "location": tour_location,
+      "continent": tour_continent,
+      "date": tour_date,
+      "content": tour_content,
+    }
+    db.card.update_one({"_id": ObjectId(tour_id)}, {"$set": doc })
+    return jsonify({"msg": "수정완료"})
+  else:
+    return jsonify({"msg": "수정 권한이 없습니다."})
 
 # 카드 삭제하기
 @tour.route('/<tour_id>', methods=["DELETE"])
 def deleteTour(tour_id):
-  db.card.delete_one({"_id": ObjectId(tour_id)})
+  token_receive = request.cookies.get('mytoken')
+  payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+  print(payload)
+
+  selected_card = db.card.find_one({"_id": ObjectId(tour_id)})
+
+  if (payload["user_id"] == selected_card["author_id"]):
+    db.card.delete_one({"_id": ObjectId(tour_id)})
+  else:
+    return jsonify({"msg": "수정 권한이 없습니다."})
+
+
   return jsonify({"msg": "삭제완료"})
