@@ -1,46 +1,27 @@
-.mypage-createmodal-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .post.post_mypage {
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: none;
-}
-
-a {
-  text-decoration: none;
-}
-
-.mypage-createmodal {
-  display: flex;
-}
-
-.icon {
-  background-color: #ffe8ee;
-  height: 100px;
-  width: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  box-shadow: 3px 3px 8px 0px rgba(0, 0, 0, 0.2);
-}
-
-.icon i {
-  font-size: 70px;
-  color: #957dad;
+  background-color: #d6d6d6;
   transition: all 0.2s;
 }
 
-.icon:hover {
-  background-color: #fcf1d8;
+.post.post_mypage:hover {
+  background-color: #e0e0e0;
 }
 
-.icon:hover i {
-  transform: rotate(15deg) scale(1.5);
-  color: #b3a580;
+.icon-contaioner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.add-icon {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: (50%, 50%);
+  display: block;
+  color: white;
+  font-size: 100px;
 }
