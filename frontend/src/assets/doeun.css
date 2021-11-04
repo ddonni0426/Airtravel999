@@ -1,4 +1,4 @@
-/* 게시물 생성 modal 스타일 */
+/* S: 게시물 생성 modal 스타일 새로 추가된 스타일 */
 .form-title,
 .form-location {
   display: flex;
@@ -9,9 +9,9 @@
   overflow: hidden;
 }
 
-/* TODO: 파일선택이랑 겹치는 부분 공통 스타일로 뺴기 */
 .form label.input-title,
 .form label.input-location {
+  /* TODO: 파일선택이랑 겹치는 부분 공통 스타일로 뺴기 */
   border-radius: 5px;
   display: inline-flex;
   align-items: center;
@@ -34,15 +34,35 @@
   border: 0;
   outline: none;
 }
+
 .emoji {
   display: inline-block;
   vertical-align: text-top;
 }
 
-/* S: 게시물 생성 모달에 아래 내용 추가 */
 #addPost .modal-container {
   width: 800px;
 }
+
+/* 게시물 추가 팝업창 세로 정렬 스타일임 */
+#addPost.modal-bg.show .modal-container {
+  transform: none; /* TODO: 애니메이션 안넣을 거면 나중에 삭제하기*/
+  margin-top: 0; /* TODO: 모달 가이드 삭제 시 함께 삭제 */
+  top: 50%;
+  margin-top: -445.5px;
+}
+
+.form-date input[type="date"] {
+  border: none;
+  width: calc(100% - 10px);
+  height: 100%;
+  outline: none;
+  cursor: pointer;
+}
+
+/* E: 게시물 생성 modal 스타일 새로 추가된 스타일 */
+
+/* 이하: 기존 클래스에 스타일 추가 */
 .thumbnail-area {
   overflow: hidden;
   height: 250px;
@@ -53,17 +73,11 @@
 .form.form-file .file-badge {
   max-width: 80%;
 }
-.options-wrap select {
+
+.options-wrap select,
+.options-wrap .form-date {
   width: calc(50% - 10px);
   border-radius: 5px;
+  padding-left: 10px;
   height: 40px;
-}
-/* E: 게시물 생성 모달에 아래 내용 추가 */
-
-/* 게시물 추가 팝업창 세로 정렬 */
-#addPost.modal-bg.show .modal-container {
-  transform: none; /* TODO: 애니메이션 안넣을 거면 나중에 삭제하기*/
-  margin-top: 0; /* TODO: 모달 가이드 삭제 시 함께 삭제 */
-  top: 50%;
-  margin-top: -445.5px;
 }
