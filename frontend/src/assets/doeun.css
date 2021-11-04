@@ -31,6 +31,7 @@
   padding: 0;
   height: 38px;
   flex: auto;
+  border: 0;
   outline: none;
 }
 .emoji {
@@ -38,11 +39,10 @@
   vertical-align: text-top;
 }
 
-/* 게시물 생성 모달에 아래 내용 추가 */
+/* S: 게시물 생성 모달에 아래 내용 추가 */
 #addPost .modal-container {
-  width: 700px;
+  width: 800px;
 }
-
 .thumbnail-area {
   overflow: hidden;
   height: 250px;
@@ -53,8 +53,15 @@
 .form.form-file .file-badge {
   max-width: 80%;
 }
-/* modal 스타일 */
+.options-wrap select {
+  width: calc(50% - 10px);
+  border-radius: 5px;
+  height: 40px;
+}
 
+/* E: 게시물 생성 모달에 아래 내용 추가 */
+
+/* S: 보기용 임시 코드 */
 .modal-bg.show .modal-container {
   transform: none;
   margin-top: 0;
@@ -64,3 +71,4 @@
 .modal-container {
   transform: none;
 }
+/* E: 보기용 임시 코드 */
