@@ -18,7 +18,7 @@ def api_checkid():
     result = db.user.find_one({"user_id": user_id})
 
     if result is not None:
-      return jsonify({"result": "success", "msg": "아이디가 이미 사용중입니다."})
+			return jsonify({"result": "success", "msg": "아이디가 이미 사용중입니다."})
     else:
       return jsonify({"result": "success", "msg": "사용가능한 아이디입니다."})
 
