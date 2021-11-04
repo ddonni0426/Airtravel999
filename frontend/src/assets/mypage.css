@@ -82,11 +82,11 @@ section.mypage-header {
 }
 
 .contents-wrap .posts-wrap {
+  display: inline-flex;
   width: 1700px;
   margin: 0 auto auto 135px;
 }
-
-.contents-wrap .posts-wrap .post {
+.contents-wrap .posts-wrap .post:not(.post_mypage) {
   position: relative;
   display: inline-block;
   width: 520px;
