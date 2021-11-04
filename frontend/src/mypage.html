@@ -9,12 +9,13 @@
     href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Lobster&family=Work+Sans:wght@300&display=swap"
     rel="stylesheet" />
   <script src="https://kit.fontawesome.com/b9dd3be533.js" crossorigin="anonymous"></script>
-  <script src="assets/js/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+
   <title>Airtravel999</title>
 </head>
 
-<body>
 
+<body>
   <!-- S: HEADER -->
   <section class="mypage-header">
     <div class="mypage-nav">
@@ -117,7 +118,13 @@
   </div>
   <!-- E: 게시물 추가 모달 -->
   <script src="./assets/js/front_ui.js"></script>
-
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+  <script>
+    $(function () {
+      $("#datepicker").datepicker();
+    });
+  </script>
   <!-- 추후 삭제할 것 -->
   <script>
     function test() {

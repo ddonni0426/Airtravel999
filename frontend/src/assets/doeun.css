@@ -34,6 +34,7 @@
   border: 0;
   outline: none;
 }
+
 .emoji {
   display: inline-block;
   vertical-align: text-top;
@@ -53,9 +54,11 @@
 .form.form-file .file-badge {
   max-width: 80%;
 }
-.options-wrap select {
+.options-wrap select,
+.options-wrap .form-date {
   width: calc(50% - 10px);
   border-radius: 5px;
+  padding-left: 10px;
   height: 40px;
 }
 /* E: 게시물 생성 모달에 아래 내용 추가 */
@@ -66,4 +69,12 @@
   margin-top: 0; /* TODO: 모달 가이드 삭제 시 함께 삭제 */
   top: 50%;
   margin-top: -445.5px;
+}
+
+.form-date input[type="date"] {
+  border: none;
+  width: calc(100% - 10px);
+  height: 100%;
+  outline: none;
+  cursor: pointer;
 }
