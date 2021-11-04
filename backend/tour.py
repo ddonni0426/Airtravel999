@@ -13,13 +13,13 @@ tour = Blueprint("tour", __name__)
 client = MongoClient(config["DB_URL"], 27017)
 db = client.airtravel
 
-# 투어 카드 다 받아오기
-# @tour.route("/", methods=["GET"])
-# def getTours():
-#     tour_list = list(db.card.find({}))
-#     for tour in tour_list:
-#         tour["_id"] = str(tour["_id"])
-#     return jsonify({"tour_list": tour_list})
+투어 카드 다 받아오기
+@tour.route("/", methods=["GET"])
+def getTours():
+    tour_list = list(db.card.find({}))
+    for tour in tour_list:
+        tour["_id"] = str(tour["_id"])
+    return jsonify({"tour_list": tour_list})
 
 
 # 투어 카드 생성
