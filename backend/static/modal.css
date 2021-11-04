@@ -111,7 +111,7 @@
 .modal-container .modal-footer {
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: space-between;
   border-top: 1px solid #dee2e6;
   padding: 17px 30px;
 }
@@ -120,7 +120,7 @@
   margin-right: 10px;
   color: #333;
   font-size: 14px;
-  vertical-align: bottom;
+  vertical-align: center;
 }
 
 /* BUTTON 공통 스타일 */

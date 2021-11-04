@@ -8,6 +8,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Lobster&family=Work+Sans:wght@300&display=swap"
     rel="stylesheet" />
+  <script src="../static/js/jquery-3.6.0.min.js"></script>
+  <script src="../static/js/jquery.cookie.js"></script>
   <title>Airtravel999</title>
 </head>
 
@@ -31,7 +33,7 @@
   <div class="jumbotron"></div>
 
   <!-- S: BACKGROUND MUSIC -->
-  <audio controls autoplay>
+  <audio controls>
     <source src="{{ url_for('static', filename='background_music.mp3') }}" type="audio/mpeg">
   </audio>
   <!-- E: BACKGROUND MUSIC -->
@@ -75,7 +77,7 @@
         <!-- S: Modal ID -->
         <div class="form form-id">
           <div>
-            <input type="text" placeholder="ID" />
+            <input id="userID" type="text" placeholder="ID" />
           </div>
           <p class="form__alert-msg">아이디를 입력해주세요!</p>
         </div>
@@ -83,7 +85,7 @@
         <!-- S: Modal PW -->
         <div class="form form-pw">
           <div>
-            <input type="password" placeholder="PASSWORD" />
+            <input id="userPW" type="password" placeholder="PASSWORD" />
           </div>
           <p class="form__alert-msg">비밀번호를 입력해주세요!</p>
         </div>
@@ -91,8 +93,11 @@
 
       <!-- S: Modal Footer -->
       <div class="modal-footer">
-        <a href="javascript:();">아직 계정이 없으신가요?</a>
-        <button class="btn btn-primary formcheck">회원가입</button>
+        <button onclick="userLogin()" class="btn btn-green formcheck">로그인하기</button>
+        <div>
+          <a href="javascript:();">아직 계정이 없으신가요?</a>
+          <button class="btn btn-primary formcheck">회원가입</button>
+        </div>
       </div>
     </div>
     <!-- E: Modal Container -->
@@ -148,6 +153,29 @@
   </div>
   <!-- E: 회원가입 모달 -->
   <script>
+    // 로그인하기 로직
+    function userLogin() {
+      const userID = $("#userID").val();
+      const userPW = $("#userPW").val();
+
+      $.ajax({
+        type: "POST",
+        url: "/auth/login",
+        data: {
+          user_id: userID,
+          user_pw: userPW
+        },
+        success: function (response) {
+          if (response["result"] === "success") {
+            $.cookie("mytoken", response["token"], { path: "/" });
+            window.location.replace("/");
+          } else {
+            console.error(response["msg"]);
+          }
+        }
+      })
+    }
+
     //S:로그인 모달
     const login = document.querySelector(".js-login");
     const login_background = document.querySelector("#loginModal.modal-bg");
