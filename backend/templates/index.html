@@ -29,7 +29,7 @@
         {% endif %}
 
         {% if userNickName %}
-        <li><button type="button" class="btn">Logout</button></li>
+        <li><button onclick="userLogout()" type="button" class="btn">Logout</button></li>
         {% endif %}
 
       </ul>
@@ -185,6 +185,12 @@
           }
         }
       })
+    }
+
+    // 로그아웃하기 로직
+    function userLogout() {
+      $.removeCookie("mytoken");
+      window.location.replace("/");
     }
 
     //S:로그인 모달
