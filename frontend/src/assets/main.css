@@ -253,10 +253,9 @@ section.mainpage-header {
   right: 2%;
   bottom: 2%;
   display: block;
-  background-image: url("./images/@ico-arrow-top.png");
-  background-size: cover;
   height: 50px;
   width: 50px;
+  font-size: 50px;
   cursor: pointer;
 }
 
@@ -264,22 +263,22 @@ section.mainpage-header {
   display: block;
   width: 30px;
   height: 30px;
-  color: transparent;
+  color: #212529;
 }
 
 /* 스크롤바 설정*/
 body::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 /* 스크롤바 막대 설정*/
 body::-webkit-scrollbar-thumb {
   height: 5%;
   border-radius: 10px;
-  background-color: #343a40;
+  background-color: #212529;
 }
 
 /* 스크롤바 뒷 배경 설정*/
 body::-webkit-scrollbar-track {
-  background-color: #dee2e6;
+  background-color: #f8f9fa;
 }
