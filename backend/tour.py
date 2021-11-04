@@ -33,7 +33,6 @@ def createTour():
 
   token_receive = request.cookies.get('mytoken')
   payload = jwt.decode(token_receive, config["SECRET_KEY"], algorithms=['HS256'])
-  print(payload)
 
   doc = {
     "url": tour_url,
@@ -42,7 +41,7 @@ def createTour():
     "continent": tour_continent,
     "date": tour_date,
     "content": tour_content,
-    "like": False,
+    "like": 0,
     "author_id": payload["user_id"]
   }
 
@@ -60,6 +59,20 @@ def getTour(tour_id):
     return tour
 
   return jsonify({'tour': tour})
+
+# 투어 카드 user_id로 받아오기
+@tour.route('/mytour', methods=['GET'])
+def getTourByUser():
+  token_receive = request.cookies.get('mytoken')
+  if token_receive is None:
+    return {"msg": "로그인을 해주세요"}
+  payload = jwt.decode(token_receive, config["SECRET_KEY"], algorithms=['HS256'])
+
+  tour_list = list(db.card.find({"author_id": payload["user_id"]}))
+
+  for tour in tour_list:
+            tour['_id'] = str(tour['_id'])
+  return jsonify({'tour_list': tour_list})
 
 # 투어 카드 대륙별로 받아오기
 @tour.route('/', methods=['GET'])
@@ -94,6 +107,7 @@ def updateTour(tour_id):
       "continent": tour_continent,
       "date": tour_date,
       "content": tour_content,
+      "like": 0
     }
     db.card.update_one({"_id": ObjectId(tour_id)}, {"$set": doc })
     return jsonify({"msg": "수정완료"})
