@@ -35,13 +35,37 @@
 
   <div class="jumbotron">
   </div>
-  <div class="mypage-createmodal-body">
-    <div class="mypage-createmodal">
-      <a href="#" class="icon">
-        <i class="far fa-plus-square js-addPost"></i>
-      </a>
+  <!-- S: CONTENTS -->
+  <div class="contents-wrap">
+    <div class="posts-wrap">
+      <!-- S: Post Elem -->
+      <div class="post">
+        <div class="thumbnail">
+          <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
+        </div>
+        <div class="post-desc">
+          <strong class="post-location">샌프란시스코</strong>
+          <span class="">금문교</span>
+          <p class="post-detail ellipse">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est excepturorem
+            ipsumolor sit amet consectetur adipisicing elit. Est exceptuicing elit. Est exceptu</p>
+        </div>
+      </div>
+      <!-- E: Post Elem -->
+      <!-- S: ICON-->
+      <div class="mypage-createmodal-body">
+        <div class="mypage-createmodal">
+          <a href="#" class="icon">
+            <i class="far fa-plus-square js-addPost"></i>
+          </a>
+        </div>
+      </div>
+      <!-- E: ICON-->
+      <!-- <span class="scrolltop">
+        <a href="#">스크롤탑</a>
+      </span>-->
     </div>
   </div>
+  <!-- E: CONTENTS -->
 
   <!-- <span class="scrolltop">
         <a href="#">스크롤탑</a>
@@ -71,20 +95,20 @@
         </div>
         <p class="form__alert-msg">여행사진을 첨부해주세요!</p>
         <div class="options-wrap">
-          <select name="" id="">
+          <select name="" id="modal_location">
             <option value="" disabled selected>여행지</option>
-            <option value="">여행지1</option>
-            <option value="">여행지2</option>
-            <option value="">여행지3</option>
+            <option value="여행자1">여행지1</option>
+            <option value="여행자2">여행지2</option>
+            <option value="여행자3">여행지3</option>
           </select>
-          <select name="" id="">
+          <select name="" id="modal_continent">
             <option value="" disabled selected>대륙</option>
-            <option value="">대륙1</option>
-            <option value="">대륙2</option>
-            <option value="">대륙3</option>
+            <option value="대륙1">대륙1</option>
+            <option value="대륙2">대륙2</option>
+            <option value="대륙3">대륙3</option>
           </select>
-          <select name="" id="">
-            <option value="" selected>날짜</option>
+          <select name="" id="modal_date">
+            <option value="날짜" selected>날짜</option>
           </select>
         </div>
         <textarea name="" id="addPostTextarea" rows="10"> 내용을 입력하세요.</textarea>
@@ -93,7 +117,7 @@
       <!-- S: Modal Footer -->
       <div class="modal-footer">
         <button class="btn btn-light">취소</button>
-        <button class="btn btn-primary formcheck">추가</button>
+        <button onclick="test()" class="btn btn-primary formcheck">추가</button>
       </div>
 
     </div>
@@ -102,6 +126,19 @@
   <!-- E: 게시물 추가 모달 -->
 
   <script>
+    function test() {
+      let userLocation = $('#modal_location').val();
+      let userContinent = $('#modal_continent').val();
+      let userDate = $('#modal_date').val();
+      let userTextArea = $('#addPostTextarea').val()
+
+      $('contents-wrap').prepend('<div class="post-desc"</div>');
+
+      window.location.reload();
+
+      console.log(userLocation, userContinent, userDate, userTextArea);
+    }
+
     //prepend 사용
     $(".mypage-createmodal-body").prepend('<div class="mypage-createmodal"></div>');
 
