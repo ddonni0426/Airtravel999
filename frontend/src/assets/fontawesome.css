@@ -1,3 +1,7 @@
+.mypage-contaioner {
+  margin: 0 auto auto 135px;
+}
+
 .post_mypage {
   display: inline-flex;
   width: 520px;
@@ -5,8 +9,7 @@
   border: 1px solid #ddd;
   border-radius: 20px;
   overflow: hidden;
-  cursor: pointer;
-  margin-top: 20px;
+  margin: 18px;
   background-color: #ddd;
 }
 
@@ -24,6 +27,15 @@
   display: inline-flex;
   color: white;
   font-size: 100px;
+  cursor: pointer;
+}
+
+.post_mypage .icon-contaioner:nth-child(3n + 1) {
+  margin-top: 20px;
+}
+
+.post_mypage .icon-contaioner:nth-child(n) {
+  margin-left: 15px;
 }
 
 /* .add-icon {
@@ -34,4 +46,4 @@
   display: block;
   color: white;
   font-size: 100px;
-} */
+} */ ;
