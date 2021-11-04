@@ -8,6 +8,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Lobster&family=Work+Sans:wght@300&display=swap"
     rel="stylesheet">
+  <script src="https://kit.fontawesome.com/b9dd3be533.js" crossorigin="anonymous"></script>
+  <script src="assets/js/jquery-3.6.0.min.js"></script>
   <title>Airtravel999</title>
 </head>
 
@@ -20,8 +22,8 @@
     <div class="mypage-nav">
       <h1 class="mypage-logo"><a href="#">Airtravel</a></h1>
       <ul class="mypage-utils">
-        <li><button type="button" class="btn js-Home">Home</button></li>
-        <li><button type="button" class="btn js-Logout">Logout</button></li>
+        <li><button type="button" class="btn js-home">Home</button></li>
+        <li><button type="button" class="btn js-logout">Logout</button></li>
       </ul>
     </div>
   </section>
@@ -33,7 +35,6 @@
 
   <div class="jumbotron">
   </div>
-
   <!-- S: CONTENTS -->
   <div class="contents-wrap">
     <div class="posts-wrap">
@@ -50,19 +51,15 @@
         </div>
       </div>
       <!-- E: Post Elem -->
-      <!-- S: Post Elem -->
-      <div class="post">
-        <div class="thumbnail">
-          <!-- <img src="./assets/images/@img-post2.jpg" alt="서울"> -->
-        </div>
-        <div class="post-desc">
-          <strong class="post-location">서울</strong>
-          <span class="">한옥마을</span>
-          <p class="post-detail ellipse">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est excepturorem
-            ipsumolor sit amet consectetur adipisicing elit. Est exceptuicing elit. Est exceptu</p>
+      <!-- S: ICON-->
+      <div class="mypage-createmodal-body">
+        <div class="mypage-createmodal">
+          <a href="#" class="icon">
+            <i class="far fa-plus-square js-addPost"></i>
+          </a>
         </div>
       </div>
-      <!-- E: Post Elem -->
+      <!-- E: ICON-->
       <!-- <span class="scrolltop">
         <a href="#">스크롤탑</a>
       </span>-->
@@ -70,7 +67,104 @@
   </div>
   <!-- E: CONTENTS -->
 
+  <!-- <span class="scrolltop">
+        <a href="#">스크롤탑</a>
+      </span>-->
+  </div>
+  </div>
+  <!-- E: CONTENTS -->
+
+  <!-- S: 게시물 추가 모달 -->
+  <div id="addPost" class="modal-bg">
+    <!-- S: Modal Container -->
+    <div class="modal-container">
+      <!-- S: Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title">Create Post</h5>
+        <button type="button" class="btn-close">닫기</button>
+      </div>
+
+      <!-- S: Modal Body -->
+      <div class="modal-body modal-addpost" style=" padding-bottom: 30px;">
+        <div class="thumbnail-area">
+          이미지 영역
+        </div>
+        <div class="form form-file js-form-file">
+          <label for="input-file" class="input-file">파일 선택</label>
+          <input id="input-file" type="file" required>
+        </div>
+        <p class="form__alert-msg">여행사진을 첨부해주세요!</p>
+        <div class="options-wrap">
+          <select name="" id="modal_location">
+            <option value="" disabled selected>여행지</option>
+            <option value="여행자1">여행지1</option>
+            <option value="여행자2">여행지2</option>
+            <option value="여행자3">여행지3</option>
+          </select>
+          <select name="" id="modal_continent">
+            <option value="" disabled selected>대륙</option>
+            <option value="대륙1">대륙1</option>
+            <option value="대륙2">대륙2</option>
+            <option value="대륙3">대륙3</option>
+          </select>
+          <select name="" id="modal_date">
+            <option value="날짜" selected>날짜</option>
+          </select>
+        </div>
+        <textarea name="" id="addPostTextarea" rows="10"> 내용을 입력하세요.</textarea>
+      </div>
+
+      <!-- S: Modal Footer -->
+      <div class="modal-footer">
+        <button class="btn btn-light">취소</button>
+        <button onclick="test()" class="btn btn-primary formcheck">추가</button>
+      </div>
+
+    </div>
+    <!-- E: Modal Container -->
+  </div>
+  <!-- E: 게시물 추가 모달 -->
+
   <script>
+    function test() {
+      let userLocation = $('#modal_location').val();
+      let userContinent = $('#modal_continent').val();
+      let userDate = $('#modal_date').val();
+      let userTextArea = $('#addPostTextarea').val()
+
+      $('contents-wrap').prepend('<div class="post-desc"</div>');
+
+      window.location.reload();
+
+      console.log(userLocation, userContinent, userDate, userTextArea);
+    }
+
+    //prepend 사용
+    $(".mypage-createmodal-body").prepend('<div class="mypage-createmodal"></div>');
+
+    //공통 form 검증 함수
+    const empty__inputs = (inputs) => inputs.map((item, idx) => {
+      item.value.length === 0 ? item.parentNode.classList.add('empty-input') : item.parentNode.classList.remove('empty-input');
+    });
+
+    //S:게시물 추가 모달
+    const addPost = document.querySelector('.js-addPost');
+    const addPost_background = document.querySelector('#addPost.modal-bg');
+    const modal_closeAddPost = document.querySelector('#addPost .btn-close');
+    const AddPost_formcheck = document.querySelector('#loginModal .btn.formcheck');
+
+    addPost.addEventListener('click', () => {
+      addPost_background.classList.toggle('show');
+    });
+
+    modal_closeAddPost.addEventListener('click', () => {
+      addPost_background.classList.remove('show');
+    });
+
+    AddPost_formcheck.addEventListener('click', () => {
+      const inputs = Array.from(document.querySelectorAll('.modal-login .form  input'));
+      empty__inputs(inputs);
+    });
         // (() => {
         //   const scrollTop = document.querySelector('.scrolltop');
         //   scrollTop.addEventListener('click', () => {
