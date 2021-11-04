@@ -1,0 +1,66 @@
+/* 게시물 생성 modal 스타일 */
+.form-title,
+.form-location {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #efefef;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* TODO: 파일선택이랑 겹치는 부분 공통 스타일로 뺴기 */
+.form label.input-title,
+.form label.input-location {
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  padding-left: 15px;
+  width: 80px;
+  height: 40px;
+  margin: -1px;
+  color: #000;
+  background-color: #efefef;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form label.input-title + input,
+.form label.input-location + input {
+  display: flex;
+  padding: 0;
+  height: 38px;
+  flex: auto;
+  outline: none;
+}
+.emoji {
+  display: inline-block;
+  vertical-align: text-top;
+}
+
+/* 게시물 생성 모달에 아래 내용 추가 */
+#addPost .modal-container {
+  width: 700px;
+}
+
+.thumbnail-area {
+  overflow: hidden;
+  height: 250px;
+}
+.thumbnail-area img {
+  max-width: 100%;
+}
+.form.form-file .file-badge {
+  max-width: 80%;
+}
+/* modal 스타일 */
+
+.modal-bg.show .modal-container {
+  transform: none;
+  margin-top: 0;
+  top: 0;
+}
+
+.modal-container {
+  transform: none;
+}

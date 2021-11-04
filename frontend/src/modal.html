@@ -112,7 +112,7 @@
 
 
   <!-- S: 게시물 추가 모달 -->
-  <div id="addPost" class="modal-bg">
+  <div id="addPost" class="modal-bg show">
     <!-- S: Modal Container -->
     <div class="modal-container">
       <!-- S: Modal Header -->
@@ -124,22 +124,16 @@
       <!-- S: Modal Body -->
       <div class="modal-body modal-addpost" style=" padding-bottom: 30px;">
         <div class="thumbnail-area">
-          이미지 영역
+          <img src="./assets/images/@img-post2.jpg" alt="">
         </div>
         <div class="form form-file js-form-file">
           <label for="input-file" class="input-file">파일 선택</label>
           <input id="input-file" type="file" required>
         </div>
         <p class="form__alert-msg">여행사진을 첨부해주세요!</p>
-        <p class="form__guide-msg">이미지는 하나만 첨부해주세요.</p>
+        <p class="form__guide-msg"><span class="emoji"> 📌 </span> 이미지는 하나만 첨부해주세요.</p>
 
         <div class="options-wrap">
-          <select name="" id="">
-            <option value="" disabled selected>여행지</option>
-            <option value="">여행지1</option>
-            <option value="">여행지2</option>
-            <option value="">여행지3</option>
-          </select>
           <select name="" id="">
             <option value="" disabled selected>대륙</option>
             <option value="">대륙1</option>
@@ -150,7 +144,16 @@
             <option value="" selected>날짜</option>
           </select>
         </div>
-        <textarea name="" id="addPostTextarea" rows="10"> 내용을 입력하세요.</textarea>
+
+        <div class="form form-title">
+          <label for="input-title" class="input-title">제목</label>
+          <input id="input-title" type="text" placeholder="제목을 입력해주세요">
+        </div>
+        <div class="form form-location">
+          <label for="input-location" class="input-location">여행지</label>
+          <input id="input-location" type="text" placeholder="여행지를 입력해주세요">
+        </div>
+        <textarea name="" id="addPostTextarea" rows="7"> 내용을 입력하세요.</textarea>
       </div>
 
       <!-- S: Modal Footer -->
