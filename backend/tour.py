@@ -13,7 +13,7 @@ tour = Blueprint("tour", __name__)
 client = MongoClient(config["DB_URL"], 27017)
 db = client.airtravel
 
-투어 카드 다 받아오기
+# 투어 카드 다 받아오기
 @tour.route("/", methods=["GET"])
 def getTours():
     tour_list = list(db.card.find({}))
@@ -46,6 +46,7 @@ def createTour():
         "content": tour_content,
         "like": 0,
         "author_id": payload["user_id"],
+        "nick": payload["nick"],
     }
 
     db.card.insert_one(doc)
