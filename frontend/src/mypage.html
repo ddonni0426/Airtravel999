@@ -132,15 +132,14 @@
       let userDate = $('#modal_date').val();
       let userTextArea = $('#addPostTextarea').val()
 
-      $('contents-wrap').prepend('<div class="post-desc"</div>');
-
       window.location.reload();
 
       console.log(userLocation, userContinent, userDate, userTextArea);
     }
 
-    //prepend 사용
-    $(".mypage-createmodal-body").prepend('<div class="mypage-createmodal"></div>');
+    $(document).ready(function () {
+      $('.post').prepend('')
+    })
 
     //공통 form 검증 함수
     const empty__inputs = (inputs) => inputs.map((item, idx) => {
