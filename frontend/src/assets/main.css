@@ -142,3 +142,48 @@ section.mainpage-header {
   -webkit-box-orient: vertical;
   height: 3.3em;
 }
+
+/* 필터영역 스타일 추가 */
+.filters-wrap {
+  width: 1600px;
+  padding: 30px 0;
+  margin: 20px auto;
+  display: flex;
+  justify-content: start;
+}
+
+.filters-wrap .filter-select {
+  display: inline-block;
+  width: 300px;
+  height: 50px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 3px;
+  font-size: 18px;
+  padding-left: 10px;
+  border: 1px solid #ddd;
+}
+
+.footer {
+  width: 100%;
+  height: 100px;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.footer > .footer-wrap p {
+  line-height: 1.7em;
+  font-size: 14px;
+}
+.scrolltop {
+  position: absolute;
+  display: block;
+}
+.scrolltop a {
+  display: block;
+}
