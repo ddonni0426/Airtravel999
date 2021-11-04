@@ -68,7 +68,6 @@ def api_valid():
 
     try:
         payload = jwt.decode(token_receive, config["SECRET_KEY"], algorithms=['HS256'])
-        print(payload)
 
         userinfo = db.user.find_one({'user_id': payload['user_id']}, {'_id': 0})
         return jsonify({'result': 'success', 'nickname': userinfo['nick']})
