@@ -9,6 +9,10 @@
     href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Lobster&family=Work+Sans:wght@300&display=swap"
     rel="stylesheet">
 
+  <script src="assets/js/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
   <title>Airtravel999</title>
 </head>
 
@@ -27,9 +31,14 @@
   <!-- E: HEADER -->
 
   <!-- S: VISUAL AREA -->
-  <div class="visual-wrap"></div>
+  <div class="visual-slider">
+    <div class="slider-img slider-1">첫번째</div>
+    <div class="slider-img slider-2">두번째</div>
+    <div class="slider-img slider-3">세번째</div>
+  </div>
   <!-- E: VISUAL AREA -->
 
+  <!-- S: FILTER -->
   <div class="filters-wrap">
     <select class="filter-select">
       <option selected>Continent</option>
@@ -58,23 +67,23 @@
         </div>
       </div>
       <!-- E: Post Elem -->
-      <!-- <span class="scrolltop">
-        <a href="#">스크롤탑</a>
-      </span>-->
     </div>
   </div>
   <!-- E: CONTENTS -->
 
-  <span class="scrolltop">
-    <a href="#">스크롤탑</a>
-  </span>
 
+  <!-- S: FOOTER -->
   <footer class="footer">
     <div class="footer-wrap">
       <p>Copyright 2021. Hanghae99 Team13 All rights reserved.</p>
       <p>Pi Suyeon🌟, Jeon Sanghyuk🧛‍♂️ , Shin Kyungjune🚀, Kim Doeun🌜</p>
     </div>
   </footer>
+
+  <!-- S: SCROLL-TOP -->
+  <span class="scrolltop">
+    <a href="#">맨 위로 이동</a>
+  </span>
 
   <!-- S: 로그인 모달 -->
   <div id="loginModal" class="modal-bg">
@@ -116,6 +125,7 @@
     <!-- E: Modal Container -->
   </div>
   <!-- E: 로그인 모달 -->
+
   <!-- S: 회원가입 모달 -->
   <div id="signupModal" class="modal-bg">
     <!-- S: Modal Container -->
@@ -128,7 +138,6 @@
 
       <!-- S: Modal Body -->
       <div class="modal-body js-formcheck modal-signup">
-
         <!-- S: Modal ID -->
         <div class="form form-id">
           <div>
@@ -164,55 +173,9 @@
     <!-- E: Modal Container -->
   </div>
   <!-- E: 회원가입 모달 -->
-
-  <script>
-    //공통 form 검증 함수
-    const empty__inputs = (inputs) => inputs.map((item, idx) => {
-      item.value.length === 0 ? item.parentNode.classList.add('empty-input') : item.parentNode.classList.remove('empty-input');
-    });
-
-    //S:로그인 모달
-    const login = document.querySelector('.js-login');
-    const login_background = document.querySelector('#loginModal.modal-bg');
-    const modal_closeLogin = document.querySelector('#loginModal .btn-close');
-    const login_formcheck = document.querySelector('#loginModal .btn.formcheck'); // 사용시 querySelectorAll 대신 querySelector로 적절하게 변경해서 사용해주세여!
-
-    login.addEventListener('click', () => login_background.classList.toggle('show'));
-
-    modal_closeLogin.addEventListener('click', () => login_background.classList.remove('show'));
-
-    login_formcheck.addEventListener('click', () => {
-      const inputs = Array.from(document.querySelectorAll('.modal-login .form  input'));
-      empty__inputs(inputs);
-    });
-
-
-    //S:회원가입 모달
-    const signup = document.querySelector('.js-signup');
-    const signup_background = document.querySelector('#signupModal.modal-bg');
-    const modal_closeSignup = document.querySelector('#signupModal .btn-close');
-    const signup_formcheck = document.querySelector('#signupModal .btn.formcheck'); // 사용시 querySelectorAll 대신 querySelector로 적절하게 변경해서 사용해주세여!
-
-    signup.addEventListener('click', () => signup_background.classList.toggle('show'));
-
-    modal_closeSignup.addEventListener('click', () => signup_background.classList.remove('show'));
-
-    signup_formcheck.addEventListener('click', () => {
-      const inputs = Array.from(document.querySelectorAll('.modal-signup .form  input'));
-      empty__inputs(inputs);
-    });
-      //E:회원가입 모달
-
-        // (() => {
-        //   const scrollTop = document.querySelector('.scrolltop');
-        //   scrollTop.addEventListener('click', () => {
-        //     window.scroll({
-        //       behavior: "smooth",
-        //       left: 0,
-        //       top: 0,
-        //     });
-        //   });
-        // })();
+  <script src="./assets/js/front_ui.js"></script>
+  <script type="text/javascript">
+    $('.visual-slider').slick();
   </script>
 </body>
 
