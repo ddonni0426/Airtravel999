@@ -1,8 +1,14 @@
 .mypage-createmodal-body {
-  height: 52vh;
   display: flex;
-  margin-left: 230px;
   align-items: center;
+  justify-content: center;
+}
+
+.post.post_mypage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: none;
 }
 
 a {

@@ -35,6 +35,7 @@
 
   <div class="jumbotron">
   </div>
+
   <!-- S: CONTENTS -->
   <div class="contents-wrap">
     <div class="posts-wrap">
@@ -51,26 +52,26 @@
         </div>
       </div>
       <!-- E: Post Elem -->
-      <!-- S: ICON-->
-      <div class="mypage-createmodal-body">
-        <div class="mypage-createmodal">
-          <a href="#" class="icon">
-            <i class="far fa-plus-square js-addPost"></i>
-          </a>
-        </div>
+
+      <!-- S: Post Elem -->
+      <div class="post post_mypage">
       </div>
+      <!-- E: Post Elem -->
+
+      <!-- S: ICON-->
+      <!-- <div class="mypage-createmodal-body">
+      <div class="mypage-createmodal">
+        <a href="#" class="icon">
+          <i class="far fa-plus-square js-addPost"></i>
+        </a>
+      </div>
+    </div> -->
       <!-- E: ICON-->
+
       <!-- <span class="scrolltop">
         <a href="#">스크롤탑</a>
       </span>-->
     </div>
-  </div>
-  <!-- E: CONTENTS -->
-
-  <!-- <span class="scrolltop">
-        <a href="#">스크롤탑</a>
-      </span>-->
-  </div>
   </div>
   <!-- E: CONTENTS -->
 
@@ -137,9 +138,20 @@
       console.log(userLocation, userContinent, userDate, userTextArea);
     }
 
+    let mypage_post = $('.post').val();
+
+    let temphtml = `<div class="mypage-createmodal-body">
+                      <div class="mypage-createmodal">
+                        <a href="#" class="icon">
+                          <i class="far fa-plus-square js-addPost"></i>
+                        </a>
+                      </div>
+                    </div>`
+
     $(document).ready(function () {
-      $('.post').prepend('')
-    })
+      $('.post-wrap').prepend(temphtml)
+    });
+
 
     //공통 form 검증 함수
     const empty__inputs = (inputs) => inputs.map((item, idx) => {
