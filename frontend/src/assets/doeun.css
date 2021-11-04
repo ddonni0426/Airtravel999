@@ -62,7 +62,7 @@
 /* E: 게시물 생성 모달에 아래 내용 추가 */
 
 /* S: 보기용 임시 코드 */
-.modal-bg.show .modal-container {
+/*.modal-bg.show .modal-container {
   transform: none;
   margin-top: 0;
   top: 0;
@@ -70,5 +70,5 @@
 
 .modal-container {
   transform: none;
-}
+}*/
 /* E: 보기용 임시 코드 */
