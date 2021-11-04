@@ -266,3 +266,20 @@ section.mainpage-header {
   height: 30px;
   color: transparent;
 }
+
+/* 스크롤바 설정*/
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* 스크롤바 막대 설정*/
+body::-webkit-scrollbar-thumb {
+  height: 5%;
+  border-radius: 10px;
+  background-color: #343a40;
+}
+
+/* 스크롤바 뒷 배경 설정*/
+body::-webkit-scrollbar-track {
+  background-color: #dee2e6;
+}
