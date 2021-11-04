@@ -162,14 +162,14 @@ li {
   width: 1600px;
   padding: 30px 0;
   margin: 20px auto;
-  background-color: #f8f9fa;
   display: flex;
-  justify-content: center;
+  justify-content: start;
 }
 
 .filters-wrap .filter-select {
   display: inline-block;
-  width: 500px;
+  width: 300px;
+  height: 50px;
   margin-right: 5px;
   border: none;
   border-radius: 3px;
@@ -178,13 +178,26 @@ li {
   border: 1px solid #ddd;
 }
 
-.filters-wrap .filter-search {
-  display: inline-block;
-  width: 300px;
-  font-size: 18px;
-  margin-right: 5px;
-  border: none;
-  border-radius: 3px;
-  padding-left: 10px;
-  border: 1px solid #ddd;
+.footer {
+  width: 100%;
+  height: 100px;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.footer > .footer-wrap p {
+  line-height: 1.7em;
+  font-size: 14px;
+}
+.scrolltop {
+  position: absolute;
+  display: block;
+}
+.scrolltop a {
+  display: block;
 }

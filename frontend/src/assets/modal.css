@@ -154,6 +154,10 @@
   background-color: #0d6efd;
   color: #fff;
 }
+.btn-dark {
+  background-color: #333;
+  color: #fff;
+}
 /* TODO: 버튼 위치 수정하기...*/
 .btn-close::before {
   position: absolute;
