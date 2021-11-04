@@ -18,7 +18,7 @@
     });
 
   //S:로그인 모달
-  const login = document.querySelector(".js-login");
+/*   const login = document.querySelector(".js-login");
   const login_background = document.querySelector("#loginModal.modal-bg");
   const modal_closeLogin = document.querySelector("#loginModal .btn-close");
   const login_formcheck = document.querySelector("#loginModal .btn.formcheck"); // 사용시 querySelectorAll 대신 querySelector로 적절하게 변경해서 사용해주세여!
@@ -37,9 +37,9 @@
     );
     empty__inputs(inputs);
   });
-
+ */
   //S:회원가입 모달
-  const signup = document.querySelector(".js-signup");
+ /*  const signup = document.querySelector(".js-signup");
   const signup_background = document.querySelector("#signupModal.modal-bg");
   const modal_closeSignup = document.querySelector("#signupModal .btn-close");
   const signup_formcheck = document.querySelector(
@@ -59,6 +59,6 @@
       document.querySelectorAll(".modal-signup .form  input")
     );
     empty__inputs(inputs);
-  });
+  }); */
   //E:회원가입 모달
 })();
