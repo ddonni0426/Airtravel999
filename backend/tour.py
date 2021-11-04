@@ -14,12 +14,12 @@ client = MongoClient(config["DB_URL"], 27017)
 db = client.airtravel
 
 # 투어 카드 다 받아오기
-# @tour.route("/", methods=["GET"])
-# def getTours():
-#     tour_list = list(db.card.find({}))
-#     for tour in tour_list:
-#         tour["_id"] = str(tour["_id"])
-#     return jsonify({"tour_list": tour_list})
+@tour.route("/", methods=["GET"])
+def getTours():
+    tour_list = list(db.card.find({}))
+    for tour in tour_list:
+        tour["_id"] = str(tour["_id"])
+    return jsonify({"tour_list": tour_list})
 
 
 # 투어 카드 생성
@@ -46,6 +46,7 @@ def createTour():
         "content": tour_content,
         "like": 0,
         "author_id": payload["user_id"],
+        "nick": payload["nick"],
     }
 
     db.card.insert_one(doc)
@@ -65,26 +66,29 @@ def getTour(tour_id):
     return jsonify({"tour": tour})
 
 
-# 투어 카드 user_id로 받아오기
-@tour.route("/mytour", methods=["GET"])
-def getTourByUser():
-    token_receive = request.cookies.get("mytoken")
-    if token_receive is None:
-        return {"msg": "로그인을 해주세요"}
-    payload = jwt.decode(token_receive, config["SECRET_KEY"], algorithms=["HS256"])
+# # 투어 카드 user_id로 받아오기
+# @tour.route("/mytour", methods=["GET"])
+# def getTourByUser():
+#     token_receive = request.cookies.get("mytoken")
+#     if token_receive is None:
+#         return {"msg": "로그인을 해주세요"}
+#     payload = jwt.decode(token_receive, config["SECRET_KEY"], algorithms=["HS256"])
 
-    tour_list = list(db.card.find({"author_id": payload["user_id"]}))
+#     tour_list = list(db.card.find({"author_id": payload["user_id"]}))
 
-    for tour in tour_list:
-        tour["_id"] = str(tour["_id"])
-    return jsonify({"tour_list": tour_list})
+#     for tour in tour_list:
+#         tour["_id"] = str(tour["_id"])
+#     return jsonify({"tour_list": tour_list})
 
 
 # 투어 카드 대륙별로 받아오기
 @tour.route("/continent", methods=["POST"])
 def filterByContinent():
     continent = request.form["continent"]
-    tour_list = list(db.card.find({"continent": continent}))
+    if continent == "Continent":
+        tour_list = list(db.card.find({}))
+    else:
+        tour_list = list(db.card.find({"continent": continent}))
     for tour in tour_list:
         tour["_id"] = str(tour["_id"])
     return jsonify({"tour_list": tour_list})
