@@ -31,11 +31,10 @@
         <ul class="mainpage-utils">
           {% if userNickName %}
           <li>
-            <a type="button" class="btn btn-primary">
-              {{userNickName}} 님 안녕하세요!
-            </a>
+            <a type="button" class="btn" href="/mytour">My Tour</a>
           </li>
-          {% endif %} {% if userNickName is none %}
+          {% endif %} 
+          {% if userNickName is none %}
           <li><a type="button" class="btn js-login">Login</a></li>
           <li><a type="button" class="btn js-signup">Sign-up</a></li>
           {% endif %} {% if userNickName %}
@@ -63,7 +62,7 @@
         id="continent"
         onchange="filterByContinent()"
       >
-        <option selected>Continent</option>
+        <option selected value="Continent">Continent</option>
         <option value="Asia">Asia</option>
         <option value="Europe">Europe</option>
         <option value="North America">North America</option>
