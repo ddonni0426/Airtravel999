@@ -156,3 +156,35 @@ li {
   font-size: 13px;
   letter-spacing: -1px;
 }
+
+/* 필터영역 스타일 추가 */
+.filters-wrap {
+  width: 1600px;
+  padding: 30px 0;
+  margin: 20px auto;
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+}
+
+.filters-wrap .filter-select {
+  display: inline-block;
+  width: 500px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 3px;
+  font-size: 18px;
+  padding-left: 10px;
+  border: 1px solid #ddd;
+}
+
+.filters-wrap .filter-search {
+  display: inline-block;
+  width: 300px;
+  font-size: 18px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 3px;
+  padding-left: 10px;
+  border: 1px solid #ddd;
+}
