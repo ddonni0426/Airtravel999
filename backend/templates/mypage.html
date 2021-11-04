@@ -1,78 +1,80 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <link rel="stylesheet" href="../static//styled.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Lobster&family=Work+Sans:wght@300&display=swap"
-      rel="stylesheet"
-    />
-    <title>Airtravel999</title>
-  </head>
 
-  <body>
-    <!-- S: HEADER -->
-    <section class="mypage-header">
-      <div class="mypage-nav">
-        <h1 class="mypage-logo"><a href="#">Airtravel</a></h1>
-        <ul class="mypage-utils">
-          <li><button type="button" class="btn js-Home">Home</button></li>
-          <li><button type="button" class="btn js-Logout">Logout</button></li>
-        </ul>
+<head>
+  <link rel="stylesheet" href="../static//styled.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Lobster&family=Work+Sans:wght@300&display=swap"
+    rel="stylesheet" />
+  <script src="../static/js/jquery-3.6.0.min.js"></script>
+  <script src="../static/js/jquery.cookie.js"></script>
+  <title>Airtravel999</title>
+</head>
+
+<body>
+  <!-- S: HEADER -->
+  <section class="mypage-header">
+    <div class="mypage-nav">
+      <h1 class="mypage-logo"><a href="#">Airtravel</a></h1>
+      <ul class="mypage-utils">
+        <li><button type="button" class="btn js-Home">Home</button></li>
+        <li><button type="button" class="btn js-Logout">Logout</button></li>
+      </ul>
+    </div>
+  </section>
+  <!-- E: HEADER -->
+
+  <!-- S: VISUAL AREA -->
+  <div class="visual-wrap"></div>
+  <!-- E: VISUAL AREA -->
+
+  <div class="jumbotron"></div>
+
+  <!-- S: CONTENTS -->
+  <div class="contents-wrap">
+    <div class="posts-wrap">
+      <!-- S: Post Elem -->
+      <div class="post">
+        <div class="thumbnail">
+          <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
+        </div>
+        <div class="post-desc">
+          <strong class="post-location">샌프란시스코</strong>
+          <span class="">금문교</span>
+          <p class="post-detail ellipse">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
+            excepturorem ipsumolor sit amet consectetur adipisicing elit. Est
+            exceptuicing elit. Est exceptu
+          </p>
+        </div>
       </div>
-    </section>
-    <!-- E: HEADER -->
-
-    <!-- S: VISUAL AREA -->
-    <div class="visual-wrap"></div>
-    <!-- E: VISUAL AREA -->
-
-    <div class="jumbotron"></div>
-
-    <!-- S: CONTENTS -->
-    <div class="contents-wrap">
-      <div class="posts-wrap">
-        <!-- S: Post Elem -->
-        <div class="post">
-          <div class="thumbnail">
-            <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
-          </div>
-          <div class="post-desc">
-            <strong class="post-location">샌프란시스코</strong>
-            <span class="">금문교</span>
-            <p class="post-detail ellipse">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
-              excepturorem ipsumolor sit amet consectetur adipisicing elit. Est
-              exceptuicing elit. Est exceptu
-            </p>
-          </div>
+      <!-- E: Post Elem -->
+      <!-- S: Post Elem -->
+      <div class="post">
+        <div class="thumbnail">
+          <!-- <img src="./assets/images/@img-post2.jpg" alt="서울"> -->
         </div>
-        <!-- E: Post Elem -->
-        <!-- S: Post Elem -->
-        <div class="post">
-          <div class="thumbnail">
-            <!-- <img src="./assets/images/@img-post2.jpg" alt="서울"> -->
-          </div>
-          <div class="post-desc">
-            <strong class="post-location">서울</strong>
-            <span class="">한옥마을</span>
-            <p class="post-detail ellipse">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
-              excepturorem ipsumolor sit amet consectetur adipisicing elit. Est
-              exceptuicing elit. Est exceptu
-            </p>
-          </div>
+        <div class="post-desc">
+          <strong class="post-location">서울</strong>
+          <span class="">한옥마을</span>
+          <p class="post-detail ellipse">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
+            excepturorem ipsumolor sit amet consectetur adipisicing elit. Est
+            exceptuicing elit. Est exceptu
+          </p>
         </div>
-        <!-- E: Post Elem -->
-        <!-- <span class="scrolltop">
+      </div>
+      <!-- E: Post Elem -->
+      <!-- <span class="scrolltop">
         <a href="#">스크롤탑</a>
       </span>-->
-      </div>
     </div>
-    <!-- E: CONTENTS -->
+  </div>
+  <!-- E: CONTENTS -->
 
-    <script>
+  <script>
       // (() => {
       //   const scrollTop = document.querySelector('.scrolltop');
       //   scrollTop.addEventListener('click', () => {
@@ -83,6 +85,7 @@
       //     });
       //   });
       // })();
-    </script>
-  </body>
+  </script>
+</body>
+
 </html>
