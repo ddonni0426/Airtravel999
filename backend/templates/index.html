@@ -58,20 +58,24 @@
 
     <!-- S: FILTER -->
     <div class="filters-wrap">
-      <select class="filter-select">
+      <select
+        class="filter-select"
+        id="continent"
+        onchange="filterByContinent()"
+      >
         <option selected>Continent</option>
-        <option value="1">Asia</option>
-        <option value="2">Europe</option>
-        <option value="3">North America</option>
-        <option value="3">South America</option>
-        <option value="3">Afica</option>
-        <option value="3">Australia</option>
+        <option value="Asia">Asia</option>
+        <option value="Europe">Europe</option>
+        <option value="North America">North America</option>
+        <option value="South America">South America</option>
+        <option value="Africa">Afica</option>
+        <option value="Australia">Australia</option>
       </select>
     </div>
 
     <!-- S: CONTENTS -->
     <div class="contents-wrap">
-      <div class="posts-wrap">
+      <div class="posts-wrap" id="posts-box">
         <!-- S: Post Elem -->
         {% for list in lists %}
         <div class="post">
@@ -228,6 +232,42 @@
       function userLogout() {
         $.removeCookie("mytoken");
         window.location.replace("/");
+      }
+
+      // Continent 필터 로직
+      function filterByContinent() {
+        $("#posts-box").empty();
+        const continent = $("#continent option:selected").val();
+
+        $.ajax({
+          type: "POST",
+          url: `/tour/continent`,
+          data: { continent },
+          success: function (response) {
+            let tours = response["tour_list"];
+            for (let i = 0; i < tours.length; i++) {
+              let title = tours[i]["title"];
+              let location = tours[i]["location"];
+              let content = tours[i]["content"];
+              let url = tours[i]["url"];
+
+              let temp_html = `
+                  <div class="post">
+                    <div class="thumbnail">
+                      <img src=${url} alt=${location} />
+                    </div>
+                    <div class="post-desc">
+                      <strong class="post-location">${title}</strong>
+                      <span class="">${location}</span>
+                      <p class="post-detail ellipse">${content}</p>
+                    </div>
+                  </div>
+                `;
+
+              $("#posts-box").append(temp_html);
+            }
+          },
+        });
       }
     </script>
   </body>
