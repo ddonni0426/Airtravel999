@@ -58,17 +58,12 @@
   border-radius: 5px;
   height: 40px;
 }
-
 /* E: 게시물 생성 모달에 아래 내용 추가 */
 
-/* S: 보기용 임시 코드 */
-/*.modal-bg.show .modal-container {
-  transform: none;
-  margin-top: 0;
-  top: 0;
+/* 게시물 추가 팝업창 세로 정렬 */
+#addPost.modal-bg.show .modal-container {
+  transform: none; /* TODO: 애니메이션 안넣을 거면 나중에 삭제하기*/
+  margin-top: 0; /* TODO: 모달 가이드 삭제 시 함께 삭제 */
+  top: 50%;
+  margin-top: -445.5px;
 }
-
-.modal-container {
-  transform: none;
-}*/
-/* E: 보기용 임시 코드 */
