@@ -33,8 +33,7 @@
           <li>
             <a type="button" class="btn" href="/mytour">My Tour</a>
           </li>
-          {% endif %} 
-          {% if userNickName is none %}
+          {% endif %} {% if userNickName is none %}
           <li><a type="button" class="btn js-login">Login</a></li>
           <li><a type="button" class="btn js-signup">Sign-up</a></li>
           {% endif %} {% if userNickName %}
@@ -133,6 +132,7 @@
             </div>
             <p class="form__alert-msg">비밀번호를 입력해주세요!</p>
           </div>
+          <p class="form__alert-msg" id="form__alert-msg-login"></p>
         </div>
 
         <!-- S: Modal Footer -->
@@ -162,38 +162,57 @@
           <!-- S: Modal ID -->
           <div class="form form-id">
             <div>
-              <input type="text" placeholder="ID" style="width: 75%" />
+              <input
+                type="text"
+                id="signupID"
+                placeholder="ID"
+                style="width: 75%"
+              />
               <button
                 type="button"
                 class="btn btn-small btn-light form__idcheck"
+                onclick="checkID()"
               >
                 ID 체크
               </button>
             </div>
-            <p class="form__alert-msg">아이디를 입력해주세요!</p>
+            <p class="form__alert-msg" id="form__alert-msg-id">아이디를 입력해주세요!</p>
+          </div>
+
+          <div class="form form-pw">
+            <div>
+              <input type="text" id="signupNICK" placeholder="NICKNAME" />
+            </div>
+            <p class="form__alert-msg" id="form__alert-msg-nick">닉네임을 입력해주세요!</p>
           </div>
 
           <!-- S: Modal PW -->
           <div class="form form-pw">
             <div>
-              <input type="password" placeholder="PASSWORD" />
+              <input type="password" id="signupPW" placeholder="PASSWORD" />
             </div>
-            <p class="form__alert-msg">비밀번호를 입력해주세요!</p>
+            <p class="form__alert-msg id="form__alert-msg-pw">비밀번호를 입력해주세요!</p>
           </div>
 
           <!-- S: Modal PW check -->
           <div class="form form-pwcheck">
             <div>
-              <input type="password" placeholder="PASSWORD CHECK" />
+              <input
+                type="password"
+                id="signupPWC"
+                placeholder="PASSWORD CHECK"
+              />
             </div>
-            <p class="form__alert-msg">비밀번호를 입력해주세요!</p>
+            <p class="form__alert-msg" id="form__alert-msg-pwc">비밀번호를 입력해주세요!</p>
           </div>
         </div>
 
         <!-- S: Modal Footer -->
         <div class="modal-footer">
           <div>
-            <button class="btn btn-primary formcheck">회원가입</button>
+            <button onclick="userSignup()" class="btn btn-primary formcheck">
+              회원가입
+            </button>
           </div>
         </div>
       </div>
@@ -220,8 +239,10 @@
             if (response["result"] === "success") {
               $.cookie("mytoken", response["token"], { path: "/" });
               window.location.replace("/");
-            } else {
-              console.error(response["msg"]);
+            } else if(response["result"] === "fail") {
+              const alert = document.querySelector("#form__alert-msg-login")
+              alert.style.display = 'block';
+              alert.textContent = response["msg"]
             }
           },
         });
@@ -231,6 +252,62 @@
       function userLogout() {
         $.removeCookie("mytoken");
         window.location.replace("/");
+      }
+
+      // 회원가입 로직
+      function userSignup() {
+        const user_id = $("#signupID").val();
+        const user_nick = $("#signupNICK").val();
+        const user_pw = $("#signupPW").val();
+        const user_pwc = $("#signupPWC").val();
+
+        $.ajax({
+          type: "POST",
+          url: "/auth/signup",
+          data: {
+            user_id,
+            user_nick,
+            user_pw,
+            user_pwc,
+          },
+          success: function (response) {
+            if (response["result"] === "success") {
+              window.location.reload();
+            } else if (response["result"] === "fail id") {
+              const alert_id = document.querySelector('#form__alert-msg-id')
+              alert_id.style.display = 'block';
+              alert_id.textContent = response["msg"];
+            } else if (response["result"] === "fail pw") {
+              const alert_pwc = document.querySelector('#form__alert-msg-pwc')
+              alert_pwc.style.display = 'block';
+              alert_pwc.textContent = response["msg"];
+            }
+          },
+        });
+      }
+
+      // 회원가입 아이디 중복 체크
+      function checkID() {
+        const user_id = $("#signupID").val();
+
+        $.ajax({
+          type: "POST",
+          url: "/auth/checkid",
+          data: {
+            user_id,
+          },
+          success: function (response) {
+            const alert_id = document.querySelector('#form__alert-msg-id')
+            if(response["result"] === "success") {
+              alert_id.style.display = 'block';
+              alert_id.style.color = 'blue';
+              alert_id.textContent = response['msg'];
+            } else if (response["result"] === "fail") {
+              alert_id.style.display = 'block';
+              alert_id.textContent = response['msg'];
+            }
+          },
+        });
       }
 
       // Continent 필터 로직

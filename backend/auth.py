@@ -18,7 +18,7 @@ def api_checkid():
     result = db.user.find_one({"user_id": user_id})
 
     if result is not None:
-        return jsonify({"result": "success", "msg": "아이디가 이미 사용중입니다."})
+        return jsonify({"result": "fail", "msg": "아이디가 이미 사용중입니다."})
     else:
         return jsonify({"result": "success", "msg": "사용가능한 아이디입니다."})
 
@@ -28,16 +28,20 @@ def api_checkid():
 def api_register():
     user_id = request.form["user_id"]
     user_pw = request.form["user_pw"]
-    nickname = request.form["nickname"]
+    user_pwc = request.form["user_pwc"]
+    user_nick = request.form["user_nick"]
+
+    if user_pw != user_pwc:
+        return jsonify({"result": "fail pw", "msg": "비밀번호가 일치하지 않습니다"})
 
     result = db.user.find_one({"user_id": user_id})
 
-    if result is not None:
-        return jsonify({"result": "fail", "msg": "아이디가 이미 사용중입니다."})
+    if result :
+        return jsonify({"result": "fail id", "msg": "아이디가 이미 사용중입니다."})
     else:
         pw_hash = hashlib.sha256(user_pw.encode("utf-8")).hexdigest()
 
-        db.user.insert_one({"user_id": user_id, "user_pw": pw_hash, "nick": nickname})
+        db.user.insert_one({"user_id": user_id, "user_pw": pw_hash, "nick": user_nick})
 
         return jsonify({"result": "success"})
 
