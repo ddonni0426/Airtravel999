@@ -78,8 +78,6 @@ section.mainpage-header {
   width: 100%;
   height: 100%;
 }
-<<<<<<< HEAD
-=======
 
 .slick-prev.slick-arrow,
 .slick-next.slick-arrow {
@@ -127,7 +125,6 @@ section.mainpage-header {
   transform: rotate(-45deg);
 }
 
->>>>>>> 31316ddae5980e1582ee35bb0e9b9adee8237be5
 .slider-img {
   background-size: cover;
   background-position: center;
@@ -152,12 +149,15 @@ section.mainpage-header {
 }
 
 .contents-wrap .posts-wrap {
-  width: 1700px;
-  margin: 0 auto auto 135px;
+  display: inline-block;
+  /* width: 1700px; */
+  width: 1600px;
+  /*  margin: 0 auto auto 135px;*/
+  margin: 0 auto;
 }
 
-.contents-wrap .posts-wrap .post:not(.post_mypage) {
-  position: relative;
+/* TODO: mypage.css의 post_mypage 스타일이랑 공통적인 부분 스타일 따로 뺴기 */
+.contents-wrap .posts-wrap .post:not(.post_mypage.post) {
   display: inline-block;
   width: 520px;
   height: 400px;
@@ -165,19 +165,16 @@ section.mainpage-header {
   border-radius: 20px;
   overflow: hidden;
   cursor: pointer;
+  margin-bottom: 15px;
 }
 
-.contents-wrap .posts-wrap .post:nth-child(3n + 1) {
-  margin-top: 20px;
+.contents-wrap .posts-wrap .post:nth-child(3n-1) {
+  margin: 0 7.5px 15px;
 }
-
-.contents-wrap .posts-wrap .post:nth-child(n) {
-  margin-left: 15px;
-}
-
+/* 
 .contents-wrap .posts-wrap .post:hover::after {
   display: block;
-}
+} */
 
 .contents-wrap .posts-wrap .post .post-desc {
   padding: 16px 20px;
