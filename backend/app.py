@@ -33,6 +33,20 @@ def home():
         tour["_id"] = str(tour["_id"])
     return render_template("index.html", lists=tour_list, userNickName=user_nickname)
 
+# 투어 카드 user_id로 받아오기
+@app.route("/mytour", methods=["GET"])
+def getTourByUser():
+    token_receive = request.cookies.get("mytoken")
+    if token_receive is None:
+        return {"msg": "로그인을 해주세요"}
+    payload = jwt.decode(token_receive, config["SECRET_KEY"], algorithms=["HS256"])
+
+    tour_list = list(db.card.find({"author_id": payload["user_id"]}))
+
+    for tour in tour_list:
+        tour["_id"] = str(tour["_id"])
+    return render_template("mypage.html", lists=tour_list)
+
 
 if __name__ == "__main__":
     app.run("0.0.0.0", port=5050, debug=True)
