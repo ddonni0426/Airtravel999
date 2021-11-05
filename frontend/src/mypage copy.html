@@ -5,6 +5,9 @@
   <link rel="stylesheet" href="./assets/styled.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="shortcut icon" type="image/x-icon" href="./assets/images/favicon.png">
+
+
   <link
     href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Lobster&family=Work+Sans:wght@300&display=swap"
     rel="stylesheet" />
@@ -43,7 +46,7 @@
       <!-- S: Post Elem -->
       <div class="post">
         <div class="thumbnail">
-          <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
+          <img src="./assets/images/@img-post1.jpg" alt="">
         </div>
         <div class="post-desc">
           <strong class="post-location">샌프란시스코</strong>
@@ -53,11 +56,10 @@
         </div>
       </div>
       <!-- E: Post Elem -->
-
       <!-- S: Post Elem -->
       <div class="post">
         <div class="thumbnail">
-          <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
+          <img src="./assets/images/@img-post1.jpg" alt="">
         </div>
         <div class="post-desc">
           <strong class="post-location">샌프란시스코</strong>
@@ -67,11 +69,10 @@
         </div>
       </div>
       <!-- E: Post Elem -->
-
       <!-- S: Post Elem -->
       <div class="post">
         <div class="thumbnail">
-          <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
+          <img src="./assets/images/@img-post1.jpg" alt="">
         </div>
         <div class="post-desc">
           <strong class="post-location">샌프란시스코</strong>
@@ -81,11 +82,10 @@
         </div>
       </div>
       <!-- E: Post Elem -->
-
       <!-- S: Post Elem -->
       <div class="post">
         <div class="thumbnail">
-          <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
+          <img src="./assets/images/@img-post1.jpg" alt="">
         </div>
         <div class="post-desc">
           <strong class="post-location">샌프란시스코</strong>
@@ -95,49 +95,6 @@
         </div>
       </div>
       <!-- E: Post Elem -->
-
-      <!-- S: Post Elem -->
-      <div class="post">
-        <div class="thumbnail">
-          <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
-        </div>
-        <div class="post-desc">
-          <strong class="post-location">샌프란시스코</strong>
-          <span class="">금문교</span>
-          <p class="post-detail ellipse">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est excepturorem
-            ipsumolor sit amet consectetur adipisicing elit. Est exceptuicing elit. Est exceptu</p>
-        </div>
-      </div>
-      <!-- E: Post Elem -->
-
-      <!-- S: Post Elem -->
-      <div class="post">
-        <div class="thumbnail">
-          <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
-        </div>
-        <div class="post-desc">
-          <strong class="post-location">샌프란시스코</strong>
-          <span class="">금문교</span>
-          <p class="post-detail ellipse">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est excepturorem
-            ipsumolor sit amet consectetur adipisicing elit. Est exceptuicing elit. Est exceptu</p>
-        </div>
-      </div>
-      <!-- E: Post Elem -->
-
-      <!-- S: Post Elem -->
-      <div class="post">
-        <div class="thumbnail">
-          <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
-        </div>
-        <div class="post-desc">
-          <strong class="post-location">샌프란시스코</strong>
-          <span class="">금문교</span>
-          <p class="post-detail ellipse">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est excepturorem
-            ipsumolor sit amet consectetur adipisicing elit. Est exceptuicing elit. Est exceptu</p>
-        </div>
-      </div>
-      <!-- E: Post Elem -->
-
 
       <!-- S: AddPost Elem -->
       <div class="post post_mypage">
@@ -178,7 +135,6 @@
       <!-- S: Modal Body -->
       <div class="modal-body modal-addpost" style=" padding-bottom: 30px;">
         <div class="thumbnail-area">
-          <!-- <img src="이미지 경로를 여기에" alt=""> -->
         </div>
         <div class="form form-file js-form-file">
           <label for="input-file" class="input-file">파일 선택</label>
@@ -209,7 +165,7 @@
           <label for="input-location" class="input-location">여행지</label>
           <input id="input-location" type="text" placeholder=" 여행지를 입력해주세요">
         </div>
-        <textarea name="" id="addPostTextarea" rows="7"> 내용을 입력하세요.</textarea>
+        <textarea name="" id="addPostTextarea" rows="7" placeholder="내용을 입력하세요"></textarea>
       </div>
 
       <!-- S: Modal Footer -->
@@ -223,43 +179,6 @@
   </div>
   <!-- E: 게시물 추가 모달 -->
   <script src="./assets/js/front_ui.js"></script>
-
-  <!-- 추후 삭제할 것 -->
-  <script>
-    //S:게시물 추가 모달
-    const addPost = document.querySelector('.js-addPost');
-    const addPost_background = document.querySelector('#addPost.modal-bg');
-    const modal_closeAddPost = document.querySelector('#addPost .btn-close');
-
-    const formcheck = document.querySelector('.btn.formcheck'); // 사용시 querySelectorAll 대신 querySelector로 적절하게 변경해서 사용해주세여!
-
-    //파일첨부 체크
-    formcheck.addEventListener('click', () => {
-      const inputs = document.querySelector('.modal-addpost .form  input[type="file"]');
-      inputs.value.length === 0 ? inputs.parentNode.classList.add('empty-input') : item.parentNode.classList.remove('empty-input');
-
-    });
-
-    //첨부 파일 삭제
-    $(document).on("click", ".file-badge", function (e) {
-      e.target.classList.contains('file-badge') === true ? e.target.remove() : e.target.closest('.file-badge').remove();
-    });
-
-    //첨부파일 뱃지 추가
-    const inputs = document.querySelector('.modal-addpost .form  input[type="file"]');
-    inputs.addEventListener('change', () => {
-      const file = inputs.value.split('\\'); //경로
-      if (!file[0].length) return; //첨부된 사진이 없다면 뱃지 추가 로직 실행되지 않도록
-      $('.file-badge').length > 0 && $('.file-badge').remove(); // 사진 첨부되었는데 또 했을 경우 새로 추가한 사진만 남기기
-
-      const fileBadge_element = '<span class="file-badge ellipse"><a href="#">' + file[file.length - 1] + '</a></span >';
-      $('.js-form-file').append(fileBadge_element);
-      $('.empty-input').removeClass('empty-input')
-      //formData에 저장된 이미지 경로는 백엔드에서만 확인 가능    
-      const formData = new FormData();
-      formData.set('file_', file);
-    });
-  </script>
   <script type="text/javascript">
     $('.visual-slider').slick();
   </script>
