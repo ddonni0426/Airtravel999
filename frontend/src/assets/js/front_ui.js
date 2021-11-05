@@ -1,12 +1,25 @@
 (() => {
+  const clear__inputs = (inputs) => {
+    if(!inputs.length) return;
+    inputs.map((item, idx) => {
+      item.value = ''
+    });
+  }
   //S: 모달 밖 클릭 시 모달 닫기
-  $(document).on("click", ".modal-bg.show", (e) =>
-    e.target.classList.remove("show")
-  );
-  //S: 모달 밖 클릭 시 모달 닫기
-  $(document).on("click", ".js-close", (e) =>
-    e.target.closest(".modal-bg").classList.remove("show")
-  );
+  $(document).on("click", ".modal-bg.show", (e) => {
+    e.target.classList.remove("show");
+  });
+
+  //S: 모달 푸터 취소 박스 클릭 시 모달 닫기
+  $(document).on("click", ".js-close", (e) => {
+    e.target.closest(".modal-bg").classList.remove("show");
+    const target = $(e.target).parent().siblings().closest('.modal-body');
+    const inputs = Array.from(target.find('input'))
+    const texts = Array.from(target.find('textarea'))
+    clear__inputs(inputs)
+    clear__inputs(texts)
+    if($('.file-badge')) $('.file-badge').remove();
+  });
 
   //S: 공통 form 검증 함수
   const empty__inputs = (inputs) => {
@@ -16,6 +29,7 @@
         : item.parentNode.classList.remove("empty-input");
     });
   };
+
 
   //S: scroll-top
   const scrollTop = document.querySelector(".scrolltop");
@@ -41,8 +55,13 @@
       login_background.classList.toggle("show")
     );
 
-    modal_closeLogin.addEventListener("click", () =>
-      login_background.classList.remove("show")
+    modal_closeLogin.addEventListener("click", () => {
+      login_background.classList.remove("show");
+      const inputs = Array.from(
+        document.querySelectorAll(".modal-login .form  input")
+        );
+        clear__inputs(inputs);
+      }
     );
 
     login_formcheck.addEventListener("click", () => {
@@ -68,9 +87,13 @@
       signup_background.classList.toggle("show")
     );
 
-    modal_closeSignup.addEventListener("click", () =>
-      signup_background.classList.remove("show")
-    );
+    modal_closeSignup.addEventListener("click", () => {
+      signup_background.classList.remove("show");
+      const inputs = Array.from(
+        document.querySelectorAll(".modal-signup .form  input")
+      );
+      clear__inputs(inputs);
+    });
 
     signup_formcheck.addEventListener("click", () => {
       const inputs = Array.from(
@@ -98,14 +121,21 @@
 
     modal_closeAddPost.addEventListener("click", () => {
       addPost_background.classList.remove("show");
+      const inputs = Array.from($(".modal-addpost").find('input'));
+      const options = document.querySelector(".modal-addpost select")
+      const texts = document.querySelector(".modal-addpost textarea")
+      texts.value = ''
+      $('.file-badge').remove();
+      clear__inputs(inputs);
     });
 
     AddPost_formcheck.addEventListener("click", () => {
       const inputs = Array.from(
-        document.querySelectorAll(".modal-addpost .form  input")
+        document.querySelectorAll(".modal-addpost input")
       );
       empty__inputs(inputs);
     });
+
     //첨부파일 뱃지 추가
     inputs.addEventListener("change", () => {
       const file = inputs.value.split("\\"); //경로
