@@ -253,22 +253,3 @@ section.mainpage-header {
   line-height: 1.7em;
   font-size: 14px;
 }
-/* scrolltop */
-.scrolltop {
-  position: fixed;
-  right: 2%;
-  bottom: 2%;
-  display: block;
-  background-image: url("./images/@ico-arrow-top.png");
-  background-size: cover;
-  height: 50px;
-  width: 50px;
-  cursor: pointer;
-}
-
-.scrolltop a {
-  display: block;
-  width: 30px;
-  height: 30px;
-  color: transparent;
-}
