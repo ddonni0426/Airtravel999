@@ -34,7 +34,6 @@ def createTour():
     tour_url = request.files['file']
     print('@@@@', tour_url)
     tour_url.save(os.path.join(UPLOADS_PATH, secure_filename(tour_url.filename)))
-
     tour_title = request.form["tour_title"]
     tour_location = request.form["tour_location"]
     tour_continent = request.form["tour_continent"]
@@ -59,7 +58,7 @@ def createTour():
 
     token_receive = request.cookies.get("mytoken")
     if token_receive is None:
-        return {"result": "fail", "msg": "로그인을 먼저 해주세요"}
+        return {"result": "fail", "msg": "로그인을 먼저 해주세요"}
     payload = jwt.decode(token_receive, config["SECRET_KEY"], algorithms=["HS256"])
 
     doc = {
@@ -73,7 +72,6 @@ def createTour():
         "author_id": payload["user_id"],
         "nick": payload["nick"],
     }
-
     db.card.insert_one(doc)
     return jsonify({"result":"success", "msg": "추가완료"})
 

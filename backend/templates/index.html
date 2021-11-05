@@ -95,8 +95,7 @@
     <!-- S: CONTENTS -->
     <div class="contents-wrap">
       <div class="posts-wrap" id="posts-box">
-        {% for list in lists %}
-        {% set url = 'images/' + list.url %}
+        {% for list in lists %} {% set url = 'images/' + list.url %}
         <div class="post js-postDetail" onclick="goTour({{list}})">
           <div class="thumbnail">
             <img
@@ -485,7 +484,7 @@
         </div>
         <div class="modal-body modal-postDetail" style="padding-bottom: 30px">
           <div class="thumbnail-area">
-            <img src=${list.url} />
+            <img src="../static/images/${list.url}" />
           </div>
           <div class="labels-wrap">
             <h6 class="label-location">

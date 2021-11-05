@@ -272,12 +272,20 @@
         const tour_date = document.querySelector("#input-date").value;
         const tour_content = document.querySelector("#addPostTextarea").value;
 
-        formData.append("file", file);
-        formData.append("tour_title", tour_title);
-        formData.append("tour_location", tour_location);
-        formData.append("tour_continent", tour_continent);
-        formData.append("tour_date", tour_date);
-        formData.append("tour_content", tour_content);
+        if (
+          file &&
+          tour_title &&
+          tour_location &&
+          tour_continent &&
+          tour_date &&
+          tour_content
+        ) {
+          formData.append("file", file);
+          formData.append("tour_title", tour_title);
+          formData.append("tour_location", tour_location);
+          formData.append("tour_continent", tour_continent);
+          formData.append("tour_date", tour_date);
+          formData.append("tour_content", tour_content);
 
           $.ajax({
             type: "POST",
@@ -291,7 +299,10 @@
               }
             },
           });
-      
+        } else {
+          alert("요소를 입력하세요");
+        }
+      }
     </script>
     <script type="text/javascript">
       $(".visual-slider").slick();
