@@ -122,7 +122,9 @@
             <div>
               <input id="userID" type="text" placeholder="ID" />
             </div>
-            <p class="form__alert-msg">아이디를 입력해주세요!</p>
+            <p class="form__alert-msg" id="login-alert-id">
+              아이디를 입력해주세요!
+            </p>
           </div>
 
           <!-- S: Modal PW -->
@@ -130,9 +132,11 @@
             <div>
               <input id="userPW" type="password" placeholder="PASSWORD" />
             </div>
-            <p class="form__alert-msg">비밀번호를 입력해주세요!</p>
+            <p class="form__alert-msg" id="login-alert-pw">
+              비밀번호를 입력해주세요!
+            </p>
           </div>
-          <p class="form__alert-msg" id="form__alert-msg-login"></p>
+          <p class="form__alert-msg" id="login-alert-check"></p>
         </div>
 
         <!-- S: Modal Footer -->
@@ -176,14 +180,18 @@
                 ID 체크
               </button>
             </div>
-            <p class="form__alert-msg" id="form__alert-msg-id">아이디를 입력해주세요!</p>
+            <p class="form__alert-msg" id="signup-alert-id">
+              아이디를 입력해주세요!
+            </p>
           </div>
 
           <div class="form form-pw">
             <div>
               <input type="text" id="signupNICK" placeholder="NICKNAME" />
             </div>
-            <p class="form__alert-msg" id="form__alert-msg-nick">닉네임을 입력해주세요!</p>
+            <p class="form__alert-msg" id="signup-alert-nick">
+              닉네임을 입력해주세요!
+            </p>
           </div>
 
           <!-- S: Modal PW -->
@@ -191,7 +199,9 @@
             <div>
               <input type="password" id="signupPW" placeholder="PASSWORD" />
             </div>
-            <p class="form__alert-msg id="form__alert-msg-pw">비밀번호를 입력해주세요!</p>
+            <p class="form__alert-msg" id="signup-alert-pw">
+              비밀번호를 입력해주세요!
+            </p>
           </div>
 
           <!-- S: Modal PW check -->
@@ -203,7 +213,9 @@
                 placeholder="PASSWORD CHECK"
               />
             </div>
-            <p class="form__alert-msg" id="form__alert-msg-pwc">비밀번호를 입력해주세요!</p>
+            <p class="form__alert-msg" id="signup-alert-pwc">
+              비밀번호를 입력해주세요!
+            </p>
           </div>
         </div>
 
@@ -239,10 +251,18 @@
             if (response["result"] === "success") {
               $.cookie("mytoken", response["token"], { path: "/" });
               window.location.replace("/");
-            } else if(response["result"] === "fail") {
-              const alert = document.querySelector("#form__alert-msg-login")
-              alert.style.display = 'block';
-              alert.textContent = response["msg"]
+            } else if (response["result"] === "fail check") {
+              const alert = document.querySelector("#login-alert-check");
+              alert.style.display = "block";
+              alert.textContent = response["msg"];
+            } else if (response["result"] === "fail id") {
+              const alert = document.querySelector("#login-alert-id");
+              alert.style.display = "block";
+              alert.textContent = response["msg"];
+            } else if (response["result"] === "fail pw") {
+              const alert = document.querySelector("#login-alert-pw");
+              alert.style.display = "block";
+              alert.textContent = response["msg"];
             }
           },
         });
@@ -274,12 +294,12 @@
             if (response["result"] === "success") {
               window.location.reload();
             } else if (response["result"] === "fail id") {
-              const alert_id = document.querySelector('#form__alert-msg-id')
-              alert_id.style.display = 'block';
+              const alert_id = document.querySelector("#signup-alert-id");
+              alert_id.style.display = "block";
               alert_id.textContent = response["msg"];
             } else if (response["result"] === "fail pw") {
-              const alert_pwc = document.querySelector('#form__alert-msg-pwc')
-              alert_pwc.style.display = 'block';
+              const alert_pwc = document.querySelector("#signup-alert-pwc");
+              alert_pwc.style.display = "block";
               alert_pwc.textContent = response["msg"];
             }
           },
@@ -297,14 +317,15 @@
             user_id,
           },
           success: function (response) {
-            const alert_id = document.querySelector('#form__alert-msg-id')
-            if(response["result"] === "success") {
-              alert_id.style.display = 'block';
-              alert_id.style.color = 'blue';
-              alert_id.textContent = response['msg'];
+            const alert_id = document.querySelector("#signup-alert-id");
+            if (response["result"] === "success") {
+              alert_id.style.display = "block";
+              alert_id.style.color = "blue";
+              alert_id.textContent = response["msg"];
             } else if (response["result"] === "fail") {
-              alert_id.style.display = 'block';
-              alert_id.textContent = response['msg'];
+              alert_id.style.display = "block";
+              alert_id.style.color = "#dc3545";
+              alert_id.textContent = response["msg"];
             }
           },
         });
