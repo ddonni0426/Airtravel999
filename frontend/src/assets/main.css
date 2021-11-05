@@ -253,38 +253,3 @@ section.mainpage-header {
   line-height: 1.7em;
   font-size: 14px;
 }
-/* scrolltop */
-.scrolltop {
-  position: fixed;
-  right: 2%;
-  bottom: 2%;
-  display: block;
-  height: 50px;
-  width: 50px;
-  font-size: 50px;
-  cursor: pointer;
-}
-
-.scrolltop a {
-  display: block;
-  width: 30px;
-  height: 30px;
-  color: #212529;
-}
-
-/* 스크롤바 설정*/
-body::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* 스크롤바 막대 설정*/
-body::-webkit-scrollbar-thumb {
-  height: 5%;
-  border-radius: 10px;
-  background-color: #212529;
-}
-
-/* 스크롤바 뒷 배경 설정*/
-body::-webkit-scrollbar-track {
-  background-color: #f8f9fa;
-}

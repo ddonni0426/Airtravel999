@@ -137,10 +137,25 @@
   outline: none;
   cursor: pointer;
 }
-
 /* E: 게시물 생성 modal 스타일 새로 추가된 스타일 */
 
-/* 이하: 기존 클래스에 스타일 추가 */
+/* 브라우저 스크롤바 설정 */
+body::-webkit-scrollbar {
+  width: 10px;
+}
+body::-webkit-scrollbar-thumb {
+  height: 5%;
+  border-radius: 10px;
+  background-color: #212529;
+}
+body::-webkit-scrollbar-track {
+  background-color: #f8f9fa;
+}
+
+/***********************************
+****이하: 기존 클래스에 스타일 추가*** 
+************************************/
+
 .thumbnail-area {
   overflow: hidden;
   min-height: 250px;
@@ -159,4 +174,23 @@
   border-radius: 5px;
   padding-left: 10px;
   height: 40px;
+}
+
+/* scrolltop */
+.scrolltop {
+  position: fixed;
+  right: 2%;
+  bottom: 2%;
+  display: block;
+  height: 50px;
+  width: 50px;
+  font-size: 50px;
+  cursor: pointer;
+}
+
+.scrolltop a {
+  display: block;
+  width: 30px;
+  height: 30px;
+  color: #212529;
 }
