@@ -33,6 +33,7 @@ def home():
         tour["_id"] = str(tour["_id"])
     return render_template("index.html", lists=tour_list, userNickName=user_nickname)
 
+
 # 투어 카드 user_id로 받아오기
 @app.route("/mytour", methods=["GET"])
 def getTourByUser():

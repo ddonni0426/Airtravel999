@@ -70,10 +70,10 @@ def createTour():
 
 
 # 투어 카드 id로 받아오기
-@tour.route("/<tour_id>", methods=["GET"])
-def getTour(tour_id):
-    query = {"_id": ObjectId(tour_id)}
-    tour = db.card.find_one(query)
+@tour.route("/one", methods=["POST"])
+def getTour():
+    tour_id = request.form["tour_id"]
+    tour = db.card.find_one({"_id": ObjectId(tour_id)})
 
     if tour:
         tour["_id"] = str(tour["_id"])
