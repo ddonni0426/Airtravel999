@@ -23,7 +23,7 @@ def getTours():
 
 
 # 투어 카드 생성
-@tour.route("/", methods=["POST"])
+@tour.route("/", methods=["POST"], strict_slashes=False)
 def createTour():
     tour_url = request.form["tour_url"]
     tour_title = request.form["tour_title"]
@@ -98,7 +98,7 @@ def getTour(tour_id):
 
 
 # 투어 카드 대륙별로 받아오기
-@tour.route("/continent", methods=["POST"])
+@tour.route("/continent", methods=["POST"], strict_slashes=False)
 def filterByContinent():
     continent = request.form["continent"]
     if continent == "Continent":
