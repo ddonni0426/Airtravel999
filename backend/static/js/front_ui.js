@@ -96,24 +96,27 @@
     });
   };
 
-    //S:게시물 보기 모달
-    const onPostDetailHandler = () => {
-      if (document.querySelector("#postDetail") === null) return;
-  
-      const detailPost = document.querySelector(".js-postDetail");
-      const detailPost_background = document.querySelector("#postDetail.modal-bg");
-      const modal_closeAddPost = document.querySelector("#postDetail .btn-close");
-      const detailPost_formcheck = document.querySelector("#postDetail .btn.formcheck");
-  
-      detailPost.addEventListener("click", () => {
+  //S:게시물 보기 모달
+  const onPostDetailHandler = () => {
+    if (document.querySelector("#postDetail") === null) return;
+
+    const detailPosts = Array.from(document.querySelectorAll(".js-postDetail"));
+    const detailPost_background = document.querySelector("#postDetail.modal-bg");
+    const modal_closeAddPost = document.querySelector("#postDetail .btn-close");
+    const detailPost_formcheck = document.querySelector(
+      "#postDetail .btn.formcheck"
+    );
+
+    detailPosts.map((card) => {
+      card.addEventListener("click", (e) => {
         detailPost_background.classList.toggle("show");
       });
-  
-      modal_closeAddPost.addEventListener("click", () => {
-        detailPost_background.classList.remove("show");
-      });
-    };
-  
+    })
+
+    modal_closeAddPost.addEventListener("click", () => {
+      detailPost_background.classList.remove("show");
+    });
+  };
   onPostDetailHandler();
   onAddPostHandler();
   onLoginHandler();
