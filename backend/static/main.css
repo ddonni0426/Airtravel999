@@ -163,7 +163,7 @@ section.mainpage-header {
 /* TODO: mypage.css의 post_mypage 스타일이랑 공통적인 부분 스타일 따로 뺴기 */
 .contents-wrap .posts-wrap .post:not(.post_mypage.post) {
   display: inline-block;
-  width: 520px;
+  width: calc(100% / 3 - 20px);
   height: 400px;
   border: 1px solid #ddd;
   border-radius: 20px;

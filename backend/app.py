@@ -22,6 +22,7 @@ app.register_blueprint(auth, url_prefix="/auth")
 def home():
     user_token = request.cookies.get("mytoken")
     user_nickname = ""
+    user_info = ""
     if user_token is not None:
         payload = jwt.decode(user_token, config["SECRET_KEY"], algorithms=["HS256"])
         user_info = db.user.find_one({"user_id": payload["user_id"]}, {"_id": False})
@@ -30,12 +31,14 @@ def home():
         user_nickname = None
     tour_list = list(db.card.find({}))
     for tour in tour_list:
-        user_like = db.like.find_one({"user_id": payload["user_id"], "card_id": tour["_id"]})
+        if user_info:
+            user_like = db.like.find_one({"user_id": payload["user_id"], "card_id": tour["_id"]})
         tour["_id"] = str(tour["_id"])
-        if user_like is not None:
-            tour["user_like"] = 1
-        else:
-            tour["user_like"] = 0
+        if user_info:
+            if user_like is not None:
+                tour["user_like"] = 1
+            else:
+                tour["user_like"] = 0
     return render_template("index.html", lists=tour_list, userNickName=user_nickname)
 
 # 투어 카드 user_id로 받아오기
