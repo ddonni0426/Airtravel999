@@ -1,7 +1,12 @@
 from flask import Blueprint, jsonify, request
+from werkzeug.utils import secure_filename
 from pymongo import MongoClient
 from bson import ObjectId
 from config import config
+import os
+from os.path import join, dirname, realpath
+
+UPLOADS_PATH = join(dirname(realpath(__file__)), 'static\\images')
 
 import jwt
 import datetime
@@ -25,7 +30,9 @@ def getTours():
 # 투어 카드 생성
 @tour.route("/", methods=["POST"], strict_slashes=False)
 def createTour():
-    tour_url = request.form["tour_url"]
+    tour_url = request.files['file']
+    print('@@@@', tour_url)
+    tour_url.save(os.path.join(UPLOADS_PATH, secure_filename(tour_url.filename)))
     tour_title = request.form["tour_title"]
     tour_location = request.form["tour_location"]
     tour_continent = request.form["tour_continent"]
@@ -50,11 +57,11 @@ def createTour():
 
     token_receive = request.cookies.get("mytoken")
     if token_receive is None:
-        return {"result": "fail", "msg": "로그인을 먼저 해주세요"}
+        return {"result": "fail", "msg": "로그인을 먼저 해주세요"}
     payload = jwt.decode(token_receive, config["SECRET_KEY"], algorithms=["HS256"])
 
     doc = {
-        "url": tour_url,
+        "url": secure_filename(tour_url.filename),
         "title": tour_title,
         "location": tour_location,
         "continent": tour_continent,
@@ -64,7 +71,6 @@ def createTour():
         "author_id": payload["user_id"],
         "nick": payload["nick"],
     }
-
     db.card.insert_one(doc)
     return jsonify({"result":"success", "msg": "추가완료"})
 
