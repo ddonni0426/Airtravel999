@@ -1,249 +1,350 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <link rel="stylesheet" href="../static/styled.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="../static/images/favicon.png"
+    />
 
-<head>
-  <link rel="stylesheet" href="../static/styled.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="shortcut icon" type="image/x-icon" href="../static/images/favicon.png">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Lobster&family=Work+Sans:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/b9dd3be533.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../static/js/jquery-3.6.0.min.js"></script>
+    <script src="../static/js/jquery.cookie.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <script
+      type="text/javascript"
+      src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Lobster&family=Work+Sans:wght@300&display=swap"
-    rel="stylesheet" />
-  <script src="https://kit.fontawesome.com/b9dd3be533.js" crossorigin="anonymous"></script>
-  <script src="../static/js/jquery-3.6.0.min.js"></script>
-  <script src="../static/js/jquery.cookie.js"></script>
-  <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-  <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <title>Airtravel999</title>
+    <style>
+      .heart-btn:hover {
+        color: red;
+      }
 
-  <title>Airtravel999</title>
-</head>
+      .post-desc-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    </style>
+  </head>
 
-<body>
-  <!-- S: HEADER -->
-  <section class="mainpage-header">
-    <div class="mainpage-nav">
-      <h1 class="mainpage-logo"><a href="#">Airtravel</a></h1>
-      <ul class="mainpage-utils">
-        <li><a href="/" type="button" class="btn js-login">Home</a></li>
-        <li>
-          <a type="button" class="btn js-signup" onclick="userLogout()">Logout</a>
-        </li>
-      </ul>
-    </div>
-  </section>
-  <!-- E: HEADER -->
-
-  <!-- S: VISUAL AREA -->
-  <div class="visual-mypagepost">
-    <div class="mypagepost-img mypagepost-1">
-    </div>
-  </div>
-  <!-- E: VISUAL AREA -->
-
-  <!-- S: CONTENTS -->
-  <div class="contents-wrap">
-    <div class="posts-wrap">
-      <!-- S: Post Elem -->
-      {% for list in lists %}
-      <div class="post">
-        <div class="thumbnail">
-          <img src="{{list.url}}"" alt=" {{list.location}}">
-        </div>
-        <div class="post-desc">
-          <strong class="post-location">{{list.title}}</strong>
-          <span class="">{{list.location}}</span>
-          <p class="post-detail ellipse">{{list.content}}</p>
-        </div>
+  <body>
+    <!-- S: HEADER -->
+    <section class="mainpage-header">
+      <div class="mainpage-nav">
+        <h1 class="mainpage-logo"><a href="#">Airtravel</a></h1>
+        <ul class="mainpage-utils">
+          <li><a href="/" type="button" class="btn js-login">Home</a></li>
+          <li>
+            <a type="button" class="btn js-signup" onclick="userLogout()"
+              >Logout</a
+            >
+          </li>
+        </ul>
       </div>
-      {% endfor %}
-      <!-- E: Post Elem -->
+    </section>
+    <!-- E: HEADER -->
 
-      <!-- S: AddPost Elem -->
-      <div class="post post_mypage">
-        <a href="#sdfds" class="mypage-addpost js-addPost">
-          <i class="add-icon fas fa-plus"></i>
-        </a>
-      </div>
-      <!-- E: AddPost Elem -->
+    <!-- S: VISUAL AREA -->
+    <div class="visual-mypagepost">
+      <div class="mypagepost-img mypagepost-1"></div>
     </div>
-  </div>
-  <!-- E: CONTENTS -->
+    <!-- E: VISUAL AREA -->
 
-  <!-- S: FOOTER -->
-  <footer class="footer">
-    <div class="footer-wrap">
-      <p>Copyright 2021. Hanghae99 Team13 All rights reserved.</p>
-      <p>Pi Suyeon🌟, Jeon Sanghyuk🧛‍♂️ , Shin Kyungjune🚀, Kim Doeun🌜</p>
-    </div>
-  </footer>
+    <!-- S: CONTENTS -->
+    <div class="contents-wrap">
+      <div class="posts-wrap">
+        <!-- S: Post Elem -->
+        {% for list in lists %}
+        <div class="post js-postDetail" onclick="goTour({{list}})">
+          <div class="thumbnail">
+            <img src="{{list.url}}" alt="{{list.location}}" />
+          </div>
+          <div class="post-desc">
+            <div class="post-desc-header">
+              <div>
+                <span class="">{{list.location}}</span>
+                <strong class="post-location">{{list.title}}</strong>
+              </div>
 
-  <!-- S: SCROLL-TOP -->
-  <span class="scrolltop">
-    <a href="#"><i class="far fa-arrow-alt-circle-up"></i></a>
-  </span>
-
-  <!-- S: 게시물 추가 모달 -->
-  <div id="addPost" class="modal-bg">
-    <!-- S: Modal Container -->
-    <div class="modal-container">
-      <!-- S: Modal Header -->
-      <div class="modal-header">
-        <h5 class="modal-title">Create Post</h5>
-        <button type="button" class="btn-close">닫기</button>
-      </div>
-
-      <!-- S: Modal Body -->
-      <div class="modal-body modal-addpost" style="padding-bottom: 30px">
-        <div class="thumbnail-area">
-          <!-- <img src="이미지 경로를 여기에" alt=""> -->
-        </div>
-        <div class="form form-file js-form-file">
-          <label for="input-file" class="input-file">파일 선택</label>
-          <input id="input-file" type="file" required />
-        </div>
-        <p class="form__alert-msg">여행사진을 첨부해주세요!</p>
-        <p class="form__guide-msg">
-          <span class="emoji"> 📌 </span> 이미지는 하나만 첨부해주세요.
-        </p>
-        <div class="options-wrap">
-          <select name="" id="input-continent">
-            <option value="" disabled selected>continent</option>
-            <option value="Asia">Asia</option>
-            <option value="Europe">Europe</option>
-            <option value="North America">North America</option>
-            <option value="South America">South America</option>
-            <option value="Africa">Afica</option>
-            <option value="Australia">Australia</option>
-          </select>
-          <div class="form-date">
-            <input id="input-date" type="date" placeholder="날짜를 입력해주세요." />
+              <div>
+                {% if list["user_like"] %}
+                <span onclick="dislikeCard({{list}})" class="heart-btn">
+                  <i style="color: red" class="fas fa-heart"></i>
+                </span>
+                {% else %}
+                <span onclick="likeCard({{list}})" class="heart-btn">
+                  <i class="far fa-heart"></i>
+                </span>
+                {% endif %}
+              </div>
+            </div>
+            <p class="post-detail ellipse">{{list.content}}</p>
           </div>
         </div>
+        {% endfor %}
+        <!-- E: Post Elem -->
 
-        <div class="form form-title">
-          <label for="input-title" class="input-title">제목</label>
-          <input id="input-title" type="text" placeholder=" 제목을 입력해주세요" />
+        <!-- S: AddPost Elem -->
+        <div class="post post_mypage">
+          <a href="#sdfds" class="mypage-addpost js-addPost">
+            <i class="add-icon fas fa-plus"></i>
+          </a>
         </div>
-        <div class="form form-location">
-          <label for="input-location" class="input-location">여행지</label>
-          <input id="input-location" type="text" placeholder=" 여행지를 입력해주세요" />
-        </div>
-        <textarea name="" id="addPostTextarea" rows="7" placeholder=" 내용을 입력하세요."></textarea>
-      </div>
-
-      <!-- S: Modal Footer -->
-      <div class="modal-footer">
-        <button class="btn btn-light js-close">취소</button>
-        <button class="btn btn-primary formcheck" onclick="createCard()">
-          추가
-        </button>
+        <!-- E: AddPost Elem -->
       </div>
     </div>
-    <!-- E: Modal Container -->
-  </div>
-  <!-- E: 게시물 추가 모달 -->
-  <script src="../static/js/front_ui.js"></script>
+    <!-- E: CONTENTS -->
 
-  <!-- 추후 삭제할 것 -->
-  <script>
-    //S:게시물 추가 모달
-    const addPost = document.querySelector(".js-addPost");
-    const addPost_background = document.querySelector("#addPost.modal-bg");
-    const modal_closeAddPost = document.querySelector("#addPost .btn-close");
+    <!-- S: FOOTER -->
+    <footer class="footer">
+      <div class="footer-wrap">
+        <p>Copyright 2021. Hanghae99 Team13 All rights reserved.</p>
+        <p>Pi Suyeon🌟, Jeon Sanghyuk🧛‍♂️ , Shin Kyungjune🚀, Kim Doeun🌜</p>
+      </div>
+    </footer>
 
-    const formcheck = document.querySelector(".btn.formcheck"); // 사용시 querySelectorAll 대신 querySelector로 적절하게 변경해서 사용해주세여!
+    <!-- S: SCROLL-TOP -->
+    <span class="scrolltop">
+      <a href="#"><i class="far fa-arrow-alt-circle-up"></i></a>
+    </span>
 
-    //파일첨부 체크
-    formcheck.addEventListener("click", () => {
+    <!-- S: 게시물 추가 모달 -->
+    <div id="addPost" class="modal-bg">
+      <!-- S: Modal Container -->
+      <div class="modal-container">
+        <!-- S: Modal Header -->
+        <div class="modal-header">
+          <h5 class="modal-title">Create Post</h5>
+          <button type="button" class="btn-close">닫기</button>
+        </div>
+
+        <!-- S: Modal Body -->
+        <div class="modal-body modal-addpost" style="padding-bottom: 30px">
+          <div class="thumbnail-area">
+            <!-- <img src="" alt=""> -->
+          </div>
+          <div class="form form-file js-form-file">
+            <label for="input-file" class="input-file">파일 선택</label>
+            <input id="input-file" type="file" required />
+          </div>
+          <p class="form__alert-msg">여행사진을 첨부해주세요!</p>
+          <p class="form__guide-msg">
+            <span class="emoji"> 📌 </span> 이미지는 하나만 첨부해주세요.
+          </p>
+          <div class="options-wrap">
+            <select name="" id="input-continent">
+              <option value="" disabled selected>continent</option>
+              <option value="Asia">Asia</option>
+              <option value="Europe">Europe</option>
+              <option value="North America">North America</option>
+              <option value="South America">South America</option>
+              <option value="Africa">Afica</option>
+              <option value="Australia">Australia</option>
+            </select>
+            <div class="form-date">
+              <input
+                id="input-date"
+                type="date"
+                placeholder="날짜를 입력해주세요."
+              />
+            </div>
+          </div>
+
+          <div class="form form-title">
+            <label for="input-title" class="input-title">제목</label>
+            <input
+              id="input-title"
+              type="text"
+              placeholder=" 제목을 입력해주세요"
+            />
+          </div>
+          <div class="form form-location">
+            <label for="input-location" class="input-location">여행지</label>
+            <input
+              id="input-location"
+              type="text"
+              placeholder=" 여행지를 입력해주세요"
+            />
+          </div>
+          <textarea
+            name=""
+            id="addPostTextarea"
+            rows="7"
+            placeholder=" 내용을 입력하세요."
+          ></textarea>
+        </div>
+
+        <!-- S: Modal Footer -->
+        <div class="modal-footer">
+          <button class="btn btn-light js-close">취소</button>
+          <button class="btn btn-primary formcheck" onclick="createCard()">
+            추가
+          </button>
+        </div>
+      </div>
+      <!-- E: Modal Container -->
+    </div>
+    <!-- E: 게시물 보기 모달 -->
+    <div id="postDetail" class="modal-bg"></div>
+    <!-- E: 게시물 추가 모달 -->
+    <script src="../static/js/front_ui.js"></script>
+
+    <!-- 추후 삭제할 것 -->
+    <script>
+      //S:게시물 추가 모달
+      const addPost = document.querySelector(".js-addPost");
+      const addPost_background = document.querySelector("#addPost.modal-bg");
+      const modal_closeAddPost = document.querySelector("#addPost .btn-close");
+
+      const formcheck = document.querySelector(".btn.formcheck"); // 사용시 querySelectorAll 대신 querySelector로 적절하게 변경해서 사용해주세여!
+
+      //파일첨부 체크
+      formcheck.addEventListener("click", () => {
+        const inputs = document.querySelector(
+          '.modal-addpost .form  input[type="file"]'
+        );
+        inputs.value.length === 0
+          ? inputs.parentNode.classList.add("empty-input")
+          : inputs.parentNode.classList.remove("empty-input");
+      });
+
+      //첨부 파일 삭제
+      $(document).on("click", ".file-badge", function (e) {
+        e.target.classList.contains("file-badge") === true
+          ? e.target.remove()
+          : e.target.closest(".file-badge").remove();
+      });
+
+      //첨부파일 뱃지 추가
       const inputs = document.querySelector(
         '.modal-addpost .form  input[type="file"]'
       );
-      inputs.value.length === 0
-        ? inputs.parentNode.classList.add("empty-input")
-        : inputs.parentNode.classList.remove("empty-input");
-    });
 
-    //첨부 파일 삭제
-    $(document).on("click", ".file-badge", function (e) {
-      e.target.classList.contains("file-badge") === true
-        ? e.target.remove()
-        : e.target.closest(".file-badge").remove();
-    });
+      const formData = new FormData();
+      inputs.addEventListener("change", () => {
+        const file = inputs.value.split("\\"); //경로
+        if (!file[0].length) return; //첨부된 사진이 없다면 뱃지 추가 로직 실행되지 않도록
+        $(".file-badge").length > 0 && $(".file-badge").remove(); // 사진 첨부되었는데 또 했을 경우 새로 추가한 사진만 남기기
 
-    //첨부파일 뱃지 추가
-    const inputs = document.querySelector(
-      '.modal-addpost .form  input[type="file"]'
-    );
+        const fileBadge_element =
+          '<span class="file-badge ellipse"><a href="#">' +
+          file[file.length - 1] +
+          "</a></span >";
+        $(".js-form-file").append(fileBadge_element);
+        $(".empty-input").removeClass("empty-input");
 
-    const formData = new FormData();
-    inputs.addEventListener("change", () => {
-      const file = inputs.value.split("\\"); //경로
-      if (!file[0].length) return; //첨부된 사진이 없다면 뱃지 추가 로직 실행되지 않도록
-      $(".file-badge").length > 0 && $(".file-badge").remove(); // 사진 첨부되었는데 또 했을 경우 새로 추가한 사진만 남기기
+        formData.set("file_", file);
+      });
 
-      const fileBadge_element =
-        '<span class="file-badge ellipse"><a href="#">' +
-        file[file.length - 1] +
-        "</a></span >";
-      $(".js-form-file").append(fileBadge_element);
-      $(".empty-input").removeClass("empty-input");
+      // 투어 카드 만들기
+      function createCard() {
+        const tour_url = formData.get("file_");
+        const tour_title = document.querySelector("#input-title").value;
+        const tour_location = document.querySelector("#input-location").value;
+        const tour_continent = $("#input-continent option:selected").val();
+        const tour_date = document.querySelector("#input-date").value;
+        const tour_content = document.querySelector("#addPostTextarea").value;
 
-      formData.set("file_", file);
-    });
-
-    // 투어 카드 만들기
-    function createCard() {
-      const tour_url = formData.get("file_");
-      const tour_title = document.querySelector("#input-title").value;
-      const tour_location = document.querySelector("#input-location").value;
-      const tour_continent = $("#input-continent option:selected").val();
-      const tour_date = document.querySelector("#input-date").value;
-      const tour_content = document.querySelector("#addPostTextarea").value;
-
-      if (
-        tour_url &&
-        tour_title &&
-        tour_location &&
-        tour_continent &&
-        tour_date &&
-        tour_content
-      ) {
-        $.ajax({
-          type: "POST",
-          url: "/tour",
-          data: {
-            tour_url,
-            tour_title,
-            tour_location,
-            tour_continent,
-            tour_date,
-            tour_content,
-          },
-          success: function (response) {
-            if (response["result"] === "success") {
-              alert(response["msg"]);
-              window.location.reload();
-            }
-          },
-          error: function (error) {
-            alert(error);
-          },
-        });
-      } else {
-        alert("값을 모두 입력하세요");
+        if (
+          tour_url &&
+          tour_title &&
+          tour_location &&
+          tour_continent &&
+          tour_date &&
+          tour_content
+        ) {
+          $.ajax({
+            type: "POST",
+            url: "/tour",
+            data: {
+              tour_url,
+              tour_title,
+              tour_location,
+              tour_continent,
+              tour_date,
+              tour_content,
+            },
+            success: function (response) {
+              if (response["result"] === "success") {
+                alert(response["msg"]);
+                window.location.reload();
+              }
+            },
+            error: function (error) {
+              alert(error);
+            },
+          });
+        } else {
+          alert("값을 모두 입력하세요");
+        }
       }
-    }
-  </script>
-  <script type="text/javascript">
-    $(".visual-slider").slick();
+    </script>
+    <script type="text/javascript">
+      $(".visual-slider").slick();
 
-    // 로그아웃하기 로직
-    function userLogout() {
-      $.removeCookie("mytoken");
-      window.location.replace("/");
-    }
-  </script>
-</body>
+      // 로그아웃하기 로직
+      function userLogout() {
+        $.removeCookie("mytoken");
+        window.location.replace("/");
+      }
 
+      // 게시물 보기
+      function goTour(list) {
+        $("#postDetail").empty();
+
+        const temp = `
+        <div class="modal-container">
+        <div class="modal-header">
+          <h5 class="modal-title ellipse ellipse-1">${list.title}</h5>
+          <button type="button" class="btn-close">닫기</button>
+        </div>
+        <div class="modal-body modal-postDetail" style="padding-bottom: 30px">
+          <div class="thumbnail-area">
+            <img src=${list.url} />
+          </div>
+          <div class="labels-wrap">
+            <h6 class="label-location">
+              <strong>${list.location}</strong>
+            </h6>
+            <div class="label-author">${list.nick}</div>
+            <div class="label-continent">${list.continent}</div>
+            <div class="label-date">${list.date}</div>
+            <div class="label-like">
+              <a href="#">
+                <span class="total-like">${list.like}</span>
+                <!— far: 빈 하트. fas: 꽉찬 하트—>
+                <i class="far fa-heart"></i>
+              </a>
+            </div>
+          </div>
+          <div class="content-wrap scroll-style">
+            <p class="post-content">${list.content}</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary js-close">닫기</button>
+        </div>
+      </div>
+        `;
+        $("#postDetail").append(temp);
+      }
+    </script>
+  </body>
 </html>

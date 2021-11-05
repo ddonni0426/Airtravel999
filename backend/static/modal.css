@@ -73,12 +73,21 @@
   padding-bottom: 80px;
 }
 
-.thumbnail-area {
+#addPost .thumbnail-area {
   width: 100%;
-  height: 200px;
+  height: 250px;
   text-align: center;
   line-height: 200px;
   background-color: #efefef;
+}
+
+.thumbnail-area {
+  width: 100%;
+  height: 480px;
+  text-align: center;
+  line-height: 200px;
+  background-color: #efefef;
+  overflow: hidden;
 }
 
 .options-wrap {
