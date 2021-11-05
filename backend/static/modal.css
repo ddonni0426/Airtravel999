@@ -89,7 +89,9 @@
   margin: 20px 0;
 }
 
-.options-wrap select {
+/* 11.05수정 */
+.options-wrap select,
+.options-wrap .form-date {
   width: 120px;
   height: 30px;
   border: 1px solid #efefef;
