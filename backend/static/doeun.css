@@ -165,11 +165,7 @@ body {
 .posts-wrap {
   min-height: 417px;
 }
-.thumbnail-area {
-  overflow: hidden;
-  min-height: 250px;
-  max-height: 350px;
-}
+
 .thumbnail-area img {
   max-width: 100%;
 }

@@ -4,7 +4,9 @@
     e.target.classList.remove("show")
   );
   //S: 모달 밖 클릭 시 모달 닫기
-  $(document).on("click", ".js-close", (e) => e.target.closest('.modal-bg').classList.remove("show"));
+  $(document).on("click", ".js-close", (e) =>
+    e.target.closest(".modal-bg").classList.remove("show")
+  );
 
   //S: 공통 form 검증 함수
   const empty__inputs = (inputs) => {
@@ -101,7 +103,9 @@
     if (document.querySelector("#postDetail") === null) return;
 
     const detailPosts = Array.from(document.querySelectorAll(".js-postDetail"));
-    const detailPost_background = document.querySelector("#postDetail.modal-bg");
+    const detailPost_background = document.querySelector(
+      "#postDetail.modal-bg"
+    );
     const modal_closeAddPost = document.querySelector("#postDetail .btn-close");
     const detailPost_formcheck = document.querySelector(
       "#postDetail .btn.formcheck"
@@ -111,9 +115,8 @@
       card.addEventListener("click", (e) => {
         detailPost_background.classList.toggle("show");
       });
-    })
-
-    modal_closeAddPost.addEventListener("click", () => {
+    });
+    $(document).on("click", "#postDetail .btn-close", () => {
       detailPost_background.classList.remove("show");
     });
   };
