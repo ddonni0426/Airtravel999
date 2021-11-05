@@ -3,21 +3,18 @@
 
 <head>
   <link rel="stylesheet" href="./assets/styled.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Lobster&family=Work+Sans:wght@300&display=swap"
     rel="stylesheet">
-
-  <script src="assets/js/jquery-3.6.0.min.js"></script>
+  <script src="https://kit.fontawesome.com/b9dd3be533.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-  <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
   <title>Airtravel999</title>
 </head>
 
 <body>
-
   <!-- S: HEADER -->
   <section class="mainpage-header">
     <div class="mainpage-nav">
@@ -55,91 +52,7 @@
   <div class="contents-wrap">
     <div class="posts-wrap">
       <!-- S: Post Elem -->
-      <div class="post">
-        <div class="thumbnail">
-          <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
-        </div>
-        <div class="post-desc">
-          <strong class="post-location">샌프란시스코</strong>
-          <span class="">금문교</span>
-          <p class="post-detail ellipse">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est excepturorem
-            ipsumolor sit amet consectetur adipisicing elit. Est exceptuicing elit. Est exceptu</p>
-        </div>
-      </div>
-      <!-- E: Post Elem -->
-
-      <!-- S: Post Elem -->
-      <div class="post">
-        <div class="thumbnail">
-          <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
-        </div>
-        <div class="post-desc">
-          <strong class="post-location">샌프란시스코</strong>
-          <span class="">금문교</span>
-          <p class="post-detail ellipse">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est excepturorem
-            ipsumolor sit amet consectetur adipisicing elit. Est exceptuicing elit. Est exceptu</p>
-        </div>
-      </div>
-      <!-- E: Post Elem -->
-
-      <!-- S: Post Elem -->
-      <div class="post">
-        <div class="thumbnail">
-          <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
-        </div>
-        <div class="post-desc">
-          <strong class="post-location">샌프란시스코</strong>
-          <span class="">금문교</span>
-          <p class="post-detail ellipse">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est excepturorem
-            ipsumolor sit amet consectetur adipisicing elit. Est exceptuicing elit. Est exceptu</p>
-        </div>
-      </div>
-      <!-- E: Post Elem -->
-
-      <!-- S: Post Elem -->
-      <div class="post">
-        <div class="thumbnail">
-          <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
-        </div>
-        <div class="post-desc">
-          <strong class="post-location">샌프란시스코</strong>
-          <span class="">금문교</span>
-          <p class="post-detail ellipse">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est excepturorem
-            ipsumolor sit amet consectetur adipisicing elit. Est exceptuicing elit. Est exceptu</p>
-        </div>
-      </div>
-      <!-- E: Post Elem -->
-
-      <!-- S: Post Elem -->
-      <div class="post">
-        <div class="thumbnail">
-          <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
-        </div>
-        <div class="post-desc">
-          <strong class="post-location">샌프란시스코</strong>
-          <span class="">금문교</span>
-          <p class="post-detail ellipse">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est excepturorem
-            ipsumolor sit amet consectetur adipisicing elit. Est exceptuicing elit. Est exceptu</p>
-        </div>
-      </div>
-      <!-- E: Post Elem -->
-
-      <!-- S: Post Elem -->
-      <div class="post">
-        <div class="thumbnail">
-          <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
-        </div>
-        <div class="post-desc">
-          <strong class="post-location">샌프란시스코</strong>
-          <span class="">금문교</span>
-          <p class="post-detail ellipse">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est excepturorem
-            ipsumolor sit amet consectetur adipisicing elit. Est exceptuicing elit. Est exceptu</p>
-        </div>
-      </div>
-      <!-- E: Post Elem -->
-
-      <!-- S: Post Elem -->
-      <div class="post">
+      <div class="post js-postDetail">
         <div class="thumbnail">
           <!-- <img src="./assets/images/@img-post1.jpg" alt="샌프란시스코"> -->
         </div>
@@ -155,6 +68,10 @@
   </div>
   <!-- E: CONTENTS -->
 
+  <!-- S: SCROLL-TOP -->
+  <span class="scrolltop">
+    <a href="#">맨 위로 이동</a>
+  </span>
 
   <!-- S: FOOTER -->
   <footer class="footer">
@@ -164,10 +81,6 @@
     </div>
   </footer>
 
-  <!-- S: SCROLL-TOP -->
-  <span class="scrolltop">
-    <a href="#">맨 위로 이동</a>
-  </span>
 
   <!-- S: 로그인 모달 -->
   <div id="loginModal" class="modal-bg">
@@ -256,7 +169,98 @@
     </div>
     <!-- E: Modal Container -->
   </div>
+
+  <!-- S: 게시물 보기 모달 -->
+  <div id="postDetail" class="modal-bg">
+    <!-- S: Modal Container -->
+    <div class="modal-container">
+      <!-- S: Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title ellipse ellipse-1">✨타이페이 여행 10일차 기록 제목 글자수 제한 필요할 듯s✨</h5>
+        <button type="button" class="btn-close">닫기</button>
+      </div>
+
+      <!-- S: Modal Body -->
+      <div class="modal-body modal-postDetail" style=" padding-bottom: 30px;">
+        <div class="thumbnail-area">
+          <img src="" alt="">
+        </div>
+        <div class="labels-wrap">
+          <h6 class="label-location"><strong>타이페이</strong></h6>
+          <div class="label-author">Nick</div>
+          <div class="label-continent">ASIA</div>
+          <div class="label-date">2021-11-06</div>
+          <div class="label-like">
+            <a href="#">
+              <span class="total-like">32</span>
+              <!-- far: 빈 하트. fas: 꽉찬 하트-->
+              <i class="far fa-heart"></i>
+            </a>
+          </div>
+        </div>
+        <div class="content-wrap scroll-style">
+          <p class="post-content">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, iusto dignissimos tenetur
+            illum
+            velit odio
+            saepe sit nesciunt ipsum ab eos delectus! Praesentium, temporibus doloremque at provident atque libero ea
+            asperiores consequuntur harum molestias quidem dicta odio eos suscipit id! Aspernatur nulla atque aut
+            excepturi adipisci? Eligendi aliquam nihil laboriosam, neque delectus asperiores minus nobis beatae
+            voluptatibus ipsam quia repellendus cum repudiandae illo ullam
+            saepe sit nesciunt ipsum ab eos delectus! Praesentium, temporibus doloremque at provident atque libero ea
+            asperiores consequuntur harum molestias quidem dicta odio eos suscipit id! Aspernatur nulla atque aut
+            excepturi adipisci? Eligendi aliquam nihil laboriosam, neque delectus asperiores minus nobis beatae
+            voluptatibus ipsam quia repellendus cum repudiandae illo ullam exercitationem vero, veniam ut accusamus
+            velit.
+            Accusantium nostrum, voluptates ex, maiores iusto natus ratione non officia quores minus nobis beatae
+            voluptatibus ipsam quia repellendus cum repudiandae illo ullam
+            saepe sit nesciunt ipsum ab eos delectus! Praesentium, temporibus doloremque at provident atque libero ea
+            asperiores consequuntur harum molestias quidem dicta odio eos suscipit id! Aspernatur nulla atque aut
+            excepturi adipisci? Eligendi aliquam nihil laboriosam, neque delectus asperiores minus no
+            saepe sit nesciunt ipsum ab eos delectus! Praesentium, temporibus doloremque at provident atque libero ea
+            asperiores consequuntur harum molestias quidem dicta odio eos suscipit id! Aspernatur nulla atque aut
+            excepturi adipisci? Eligendi aliquam nihil laboriosam, neque delectus asperiores minus nobis beatae
+            voluptatibus ipsam quia repellendus cum repudiandae illo ullam
+            saepe sit nesciunt ipsum ab eos delectus! Praesentium, temporibus doloremque at provident atque libero ea
+            asperiores consequuntur harum molestias quidem dicta odio eos suscipit id! Aspernatur nulla atque aut
+            excepturi adipisci? Eligendi aliquam nihil laboriosam, neque delectus asperiores minus nobis beatae
+            voluptatibus ipsam quia repellendus cum repudiandae illo ullam exercitationem vero, veniam ut accusamus
+            velit.
+            Accusantium nostrum, voluptates ex, maiores iusto natus ratione non officia quores minus nobis beatae
+            voluptatibus ipsam quia repellendus cum repudiandae illo ullam
+            saepe sit nesciunt ipsum ab eos delectus! Praesentium, temporibus doloremque at provident atque libero ea
+            asperiores consequuntur harum molestias quidem dicta odio eos suscipit id! Aspernatur nulla atque aut
+            excepturi adipisci? Eligendi aliquam nihil laboriosam, neque delectus asperiores minus nobis beatae
+            voluptatibus ipsam quia repellendus cum repudiandae illo ullam exercitationem vero, veniam ut accusamus
+            velit.
+            Accusantium nostrum, voluptates ex, maiores iusto natus ratione non officia quores minus nobis beatae
+            voluptatibus ipsam quia repellendus cum repudiandae illo ullam
+            saepe sit nesciunt ipsum ab eos delectus! Praesentium, temporibus doloremque at provident atque libero ea
+            asperiores consequuntur harum molestias quidem dicta odio eos suscipit id! Aspernatur nulla atque aut
+            excepturi adipisci? Eligendi aliquam nihil laboriosam, neque delectus asperiores minus nobis beatae
+            voluptatibus ipsam quia repellendus cum repudiandae illo ullam exercitationem vero, veniam ut accusamus
+            velit.
+            Accusantium nostrum, voluptates ex, maiores iusto natus ratione non officia quisquam voluptate dolores,
+            tempore debitis laborum magni repudiandae quibusdam ipsam ad repellendus. Assumenda totam nihil maxime
+            dolorum
+            cum architecto officiis.</p>
+        </div>
+
+      </div>
+
+      <!-- S: Modal Footer -->
+      <div class="modal-footer">
+        <button class="btn btn-primary js-close">닫기</button>
+      </div>
+
+    </div>
+    <!-- E: Modal Container -->
+  </div>
+  <!-- E: 게시물 보기 모달 -->
+
   <!-- E: 회원가입 모달 -->
+  <script src="assets/js/jquery-3.6.0.min.js"></script>
+  <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   <script src="./assets/js/front_ui.js"></script>
   <script type="text/javascript">
     $('.visual-slider').slick();
