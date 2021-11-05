@@ -211,3 +211,9 @@ body {
   height: 30px;
   color: #212529;
 }
+
+#addPost .thumbnail-area {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}

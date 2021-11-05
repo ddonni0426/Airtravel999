@@ -130,6 +130,12 @@
   margin-top: -445.5px;
 }
 
+#addPost .thumbnail-area {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
 .form-date input[type="date"] {
   border: none;
   width: calc(100% - 10px);
