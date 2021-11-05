@@ -13,7 +13,7 @@ db = client.airtravel
 def likeTour(tour_id):
     token_receive = request.cookies.get("mytoken")
     if token_receive is None:
-        return {"msg": "로그인을 해주세요"}
+        return {"msg": "로그인을 해주세요"}
     payload = jwt.decode(token_receive, config["SECRET_KEY"], algorithms=["HS256"])
 
     tour = db.card.find_one({"_id": ObjectId(tour_id)})
@@ -27,14 +27,14 @@ def likeTour(tour_id):
             {"user_id": payload["user_id"], "card_id": ObjectId(tour_id)}
         )
 
-    return jsonify({"msg": "좋아요 완료"})
+    return jsonify({"result": "success", "msg": "좋아요 완료"})
 
 
 @like.route("/<tour_id>", methods=["DELETE"])
 def dislikeTour(tour_id):
     token_receive = request.cookies.get("mytoken")
     if token_receive is None:
-        return {"msg": "로그인을 해주세요"}
+        return {"msg": "로그인을 해주세요"}
     payload = jwt.decode(token_receive, config["SECRET_KEY"], algorithms=["HS256"])
 
     tour = db.card.find_one({"_id": ObjectId(tour_id)})
@@ -48,4 +48,4 @@ def dislikeTour(tour_id):
             {"user_id": payload["user_id"], "card_id": ObjectId(tour_id)}
         )
 
-    return jsonify({"msg": "좋아요 취소 완료"})
+    return jsonify({"result": "success", "msg": "좋아요 취소 완료"})

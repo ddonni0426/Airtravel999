@@ -30,7 +30,12 @@ def home():
         user_nickname = None
     tour_list = list(db.card.find({}))
     for tour in tour_list:
+        user_like = db.like.find_one({"user_id": payload["user_id"], "card_id": tour["_id"]})
         tour["_id"] = str(tour["_id"])
+        if user_like is not None:
+            tour["user_like"] = 1
+        else:
+            tour["user_like"] = 0
     return render_template("index.html", lists=tour_list, userNickName=user_nickname)
 
 # 투어 카드 user_id로 받아오기
