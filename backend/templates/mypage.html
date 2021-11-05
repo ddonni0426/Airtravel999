@@ -106,38 +106,64 @@
 
         <!-- S: Modal Body -->
         <div class="modal-body modal-addpost" style="padding-bottom: 30px">
-          <div class="thumbnail-area">이미지 영역</div>
+          <div class="thumbnail-area">
+            <!-- <img src="이미지 경로를 여기에" alt=""> -->
+          </div>
           <div class="form form-file js-form-file">
             <label for="input-file" class="input-file">파일 선택</label>
             <input id="input-file" type="file" required />
           </div>
           <p class="form__alert-msg">여행사진을 첨부해주세요!</p>
+          <p class="form__guide-msg">
+            <span class="emoji"> 📌 </span> 이미지는 하나만 첨부해주세요.
+          </p>
           <div class="options-wrap">
-            <select name="" id="modal_location">
-              <option value="" disabled selected>여행지</option>
-              <option value="여행자1">여행지1</option>
-              <option value="여행자2">여행지2</option>
-              <option value="여행자3">여행지3</option>
+            <select name="" id="input-continent">
+              <option value="" disabled selected>continent</option>
+              <option value="Asia">Asia</option>
+              <option value="Europe">Europe</option>
+              <option value="North America">North America</option>
+              <option value="South America">South America</option>
+              <option value="Africa">Afica</option>
+              <option value="Australia">Australia</option>
             </select>
-            <select name="" id="modal_continent">
-              <option value="" disabled selected>대륙</option>
-              <option value="대륙1">대륙1</option>
-              <option value="대륙2">대륙2</option>
-              <option value="대륙3">대륙3</option>
-            </select>
-            <select name="" id="modal_date">
-              <option value="날짜" selected>날짜</option>
-            </select>
+            <div class="form-date">
+              <input
+                id="input-date"
+                type="date"
+                placeholder="날짜를 입력해주세요."
+              />
+            </div>
           </div>
-          <textarea name="" id="addPostTextarea" rows="10">
- 내용을 입력하세요.</textarea
-          >
+
+          <div class="form form-title">
+            <label for="input-title" class="input-title">제목</label>
+            <input
+              id="input-title"
+              type="text"
+              placeholder=" 제목을 입력해주세요"
+            />
+          </div>
+          <div class="form form-location">
+            <label for="input-location" class="input-location">여행지</label>
+            <input
+              id="input-location"
+              type="text"
+              placeholder=" 여행지를 입력해주세요"
+            />
+          </div>
+          <textarea
+            name=""
+            id="addPostTextarea"
+            rows="7"
+            placeholder=" 내용을 입력하세요."
+          ></textarea>
         </div>
 
         <!-- S: Modal Footer -->
         <div class="modal-footer">
-          <button class="btn btn-light">취소</button>
-          <button onclick="test()" class="btn btn-primary formcheck">
+          <button class="btn btn-light js-close">취소</button>
+          <button class="btn btn-primary formcheck" onclick="createCard()">
             추가
           </button>
         </div>
@@ -149,59 +175,93 @@
 
     <!-- 추후 삭제할 것 -->
     <script>
-      function test() {
-        let userLocation = $("#modal_location").val();
-        let userContinent = $("#modal_continent").val();
-        let userDate = $("#modal_date").val();
-        let userTextArea = $("#addPostTextarea").val();
-
-        window.location.reload();
-
-        console.log(userLocation, userContinent, userDate, userTextArea);
-      }
-
-      let mypage_post = $(".post").val();
-
-      let temphtml = `<div class="mypage-createmodal-body">
-                      <div class="mypage-createmodal">
-                        <a href="#" class="icon">
-                          <i class="far fa-plus-square js-addPost"></i>
-                        </a>
-                      </div>
-                    </div>`;
-
-      $(document).ready(function () {
-        $(".post-wrap").prepend(temphtml);
-      });
-
-      //공통 form 검증 함수
-      const empty__inputs = (inputs) =>
-        inputs.map((item, idx) => {
-          item.value.length === 0
-            ? item.parentNode.classList.add("empty-input")
-            : item.parentNode.classList.remove("empty-input");
-        });
-
       //S:게시물 추가 모달
       const addPost = document.querySelector(".js-addPost");
       const addPost_background = document.querySelector("#addPost.modal-bg");
       const modal_closeAddPost = document.querySelector("#addPost .btn-close");
-      const AddPost_formcheck = document.querySelector(
-        "#loginModal .btn.formcheck"
+
+      const formcheck = document.querySelector(".btn.formcheck"); // 사용시 querySelectorAll 대신 querySelector로 적절하게 변경해서 사용해주세여!
+
+      //파일첨부 체크
+      formcheck.addEventListener("click", () => {
+        const inputs = document.querySelector(
+          '.modal-addpost .form  input[type="file"]'
+        );
+        inputs.value.length === 0
+          ? inputs.parentNode.classList.add("empty-input")
+          : inputs.parentNode.classList.remove("empty-input");
+      });
+
+      //첨부 파일 삭제
+      $(document).on("click", ".file-badge", function (e) {
+        e.target.classList.contains("file-badge") === true
+          ? e.target.remove()
+          : e.target.closest(".file-badge").remove();
+      });
+
+      //첨부파일 뱃지 추가
+      const inputs = document.querySelector(
+        '.modal-addpost .form  input[type="file"]'
       );
 
-      addPost.addEventListener("click", () => {
-        addPost_background.classList.toggle("show");
+      const formData = new FormData();
+      inputs.addEventListener("change", () => {
+        const file = inputs.value.split("\\"); //경로
+        if (!file[0].length) return; //첨부된 사진이 없다면 뱃지 추가 로직 실행되지 않도록
+        $(".file-badge").length > 0 && $(".file-badge").remove(); // 사진 첨부되었는데 또 했을 경우 새로 추가한 사진만 남기기
+
+        const fileBadge_element =
+          '<span class="file-badge ellipse"><a href="#">' +
+          file[file.length - 1] +
+          "</a></span >";
+        $(".js-form-file").append(fileBadge_element);
+        $(".empty-input").removeClass("empty-input");
+
+        formData.set("file_", file);
       });
 
-      modal_closeAddPost.addEventListener("click", () => {
-        addPost_background.classList.remove("show");
-      });
+      // 투어 카드 만들기
+      function createCard() {
+        const tour_url = formData.get("file_");
+        const tour_title = document.querySelector("#input-title").value;
+        const tour_location = document.querySelector("#input-location").value;
+        const tour_continent = $("#input-continent option:selected").val();
+        const tour_date = document.querySelector("#input-date").value;
+        const tour_content = document.querySelector("#addPostTextarea").value;
 
-      // AddPost_formcheck.addEventListener("click", () => {
-      //const inputs = document.querySelectorAll(".modal-login .form  input");
-      //empty__inputs(inputs);
-      //});
+        if (
+          tour_url &&
+          tour_title &&
+          tour_location &&
+          tour_continent &&
+          tour_date &&
+          tour_content
+        ) {
+          $.ajax({
+            type: "POST",
+            url: "/tour",
+            data: {
+              tour_url,
+              tour_title,
+              tour_location,
+              tour_continent,
+              tour_date,
+              tour_content,
+            },
+            success: function (response) {
+              if (response["result"] === "success") {
+                alert(response["msg"]);
+                window.location.reload();
+              }
+            },
+            error: function (error) {
+              alert(error);
+            },
+          });
+        } else {
+          alert("값을 모두 입력하세요");
+        }
+      }
     </script>
     <script type="text/javascript">
       $(".visual-slider").slick();

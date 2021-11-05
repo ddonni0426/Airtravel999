@@ -1,0 +1,196 @@
+/* S: 게시물 생성 modal 스타일 새로 추가된 스타일 */
+.form-title,
+.form-location {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #efefef;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.form label.input-title,
+.form label.input-location {
+  /* TODO: 파일선택이랑 겹치는 부분 공통 스타일로 뺴기 */
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  padding-left: 15px;
+  width: 80px;
+  height: 40px;
+  margin: -1px;
+  color: #000;
+  background-color: #efefef;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form label.input-title + input,
+.form label.input-location + input {
+  display: flex;
+  padding: 0;
+  height: 38px;
+  flex: auto;
+  border: 0;
+  outline: none;
+}
+
+.emoji {
+  display: inline-block;
+  vertical-align: text-top;
+}
+#postDetail .modal-container,
+#addPost .modal-container {
+  width: 800px;
+}
+
+.ellipse-1 {
+  height: auto;
+  -webkit-line-clamp: 1;
+}
+
+.labels-wrap {
+  display: block;
+  margin: 25px 0;
+}
+.labels-wrap::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.labels-wrap .label-author,
+.labels-wrap .label-location {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.labels-wrap .label-like a {
+  text-decoration: none;
+  color: #000;
+  font-size: 16px;
+  margin-top: 4px;
+}
+
+.fa-heart {
+  color: red;
+  font-size: 20px;
+  vertical-align: text-top;
+}
+
+.labels-wrap .label-continent,
+.labels-wrap .label-author,
+.labels-wrap .label-like,
+.labels-wrap .label-date {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 0 5px;
+}
+.labels-wrap .label-like {
+  float: right;
+  margin-top: 4px;
+}
+
+.content-wrap {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  overflow-y: auto;
+}
+.post-content {
+  max-height: 300px;
+  font-weight: 500;
+  line-height: 1.5em;
+}
+
+/* 스크롤바 설정*/
+.scroll-style::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* 스크롤바 막대 설정*/
+.scroll-style::-webkit-scrollbar-thumb {
+  height: 5%;
+  border-radius: 10px;
+  background-color: #343a40;
+}
+
+/* 스크롤바 뒷 배경 설정*/
+.scroll-style::-webkit-scrollbar-track {
+  background-color: #dee2e6;
+}
+
+/* 게시물 추가 팝업창 세로 정렬 스타일임 */
+#addPost.modal-bg.show .modal-container,
+#postDetail.modal-bg.show .modal-container {
+  transform: none; /* TODO: 애니메이션 안넣을 거면 나중에 삭제하기*/
+  margin-top: 0; /* TODO: 모달 가이드 삭제 시 함께 삭제 */
+  top: 50%;
+  margin-top: -445.5px;
+}
+
+.form-date input[type="date"] {
+  border: none;
+  width: calc(100% - 10px);
+  height: 100%;
+  outline: none;
+  cursor: pointer;
+}
+/* E: 게시물 생성 modal 스타일 새로 추가된 스타일 */
+
+/* 브라우저 스크롤바 설정 */
+body::-webkit-scrollbar {
+  width: 10px;
+}
+body::-webkit-scrollbar-thumb {
+  height: 5%;
+  border-radius: 10px;
+  background-color: #212529;
+}
+body::-webkit-scrollbar-track {
+  background-color: #f8f9fa;
+}
+
+/***********************************
+****이하: 기존 클래스에 스타일 추가*** 
+************************************/
+
+.thumbnail-area {
+  overflow: hidden;
+  min-height: 250px;
+  max-height: 350px;
+}
+.thumbnail-area img {
+  max-width: 100%;
+}
+.form.form-file .file-badge {
+  max-width: 80%;
+}
+
+.options-wrap select,
+.options-wrap .form-date {
+  width: calc(50% - 10px);
+  border-radius: 5px;
+  padding-left: 10px;
+  height: 40px;
+}
+
+/* scrolltop */
+.scrolltop {
+  position: fixed;
+  right: 2%;
+  bottom: 2%;
+  display: block;
+  height: 50px;
+  width: 50px;
+  font-size: 50px;
+  cursor: pointer;
+}
+
+.scrolltop a {
+  display: block;
+  width: 30px;
+  height: 30px;
+  color: #212529;
+}
