@@ -113,31 +113,20 @@ def filterByContinent():
 # 투어 카드 수정하기
 @tour.route("/<tour_id>", methods=["PUT"])
 def updateTour(tour_id):
-    tour_url = request.form["tour_url"]
+    token_receive = request.cookies.get("mytoken")
+    if token_receive is None:
+        return jsonify({"result": "fail", "msg": "권한이 없습니다"})
+
     tour_title = request.form["tour_title"]
-    tour_location = request.form["tour_location"]
-    tour_continent = request.form["tour_continent"]
-    tour_date = request.form["tour_date"]
     tour_content = request.form["tour_content"]
 
-    if tour_url is None: 
-        return jsonify({"result": "fail url", "msg": "이미지를 첨부해주세요"})
     if tour_title is None:
         return jsonify({"result": "fail title", "msg": "제목을 입력해주세요"})
     if len(tour_title) > 15:
         return jsonify({"result": "fail title", "msg": "제목은 15자 이하로 적어주세요"})
-    if tour_location is None:
-        return jsonify({"result": "fail location", "msg": "위치를 입력해주세요"})
-    if tour_continent is None:
-        return jsonify({"result": "fail continent", "msg": "대륙을 선택해주세요"})
-    if tour_date is None:
-        return jsonify({"result": "fail date", "msg": "날짜를 선택해주세요"})
     if tour_content is None:
         return jsonify({"result": "fail content", "msg": "내용을 입력해주세요"})
 
-    token_receive = request.cookies.get("mytoken")
-    if token_receive is None:
-        return jsonify({"result": "fail", "msg": "권한이 없습니다"})
 
     payload = jwt.decode(token_receive, config["SECRET_KEY"], algorithms=["HS256"])
 
@@ -145,13 +134,8 @@ def updateTour(tour_id):
 
     if payload["user_id"] == selected_card["author_id"]:
         doc = {
-            "url": tour_url,
             "title": tour_title,
-            "location": tour_location,
-            "continent": tour_continent,
-            "date": tour_date,
             "content": tour_content,
-            "like": 0,
         }
         db.card.update_one({"_id": ObjectId(tour_id)}, {"$set": doc})
         return jsonify({"result": "success", "msg": "수정완료"})

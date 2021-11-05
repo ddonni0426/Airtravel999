@@ -236,6 +236,12 @@
       const inputs = document.querySelector(
         '.modal-addpost .form  input[type="file"]'
       );
+      //preview
+      const [image] = inputs.files;
+      if (image) {
+        const preView = document.querySelector("#addPost .thumbnail-area");
+        preView.style = `background-image: url(${URL.createObjectURL(image)})`;
+      }
 
       const formData = new FormData();
       inputs.addEventListener("change", () => {
@@ -283,12 +289,8 @@
             },
             success: function (response) {
               if (response["result"] === "success") {
-                alert(response["msg"]);
                 window.location.reload();
               }
-            },
-            error: function (error) {
-              alert(error);
             },
           });
         } else {

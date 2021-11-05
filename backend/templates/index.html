@@ -273,8 +273,8 @@
     <script type="text/javascript">
       $(".visual-slider").slick();
 
+      // 좋아요
       function likeCard(list) {
-        console.log("test", list);
         $.ajax({
           type: "POST",
           url: `/like/${list["_id"]}`,
@@ -286,14 +286,51 @@
         });
       }
 
+      // 좋아요 취소
       function dislikeCard(list) {
-        console.log("dislike", list);
         $.ajax({
           type: "DELETE",
           url: `/like/${list["_id"]}`,
           success: function (response) {
             if (response["result"] === "success") {
               window.location.reload();
+            }
+          },
+        });
+      }
+
+      // 게시물 수정하기
+      function editTour(list) {
+        const tour_title = list.title;
+        const tour_content = list.content;
+
+        $.ajax({
+          type: "PUT",
+          url: `/tour/${list["_id"]}`,
+          data: {
+            tour_title,
+            tour_content,
+          },
+          success: function (response) {
+            if (response["result"] === "success") {
+              window.location.reload();
+            } else {
+              alert(response["msg"]);
+            }
+          },
+        });
+      }
+
+      // 게시물 삭제하기
+      function deleteTour(id) {
+        $.ajax({
+          type: "DELETE",
+          url: `/tour/${id}`,
+          success: function (response) {
+            if (response["result"] === "success") {
+              window.location.reload();
+            } else {
+              alert(response["msg"]);
             }
           },
         });
@@ -434,6 +471,7 @@
       // 게시물 보기
       function goTour(list) {
         $("#postDetail").empty();
+        console.log(list);
 
         const temp = `
         <div class="modal-container">
@@ -465,7 +503,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-primary js-close">닫기</button>
+          <button class="btn btn-light">수정</button>
+        <button class="btn btn-primary" onclick="deleteTour(${list._id})">삭제</button>
         </div>
       </div>
         `;
