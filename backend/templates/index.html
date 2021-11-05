@@ -1,120 +1,130 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <link rel="stylesheet" href="../static/styled.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Lobster&family=Work+Sans:wght@300&display=swap"
-      rel="stylesheet"
-    />
-    <script src="../static/js/jquery-3.6.0.min.js"></script>
-    <script src="../static/js/jquery.cookie.js"></script>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
-    />
-    <script
-      type="text/javascript"
-      src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
-    ></script>
 
-    <title>Airtravel999</title>
-  </head>
+<head>
+  <link rel="stylesheet" href="../static/styled.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500&family=Lobster&family=Work+Sans:wght@300&display=swap"
+    rel="stylesheet" />
+  <script src="../static/js/jquery-3.6.0.min.js"></script>
+  <script src="../static/js/jquery.cookie.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script src="https://kit.fontawesome.com/b9dd3be533.js" crossorigin="anonymous"></script>
+  <title>Airtravel999</title>
+  <style>
+    .heart-btn:hover {
+      color: red;
+    }
 
-  <body>
-    <!-- S: HEADER -->
-    <section class="mainpage-header">
-      <div class="mainpage-nav">
-        <h1 class="mainpage-logo"><a href="#">Airtravel</a></h1>
-        <ul class="mainpage-utils">
-          {% if userNickName %}
-          <li>
-            <a type="button" class="btn" href="/mytour">My Tour</a>
-          </li>
-          {% endif %} {% if userNickName is none %}
-          <li><a type="button" class="btn js-login">Login</a></li>
-          <li><a type="button" class="btn js-signup">Sign-up</a></li>
-          {% endif %} {% if userNickName %}
-          <li>
-            <a type="button" onclick="userLogout()" class="btn"> Logout </a>
-          </li>
-          {% endif %}
-        </ul>
-      </div>
-    </section>
-    <!-- E: HEADER -->
+    .post-desc-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
+</head>
 
-    <!-- S: VISUAL AREA -->
-    <div class="visual-slider">
-      <div class="slider-img slider-1"></div>
-      <div class="slider-img slider-2"></div>
-      <div class="slider-img slider-3"></div>
+<body>
+  <!-- S: HEADER -->
+  <section class="mainpage-header">
+    <div class="mainpage-nav">
+      <h1 class="mainpage-logo"><a href="#">Airtravel</a></h1>
+      <ul class="mainpage-utils">
+        {% if userNickName %}
+        <li>
+          <a type="button" class="btn" href="/mytour">My Tour</a>
+        </li>
+        {% endif %} {% if userNickName is none %}
+        <li><a type="button" class="btn js-login">Login</a></li>
+        <li><a type="button" class="btn js-signup">Sign-up</a></li>
+        {% endif %} {% if userNickName %}
+        <li>
+          <a type="button" onclick="userLogout()" class="btn"> Logout </a>
+        </li>
+        {% endif %}
+      </ul>
     </div>
-    <!-- E: VISUAL AREA -->
+  </section>
+  <!-- E: HEADER -->
 
-    <!-- S: FILTER -->
-    <div class="filters-wrap">
-      <select
-        class="filter-select"
-        id="continent"
-        onchange="filterByContinent()"
-      >
-        <option selected value="Continent">Continent</option>
-        <option value="Asia">Asia</option>
-        <option value="Europe">Europe</option>
-        <option value="North America">North America</option>
-        <option value="South America">South America</option>
-        <option value="Africa">Afica</option>
-        <option value="Australia">Australia</option>
-      </select>
-    </div>
+  <!-- S: VISUAL AREA -->
+  <div class="visual-slider">
+    <div class="slider-img slider-1"></div>
+    <div class="slider-img slider-2"></div>
+    <div class="slider-img slider-3"></div>
+  </div>
+  <!-- E: VISUAL AREA -->
 
-    <!-- S: CONTENTS -->
-    <div class="contents-wrap">
-      <div class="posts-wrap" id="posts-box">
-        <!-- S: Post Elem -->
-        {% for list in lists %}
-        <div class="post">
-          <div class="thumbnail">
-            <img src="{{list.url}}" alt="{{list.location}}" />
-          </div>
-          <div class="post-desc">
-            <strong class="post-location">{{list.title}}</strong>
-            <span class="">{{list.location}}</span>
-            <p class="post-detail ellipse">{{list.content}}</p>
-          </div>
+  <!-- S: FILTER -->
+  <div class="filters-wrap">
+    <select class="filter-select" id="continent" onchange="filterByContinent()">
+      <option selected value="Continent">Continent</option>
+      <option value="Asia">Asia</option>
+      <option value="Europe">Europe</option>
+      <option value="North America">North America</option>
+      <option value="South America">South America</option>
+      <option value="Africa">Afica</option>
+      <option value="Australia">Australia</option>
+    </select>
+  </div>
+
+  <!-- S: CARD CONTENTS -->
+  <div class="contents-wrap">
+    <div class="posts-wrap" id="posts-box">
+      <!-- S: Post Elem -->
+      {% for list in lists %}
+      <div class="post">
+        <div class="thumbnail">
+          <img src="{{list.url}}" alt="{{list.location}}" />
         </div>
-        {% endfor %}
-        <!-- E: Post Elem -->
-      </div>
-    </div>
-    <!-- E: CONTENTS -->
+        <div class="post-desc">
+          <div class="post-desc-header">
+            <div>
+              <span class="">{{list.location}}</span>
+              <strong class="post-location">{{list.title}}</strong>
+            </div>
 
-    <!-- S: FOOTER -->
-    <footer class="footer">
-      <div class="footer-wrap">
-        <p>Copyright 2021. Hanghae99 Team13 All rights reserved.</p>
-        <p>Pi Suyeon🌟, Jeon Sanghyuk🧛‍♂️ , Shin Kyungjune🚀, Kim Doeun🌜</p>
-      </div>
-    </footer>
-
-    <!-- S: SCROLL-TOP -->
-    <span class="scrolltop">
-      <a href="#">맨 위로 이동</a>
-    </span>
-
-    <!-- S: 로그인 모달 -->
-    <div id="loginModal" class="modal-bg">
-      <!-- S: Modal Container -->
-      <div class="modal-container">
-        <!-- S: Modal Header -->
-        <div class="modal-header">
-          <h5 class="modal-title">Login</h5>
-          <button type="button" class="btn-close">닫기</button>
+            <div>
+              <span class="heart-btn">
+                <i class="far fa-heart"></i>
+                <!-- <i style="color: red" class="fas fa-heart"></i> -->
+              </span>
+            </div>
+          </div>
+          <p class="post-detail ellipse">{{list.content}}</p>
         </div>
+      </div>
+      {% endfor %}
+      <!-- E: Post Elem -->
+    </div>
+  </div>
+  <!-- E: CONTENTS -->
 
+  <!-- S: FOOTER -->
+  <footer class="footer">
+    <div class="footer-wrap">
+      <p>Copyright 2021. Hanghae99 Team13 All rights reserved.</p>
+      <p>Pi Suyeon🌟, Jeon Sanghyuk🧛‍♂️ , Shin Kyungjune🚀, Kim Doeun🌜</p>
+    </div>
+  </footer>
+
+  <!-- S: SCROLL-TOP -->
+  <span class="scrolltop">
+    <a href="#">맨 위로 이동</a>
+  </span>
+
+  <!-- S: 로그인 모달 -->
+  <div id="loginModal" class="modal-bg">
+    <!-- S: Modal Container -->
+    <div class="modal-container">
+      <!-- S: Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title">Login</h5>
+        <button type="button" class="btn-close">닫기</button>
+      </div>
         <!-- S: Modal Body -->
         <div class="modal-body modal-login">
           <!-- S: Modal ID -->
@@ -125,7 +135,7 @@
             <p class="form__alert-msg" id="login-alert-id">
               아이디를 입력해주세요!
             </p>
-          </div>
+        </div>
 
           <!-- S: Modal PW -->
           <div class="form form-pw">
@@ -137,29 +147,19 @@
             </p>
           </div>
           <p class="form__alert-msg" id="login-alert-check"></p>
-        </div>
-
-        <!-- S: Modal Footer -->
-        <div class="modal-footer">
-          <button onclick="userLogin()" class="btn btn-green formcheck">
-            로그인하기
-          </button>
-          <button class="btn btn-primary formcheck">회원가입</button>
-        </div>
       </div>
-      <!-- E: Modal Container -->
-    </div>
-    <!-- E: 로그인 모달 -->
 
-    <!-- S: 회원가입 모달 -->
-    <div id="signupModal" class="modal-bg">
-      <!-- S: Modal Container -->
-      <div class="modal-container">
-        <!-- S: Modal Header -->
-        <div class="modal-header">
-          <h5 class="modal-title">Sign up</h5>
-          <button type="button" class="btn-close">닫기</button>
-        </div>
+      <!-- S: Modal Footer -->
+      <div class="modal-footer">
+        <button onclick="userLogin()" class="btn btn-green formcheck">
+          로그인하기
+        </button>
+        <button class="btn btn-primary formcheck">회원가입</button>
+      </div>
+    </div>
+    <!-- E: Modal Container -->
+  </div>
+  <!-- E: 로그인 모달 -->
 
         <!-- S: Modal Body -->
         <div class="modal-body js-formcheck modal-signup">
@@ -193,6 +193,8 @@
               닉네임을 입력해주세요!
             </p>
           </div>
+          <p class="form__alert-msg" id="form__alert-msg-id">아이디를 입력해주세요!</p>
+        </div>
 
           <!-- S: Modal PW -->
           <div class="form form-pw">
@@ -203,6 +205,8 @@
               비밀번호를 입력해주세요!
             </p>
           </div>
+          <p class="form__alert-msg" id="form__alert-msg-nick">닉네임을 입력해주세요!</p>
+        </div>
 
           <!-- S: Modal PW check -->
           <div class="form form-pwcheck">
@@ -217,28 +221,38 @@
               비밀번호를 입력해주세요!
             </p>
           </div>
+          <p class="form__alert-msg id=" form__alert-msg-pw">비밀번호를 입력해주세요!</p>
         </div>
 
-        <!-- S: Modal Footer -->
-        <div class="modal-footer">
+        <!-- S: Modal PW check -->
+        <div class="form form-pwcheck">
           <div>
-            <button onclick="userSignup()" class="btn btn-primary formcheck">
-              회원가입
-            </button>
+            <input type="password" id="signupPWC" placeholder="PASSWORD CHECK" />
           </div>
+          <p class="form__alert-msg" id="form__alert-msg-pwc">비밀번호를 입력해주세요!</p>
         </div>
       </div>
-      <!-- E: Modal Container -->
-    </div>
-    <!-- E: 회원가입 모달 -->
-    <script src="../static/js/front_ui.js"></script>
-    <script type="text/javascript">
-      $(".visual-slider").slick();
 
-      // 로그인하기 로직
-      function userLogin() {
-        const userID = $("#userID").val();
-        const userPW = $("#userPW").val();
+      <!-- S: Modal Footer -->
+      <div class="modal-footer">
+        <div>
+          <button onclick="userSignup()" class="btn btn-primary formcheck">
+            회원가입
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- E: Modal Container -->
+  </div>
+  <!-- E: 회원가입 모달 -->
+  <script src="../static/js/front_ui.js"></script>
+  <script type="text/javascript">
+    $(".visual-slider").slick();
+
+    // 로그인하기 로직
+    function userLogin() {
+      const userID = $("#userID").val();
+      const userPW = $("#userPW").val();
 
         $.ajax({
           type: "POST",
@@ -268,18 +282,18 @@
         });
       }
 
-      // 로그아웃하기 로직
-      function userLogout() {
-        $.removeCookie("mytoken");
-        window.location.replace("/");
-      }
+    // 로그아웃하기 로직
+    function userLogout() {
+      $.removeCookie("mytoken");
+      window.location.replace("/");
+    }
 
-      // 회원가입 로직
-      function userSignup() {
-        const user_id = $("#signupID").val();
-        const user_nick = $("#signupNICK").val();
-        const user_pw = $("#signupPW").val();
-        const user_pwc = $("#signupPWC").val();
+    // 회원가입 로직
+    function userSignup() {
+      const user_id = $("#signupID").val();
+      const user_nick = $("#signupNICK").val();
+      const user_pw = $("#signupPW").val();
+      const user_pwc = $("#signupPWC").val();
 
         $.ajax({
           type: "POST",
@@ -306,10 +320,9 @@
         });
       }
 
-      // 회원가입 아이디 중복 체크
-      function checkID() {
-        const user_id = $("#signupID").val();
-
+    // 회원가입 아이디 중복 체크
+    function checkID() {
+      const user_id = $("#signupID").val();
         $.ajax({
           type: "POST",
           url: "/auth/checkid",
@@ -331,24 +344,24 @@
         });
       }
 
-      // Continent 필터 로직
-      function filterByContinent() {
-        $("#posts-box").empty();
-        const continent = $("#continent option:selected").val();
+    // Continent 필터 로직
+    function filterByContinent() {
+      $("#posts-box").empty();
+      const continent = $("#continent option:selected").val();
 
-        $.ajax({
-          type: "POST",
-          url: `/tour/continent`,
-          data: { continent },
-          success: function (response) {
-            let tours = response["tour_list"];
-            for (let i = 0; i < tours.length; i++) {
-              let title = tours[i]["title"];
-              let location = tours[i]["location"];
-              let content = tours[i]["content"];
-              let url = tours[i]["url"];
+      $.ajax({
+        type: "POST",
+        url: `/tour/continent`,
+        data: { continent },
+        success: function (response) {
+          let tours = response["tour_list"];
+          for (let i = 0; i < tours.length; i++) {
+            let title = tours[i]["title"];
+            let location = tours[i]["location"];
+            let content = tours[i]["content"];
+            let url = tours[i]["url"];
 
-              let temp_html = `
+            let temp_html = `
                   <div class="post">
                     <div class="thumbnail">
                       <img src=${url} alt=${location} />
@@ -361,11 +374,12 @@
                   </div>
                 `;
 
-              $("#posts-box").append(temp_html);
-            }
-          },
-        });
-      }
-    </script>
-  </body>
+            $("#posts-box").append(temp_html);
+          }
+        },
+      });
+    }
+  </script>
+</body>
+
 </html>
