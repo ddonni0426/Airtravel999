@@ -89,10 +89,15 @@
               </div>
 
               <div>
-                <span class="heart-btn">
-                  <i class="far fa-heart"></i>
-                  <!-- <i style="color: red" class="fas fa-heart"></i> -->
+                {% if list["user_like"] %}
+                <span onclick="dislikeCard({{list}})" class="heart-btn">
+                  <i style="color: red" class="fas fa-heart"></i>
                 </span>
+                {% else %}
+                <span onclick="likeCard({{list}})" class="heart-btn">
+                  <i class="far fa-heart"></i>
+                </span>
+                {% endif %}
               </div>
             </div>
             <p class="post-detail ellipse">{{list.content}}</p>
@@ -233,6 +238,32 @@
   <script src="../static/js/front_ui.js"></script>
   <script type="text/javascript">
     $(".visual-slider").slick();
+
+    function likeCard(list) {
+      console.log("test", list);
+      $.ajax({
+        type: "POST",
+        url: `/like/${list["_id"]}`,
+        success: function (response) {
+          if (response["result"] === "success") {
+            window.location.reload();
+          }
+        }
+      })
+    }
+
+    function dislikeCard(list) {
+      console.log("dislike", list);
+      $.ajax({
+        type: "DELETE",
+        url: `/like/${list["_id"]}`,
+        success: function (response) {
+          if (response["result"] === "success") {
+            window.location.reload();
+          }
+        }
+      })
+    }
 
     // 로그인하기 로직
     function userLogin() {
