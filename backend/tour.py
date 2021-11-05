@@ -32,9 +32,25 @@ def createTour():
     tour_date = request.form["tour_date"]
     tour_content = request.form["tour_content"]
 
+    if tour_url is None: 
+        return jsonify({"result": "fail url", "msg": "이미지를 첨부해주세요"})
+    if tour_title is None:
+        return jsonify({"result": "fail title", "msg": "제목을 입력해주세요"})
+    if len(tour_title) > 15:
+        return jsonify({"result": "fail title", "msg": "제목은 15자 이하로 적어주세요"})
+    if tour_location is None:
+        return jsonify({"result": "fail location", "msg": "위치를 입력해주세요"})
+    if tour_continent is None:
+        return jsonify({"result": "fail continent", "msg": "대륙을 선택해주세요"})
+    if tour_date is None:
+        return jsonify({"result": "fail date", "msg": "날짜를 선택해주세요"})
+    if tour_content is None:
+        return jsonify({"result": "fail content", "msg": "내용을 입력해주세요"})
+        
+
     token_receive = request.cookies.get("mytoken")
     if token_receive is None:
-        return {"msg": "로그인을 해주세요"}
+        return {"result": "fail", "msg": "로그인을 먼저 해주세요"}
     payload = jwt.decode(token_receive, config["SECRET_KEY"], algorithms=["HS256"])
 
     doc = {
@@ -50,7 +66,7 @@ def createTour():
     }
 
     db.card.insert_one(doc)
-    return jsonify({"msg": "추가완료"})
+    return jsonify({"result":"success", "msg": "추가완료"})
 
 
 # 투어 카드 id로 받아오기
@@ -63,7 +79,7 @@ def getTour(tour_id):
         tour["_id"] = str(tour["_id"])
         return tour
 
-    return jsonify({"tour": tour})
+    return jsonify({"result":"success", "tour": tour})
 
 
 # # 투어 카드 user_id로 받아오기
@@ -104,9 +120,25 @@ def updateTour(tour_id):
     tour_date = request.form["tour_date"]
     tour_content = request.form["tour_content"]
 
+    if tour_url is None: 
+        return jsonify({"result": "fail url", "msg": "이미지를 첨부해주세요"})
+    if tour_title is None:
+        return jsonify({"result": "fail title", "msg": "제목을 입력해주세요"})
+    if len(tour_title) > 15:
+        return jsonify({"result": "fail title", "msg": "제목은 15자 이하로 적어주세요"})
+    if tour_location is None:
+        return jsonify({"result": "fail location", "msg": "위치를 입력해주세요"})
+    if tour_continent is None:
+        return jsonify({"result": "fail continent", "msg": "대륙을 선택해주세요"})
+    if tour_date is None:
+        return jsonify({"result": "fail date", "msg": "날짜를 선택해주세요"})
+    if tour_content is None:
+        return jsonify({"result": "fail content", "msg": "내용을 입력해주세요"})
+
     token_receive = request.cookies.get("mytoken")
     if token_receive is None:
-        return {"msg": "권한이 없습니다"}
+        return jsonify({"result": "fail", "msg": "권한이 없습니다"})
+
     payload = jwt.decode(token_receive, config["SECRET_KEY"], algorithms=["HS256"])
 
     selected_card = db.card.find_one({"_id": ObjectId(tour_id)})
@@ -122,9 +154,9 @@ def updateTour(tour_id):
             "like": 0,
         }
         db.card.update_one({"_id": ObjectId(tour_id)}, {"$set": doc})
-        return jsonify({"msg": "수정완료"})
+        return jsonify({"result": "success", "msg": "수정완료"})
     else:
-        return jsonify({"msg": "수정 권한이 없습니다."})
+        return jsonify({"result": "fail", "msg": "수정 권한이 없습니다"})
 
 
 # 카드 삭제하기
@@ -132,7 +164,7 @@ def updateTour(tour_id):
 def deleteTour(tour_id):
     token_receive = request.cookies.get("mytoken")
     if token_receive is None:
-        return {"msg": "권한이 없습니다"}
+        return jsonify({"result": "fail", "msg": "권한이 없습니다"})
     payload = jwt.decode(token_receive, config["SECRET_KEY"], algorithms=["HS256"])
 
     selected_card = db.card.find_one({"_id": ObjectId(tour_id)})
@@ -140,6 +172,6 @@ def deleteTour(tour_id):
     if payload["user_id"] == selected_card["author_id"]:
         db.card.delete_one({"_id": ObjectId(tour_id)})
     else:
-        return jsonify({"msg": "수정 권한이 없습니다."})
+        return jsonify({"result": "fail", "msg": "수정 권한이 없습니다"})
 
-    return jsonify({"msg": "삭제완료"})
+    return jsonify({"result":"success", "msg": "삭제완료"})
