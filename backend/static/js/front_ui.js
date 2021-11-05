@@ -6,7 +6,6 @@
   //S: 모달 밖 클릭 시 모달 닫기
   $(document).on("click", ".js-close", (e) => e.target.closest('.modal-bg').classList.remove("show"));
 
-
   //S: 공통 form 검증 함수
   const empty__inputs = (inputs) => {
     inputs.map((item, idx) => {

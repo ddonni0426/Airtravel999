@@ -155,7 +155,16 @@ body::-webkit-scrollbar-track {
 /***********************************
 ****이하: 기존 클래스에 스타일 추가*** 
 ************************************/
-
+/* 내용 없을 때 푸터 뜨는 거 수정... 하지만 완전하진 않지...*/
+html {
+  height: 100%;
+}
+body {
+  height: 100vh;
+}
+.posts-wrap {
+  min-height: 417px;
+}
 .thumbnail-area {
   overflow: hidden;
   min-height: 250px;
@@ -170,10 +179,18 @@ body::-webkit-scrollbar-track {
 
 .options-wrap select,
 .options-wrap .form-date {
-  width: calc(50% - 10px);
   border-radius: 5px;
   padding-left: 10px;
   height: 40px;
+}
+.options-wrap select {
+  display: inline-flex;
+  flex: auto;
+  margin-right: 10px;
+}
+
+.options-wrap .form-date {
+  width: 25%;
 }
 
 /* scrolltop */
