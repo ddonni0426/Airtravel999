@@ -12,6 +12,7 @@
   <script src="../static/js/jquery.cookie.js"></script>
   <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
   <script src="https://kit.fontawesome.com/b9dd3be533.js" crossorigin="anonymous"></script>
   <title>Airtravel999</title>
   <style>
@@ -71,34 +72,34 @@
     </select>
   </div>
 
-  <!-- S: CARD CONTENTS -->
+  <!-- S: CONTENTS -->
   <div class="contents-wrap">
     <div class="posts-wrap" id="posts-box">
-      <!-- S: Post Elem -->
-      {% for list in lists %}
-      <div class="post">
-        <div class="thumbnail">
-          <img src="{{list.url}}" alt="{{list.location}}" />
-        </div>
-        <div class="post-desc">
-          <div class="post-desc-header">
-            <div>
-              <span class="">{{list.location}}</span>
-              <strong class="post-location">{{list.title}}</strong>
-            </div>
-
-            <div>
-              <span class="heart-btn">
-                <i class="far fa-heart"></i>
-                <!-- <i style="color: red" class="fas fa-heart"></i> -->
-              </span>
-            </div>
+      <!— S: Post Elem —>
+        {% for list in lists %}
+        <div class="post">
+          <div class="thumbnail">
+            <img src="{{list.url}}" alt="{{list.location}}" />
           </div>
-          <p class="post-detail ellipse">{{list.content}}</p>
+          <div class="post-desc">
+            <div class="post-desc-header">
+              <div>
+                <span class="">{{list.location}}</span>
+                <strong class="post-location">{{list.title}}</strong>
+              </div>
+
+              <div>
+                <span class="heart-btn">
+                  <i class="far fa-heart"></i>
+                  <!-- <i style="color: red" class="fas fa-heart"></i> -->
+                </span>
+              </div>
+            </div>
+            <p class="post-detail ellipse">{{list.content}}</p>
+          </div>
         </div>
-      </div>
-      {% endfor %}
-      <!-- E: Post Elem -->
+        {% endfor %}
+        <!— E: Post Elem —>
     </div>
   </div>
   <!-- E: CONTENTS -->
@@ -125,28 +126,29 @@
         <h5 class="modal-title">Login</h5>
         <button type="button" class="btn-close">닫기</button>
       </div>
-        <!-- S: Modal Body -->
-        <div class="modal-body modal-login">
-          <!-- S: Modal ID -->
-          <div class="form form-id">
-            <div>
-              <input id="userID" type="text" placeholder="ID" />
-            </div>
-            <p class="form__alert-msg" id="login-alert-id">
-              아이디를 입력해주세요!
-            </p>
+
+      <!-- S: Modal Body -->
+      <div class="modal-body modal-login">
+        <!-- S: Modal ID -->
+        <div class="form form-id">
+          <div>
+            <input id="userID" type="text" placeholder="ID" />
+          </div>
+          <p class="form__alert-msg" id="login-alert-id">
+            아이디를 입력해주세요!
+          </p>
         </div>
 
-          <!-- S: Modal PW -->
-          <div class="form form-pw">
-            <div>
-              <input id="userPW" type="password" placeholder="PASSWORD" />
-            </div>
-            <p class="form__alert-msg" id="login-alert-pw">
-              비밀번호를 입력해주세요!
-            </p>
+        <!-- S: Modal PW -->
+        <div class="form form-pw">
+          <div>
+            <input id="userPW" type="password" placeholder="PASSWORD" />
           </div>
-          <p class="form__alert-msg" id="login-alert-check"></p>
+          <p class="form__alert-msg" id="login-alert-pw">
+            비밀번호를 입력해주세요!
+          </p>
+        </div>
+        <p class="form__alert-msg" id="login-alert-check"></p>
       </div>
 
       <!-- S: Modal Footer -->
@@ -161,67 +163,48 @@
   </div>
   <!-- E: 로그인 모달 -->
 
-        <!-- S: Modal Body -->
-        <div class="modal-body js-formcheck modal-signup">
-          <!-- S: Modal ID -->
-          <div class="form form-id">
-            <div>
-              <input
-                type="text"
-                id="signupID"
-                placeholder="ID"
-                style="width: 75%"
-              />
-              <button
-                type="button"
-                class="btn btn-small btn-light form__idcheck"
-                onclick="checkID()"
-              >
-                ID 체크
-              </button>
-            </div>
-            <p class="form__alert-msg" id="signup-alert-id">
-              아이디를 입력해주세요!
-            </p>
-          </div>
+  <!-- S: 회원가입 모달 -->
+  <div id="signupModal" class="modal-bg">
+    <!-- S: Modal Container -->
+    <div class="modal-container">
+      <!-- S: Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title">Sign up</h5>
+        <button type="button" class="btn-close">닫기</button>
+      </div>
 
-          <div class="form form-pw">
-            <div>
-              <input type="text" id="signupNICK" placeholder="NICKNAME" />
-            </div>
-            <p class="form__alert-msg" id="signup-alert-nick">
-              닉네임을 입력해주세요!
-            </p>
+      <!-- S: Modal Body -->
+      <div class="modal-body js-formcheck modal-signup">
+        <!-- S: Modal ID -->
+        <div class="form form-id">
+          <div>
+            <input type="text" id="signupID" placeholder="ID" style="width: 75%" />
+            <button type="button" class="btn btn-small btn-light form__idcheck" onclick="checkID()">
+              ID 체크
+            </button>
           </div>
-          <p class="form__alert-msg" id="form__alert-msg-id">아이디를 입력해주세요!</p>
+          <p class="form__alert-msg" id="signup-alert-id">
+            아이디를 입력해주세요!
+          </p>
         </div>
 
-          <!-- S: Modal PW -->
-          <div class="form form-pw">
-            <div>
-              <input type="password" id="signupPW" placeholder="PASSWORD" />
-            </div>
-            <p class="form__alert-msg" id="signup-alert-pw">
-              비밀번호를 입력해주세요!
-            </p>
+        <div class="form form-pw">
+          <div>
+            <input type="text" id="signupNICK" placeholder="NICKNAME" />
           </div>
-          <p class="form__alert-msg" id="form__alert-msg-nick">닉네임을 입력해주세요!</p>
+          <p class="form__alert-msg" id="signup-alert-nick">
+            닉네임을 입력해주세요!
+          </p>
         </div>
 
-          <!-- S: Modal PW check -->
-          <div class="form form-pwcheck">
-            <div>
-              <input
-                type="password"
-                id="signupPWC"
-                placeholder="PASSWORD CHECK"
-              />
-            </div>
-            <p class="form__alert-msg" id="signup-alert-pwc">
-              비밀번호를 입력해주세요!
-            </p>
+        <!-- S: Modal PW -->
+        <div class="form form-pw">
+          <div>
+            <input type="password" id="signupPW" placeholder="PASSWORD" />
           </div>
-          <p class="form__alert-msg id=" form__alert-msg-pw">비밀번호를 입력해주세요!</p>
+          <p class="form__alert-msg" id="signup-alert-pw">
+            비밀번호를 입력해주세요!
+          </p>
         </div>
 
         <!-- S: Modal PW check -->
@@ -229,7 +212,9 @@
           <div>
             <input type="password" id="signupPWC" placeholder="PASSWORD CHECK" />
           </div>
-          <p class="form__alert-msg" id="form__alert-msg-pwc">비밀번호를 입력해주세요!</p>
+          <p class="form__alert-msg" id="signup-alert-pwc">
+            비밀번호를 입력해주세요!
+          </p>
         </div>
       </div>
 
@@ -254,33 +239,33 @@
       const userID = $("#userID").val();
       const userPW = $("#userPW").val();
 
-        $.ajax({
-          type: "POST",
-          url: "/auth/login",
-          data: {
-            user_id: userID,
-            user_pw: userPW,
-          },
-          success: function (response) {
-            if (response["result"] === "success") {
-              $.cookie("mytoken", response["token"], { path: "/" });
-              window.location.replace("/");
-            } else if (response["result"] === "fail check") {
-              const alert = document.querySelector("#login-alert-check");
-              alert.style.display = "block";
-              alert.textContent = response["msg"];
-            } else if (response["result"] === "fail id") {
-              const alert = document.querySelector("#login-alert-id");
-              alert.style.display = "block";
-              alert.textContent = response["msg"];
-            } else if (response["result"] === "fail pw") {
-              const alert = document.querySelector("#login-alert-pw");
-              alert.style.display = "block";
-              alert.textContent = response["msg"];
-            }
-          },
-        });
-      }
+      $.ajax({
+        type: "POST",
+        url: "/auth/login",
+        data: {
+          user_id: userID,
+          user_pw: userPW,
+        },
+        success: function (response) {
+          if (response["result"] === "success") {
+            $.cookie("mytoken", response["token"], { path: "/" });
+            window.location.replace("/");
+          } else if (response["result"] === "fail check") {
+            const alert = document.querySelector("#login-alert-check");
+            alert.style.display = "block";
+            alert.textContent = response["msg"];
+          } else if (response["result"] === "fail id") {
+            const alert = document.querySelector("#login-alert-id");
+            alert.style.display = "block";
+            alert.textContent = response["msg"];
+          } else if (response["result"] === "fail pw") {
+            const alert = document.querySelector("#login-alert-pw");
+            alert.style.display = "block";
+            alert.textContent = response["msg"];
+          }
+        },
+      });
+    }
 
     // 로그아웃하기 로직
     function userLogout() {
@@ -295,54 +280,55 @@
       const user_pw = $("#signupPW").val();
       const user_pwc = $("#signupPWC").val();
 
-        $.ajax({
-          type: "POST",
-          url: "/auth/signup",
-          data: {
-            user_id,
-            user_nick,
-            user_pw,
-            user_pwc,
-          },
-          success: function (response) {
-            if (response["result"] === "success") {
-              window.location.reload();
-            } else if (response["result"] === "fail id") {
-              const alert_id = document.querySelector("#signup-alert-id");
-              alert_id.style.display = "block";
-              alert_id.textContent = response["msg"];
-            } else if (response["result"] === "fail pw") {
-              const alert_pwc = document.querySelector("#signup-alert-pwc");
-              alert_pwc.style.display = "block";
-              alert_pwc.textContent = response["msg"];
-            }
-          },
-        });
-      }
+      $.ajax({
+        type: "POST",
+        url: "/auth/signup",
+        data: {
+          user_id,
+          user_nick,
+          user_pw,
+          user_pwc,
+        },
+        success: function (response) {
+          if (response["result"] === "success") {
+            window.location.reload();
+          } else if (response["result"] === "fail id") {
+            const alert_id = document.querySelector("#signup-alert-id");
+            alert_id.style.display = "block";
+            alert_id.textContent = response["msg"];
+          } else if (response["result"] === "fail pw") {
+            const alert_pwc = document.querySelector("#signup-alert-pwc");
+            alert_pwc.style.display = "block";
+            alert_pwc.textContent = response["msg"];
+          }
+        },
+      });
+    }
 
     // 회원가입 아이디 중복 체크
     function checkID() {
       const user_id = $("#signupID").val();
-        $.ajax({
-          type: "POST",
-          url: "/auth/checkid",
-          data: {
-            user_id,
-          },
-          success: function (response) {
-            const alert_id = document.querySelector("#signup-alert-id");
-            if (response["result"] === "success") {
-              alert_id.style.display = "block";
-              alert_id.style.color = "blue";
-              alert_id.textContent = response["msg"];
-            } else if (response["result"] === "fail") {
-              alert_id.style.display = "block";
-              alert_id.style.color = "#dc3545";
-              alert_id.textContent = response["msg"];
-            }
-          },
-        });
-      }
+
+      $.ajax({
+        type: "POST",
+        url: "/auth/checkid",
+        data: {
+          user_id,
+        },
+        success: function (response) {
+          const alert_id = document.querySelector("#signup-alert-id");
+          if (response["result"] === "success") {
+            alert_id.style.display = "block";
+            alert_id.style.color = "blue";
+            alert_id.textContent = response["msg"];
+          } else if (response["result"] === "fail") {
+            alert_id.style.display = "block";
+            alert_id.style.color = "#dc3545";
+            alert_id.textContent = response["msg"];
+          }
+        },
+      });
+    }
 
     // Continent 필터 로직
     function filterByContinent() {
