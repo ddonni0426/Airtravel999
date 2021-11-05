@@ -96,9 +96,13 @@
     <div class="contents-wrap">
       <div class="posts-wrap" id="posts-box">
         {% for list in lists %}
+        {% set url = 'images/' + list.url %}
         <div class="post js-postDetail" onclick="goTour({{list}})">
           <div class="thumbnail">
-            <img src="{{list.url}}" alt="{{list.location}}" />
+            <img
+              src="{{url_for('static', filename=url)}}"
+              alt="{{list.location}}"
+            />
           </div>
           <div class="post-desc">
             <div class="post-desc-header">

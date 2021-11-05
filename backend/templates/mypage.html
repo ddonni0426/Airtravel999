@@ -71,10 +71,13 @@
     <div class="contents-wrap">
       <div class="posts-wrap">
         <!-- S: Post Elem -->
-        {% for list in lists %}
+        {% for list in lists %} {% set url = 'images/' + list.url %}
         <div class="post js-postDetail" onclick="goTour({{list}})">
           <div class="thumbnail">
-            <img src="{{list.url}}" alt="{{list.location}}" />
+            <img
+              src="{{url_for('static', filename=url)}}"
+              alt=" {{list.location}}"
+            />
           </div>
           <div class="post-desc">
             <div class="post-desc-header">
@@ -261,42 +264,34 @@
 
       // 투어 카드 만들기
       function createCard() {
-        const tour_url = formData.get("file_");
+        const formData = new FormData();
+        const file = $("#input-file")[0].files[0];
         const tour_title = document.querySelector("#input-title").value;
         const tour_location = document.querySelector("#input-location").value;
         const tour_continent = $("#input-continent option:selected").val();
         const tour_date = document.querySelector("#input-date").value;
         const tour_content = document.querySelector("#addPostTextarea").value;
 
-        if (
-          tour_url &&
-          tour_title &&
-          tour_location &&
-          tour_continent &&
-          tour_date &&
-          tour_content
-        ) {
+        formData.append("file", file);
+        formData.append("tour_title", tour_title);
+        formData.append("tour_location", tour_location);
+        formData.append("tour_continent", tour_continent);
+        formData.append("tour_date", tour_date);
+        formData.append("tour_content", tour_content);
+
           $.ajax({
             type: "POST",
             url: "/tour",
-            data: {
-              tour_url,
-              tour_title,
-              tour_location,
-              tour_continent,
-              tour_date,
-              tour_content,
-            },
+            contentType: false,
+            processData: false,
+            data: formData,
             success: function (response) {
               if (response["result"] === "success") {
                 window.location.reload();
               }
             },
           });
-        } else {
-          alert("값을 모두 입력하세요");
-        }
-      }
+      
     </script>
     <script type="text/javascript">
       $(".visual-slider").slick();
