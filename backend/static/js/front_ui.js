@@ -1,12 +1,25 @@
 (() => {
+  const clear__inputs = (inputs) => {
+    if (!inputs.length) return;
+    inputs.map((item, idx) => {
+      item.value = "";
+    });
+  };
   //S: 모달 밖 클릭 시 모달 닫기
-  $(document).on("click", ".modal-bg.show", (e) =>
-    e.target.classList.remove("show")
-  );
-  //S: 모달 밖 클릭 시 모달 닫기
-  $(document).on("click", ".js-close", (e) =>
-    e.target.closest(".modal-bg").classList.remove("show")
-  );
+  $(document).on("click", ".modal-bg.show", (e) => {
+    e.target.classList.remove("show");
+  });
+
+  //S: 모달 푸터 취소 박스 클릭 시 모달 닫기
+  $(document).on("click", ".js-close", (e) => {
+    e.target.closest(".modal-bg").classList.remove("show");
+    const target = $(e.target).parent().siblings().closest(".modal-body");
+    const inputs = Array.from(target.find("input"));
+    const texts = Array.from(target.find("textarea"));
+    clear__inputs(inputs);
+    clear__inputs(texts);
+    if ($(".file-badge")) $(".file-badge").remove();
+  });
 
   //S: 공통 form 검증 함수
   const empty__inputs = (inputs) => {
@@ -41,9 +54,13 @@
       login_background.classList.toggle("show")
     );
 
-    modal_closeLogin.addEventListener("click", () =>
-      login_background.classList.remove("show")
-    );
+    modal_closeLogin.addEventListener("click", () => {
+      login_background.classList.remove("show");
+      const inputs = Array.from(
+        document.querySelectorAll(".modal-login .form  input")
+      );
+      clear__inputs(inputs);
+    });
 
     login_formcheck.addEventListener("click", () => {
       const inputs = Array.from(
@@ -68,9 +85,13 @@
       signup_background.classList.toggle("show")
     );
 
-    modal_closeSignup.addEventListener("click", () =>
-      signup_background.classList.remove("show")
-    );
+    modal_closeSignup.addEventListener("click", () => {
+      signup_background.classList.remove("show");
+      const inputs = Array.from(
+        document.querySelectorAll(".modal-signup .form  input")
+      );
+      clear__inputs(inputs);
+    });
 
     signup_formcheck.addEventListener("click", () => {
       const inputs = Array.from(
@@ -88,6 +109,9 @@
     const addPost_background = document.querySelector("#addPost.modal-bg");
     const modal_closeAddPost = document.querySelector("#addPost .btn-close");
     const AddPost_formcheck = document.querySelector("#addPost .btn.formcheck");
+    const inputs = document.querySelector(
+      '.modal-addpost .form  input[type="file"]'
+    );
 
     addPost.addEventListener("click", () => {
       addPost_background.classList.toggle("show");
@@ -95,6 +119,51 @@
 
     modal_closeAddPost.addEventListener("click", () => {
       addPost_background.classList.remove("show");
+      const inputs = Array.from($(".modal-addpost").find("input"));
+      const options = document.querySelector(".modal-addpost select");
+      const texts = document.querySelector(".modal-addpost textarea");
+      texts.value = "";
+      $(".file-badge").remove();
+      clear__inputs(inputs);
+    });
+
+    AddPost_formcheck.addEventListener("click", () => {
+      const inputs = Array.from(
+        document.querySelectorAll(".modal-addpost input")
+      );
+      empty__inputs(inputs);
+    });
+
+    //첨부파일 뱃지 추가
+    inputs.addEventListener("change", () => {
+      const file = inputs.value.split("\\"); //경로
+      const baseUrl = "../images/";
+      //preview
+      const [image] = inputs.files;
+      if (image) {
+        const preView = document.querySelector("#addPost .thumbnail-area");
+        preView.style = `background-image: url(${URL.createObjectURL(image)})`;
+      }
+
+      if (!file[0].length) return;
+      $(".file-badge").length > 0 && $(".file-badge").remove(); // 사진 첨부되었는데 또 했을 경우 새로 추가한 사진만 남기기
+
+      const fileBadge_element =
+        '<span class="file-badge ellipse"><a href="#">' +
+        file[file.length - 1] +
+        "</a></span >";
+      $(".js-form-file").append(fileBadge_element);
+      $(".empty-input").removeClass("empty-input");
+      //formData에 저장된 이미지 경로는 백엔드에서만 확인 가능
+      const formData = new FormData();
+      formData.set("file_", file);
+    });
+
+    //첨부 파일 삭제
+    $(document).on("click", ".file-badge", function (e) {
+      e.target.classList.contains("file-badge") === true
+        ? e.target.remove()
+        : e.target.closest(".file-badge").remove();
     });
   };
 
@@ -113,6 +182,7 @@
 
     detailPosts.map((card) => {
       card.addEventListener("click", (e) => {
+        if (e.target.classList.contains("fa-heart")) return;
         detailPost_background.classList.toggle("show");
       });
     });
@@ -120,6 +190,7 @@
       detailPost_background.classList.remove("show");
     });
   };
+
   onPostDetailHandler();
   onAddPostHandler();
   onLoginHandler();

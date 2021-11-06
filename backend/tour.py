@@ -72,7 +72,7 @@ def createTour():
         "nick": payload["nick"],
     }
     db.card.insert_one(doc)
-    return jsonify({"result":"success", "msg": "추가완료"})
+    return jsonify({"result":"success", "msg": "추가완 료"})
 
 
 # 투어 카드 id로 받아오기
@@ -93,7 +93,7 @@ def getTour(tour_id):
 # def getTourByUser():
 #     token_receive = request.cookies.get("mytoken")
 #     if token_receive is None:
-#         return {"msg": "로그인을 해주세요"}
+#         return {"msg": "로그인을 해주세 요"}
 #     payload = jwt.decode(token_receive, config["SECRET_KEY"], algorithms=["HS256"])
 
 #     tour_list = list(db.card.find({"author_id": payload["user_id"]}))
@@ -106,7 +106,7 @@ def getTour(tour_id):
 # 투어 카드 대륙별로 받아오기
 @tour.route("/continent", methods=["POST"], strict_slashes=False)
 def filterByContinent():
-    continent = request.form["continent"]
+    continent = request.form["continent"]    
     if continent == "Continent":
         tour_list = list(db.card.find({}))
     else:
