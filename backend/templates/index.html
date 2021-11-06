@@ -377,12 +377,11 @@
             let title = tours[i]["title"];
             let location = tours[i]["location"];
             let content = tours[i]["content"];
-            let url = tours[i]["url"];
-
+            let url = 'static/images/' + tours[i]["url"];
             let temp_html = `
                   <div class="post">
                     <div class="thumbnail">
-                      <img src=${url} alt=${location} />
+                      <img src="${url}"/>
                     </div>
                     <div class="post-desc">
                       <strong class="post-location">${title}</strong>
