@@ -85,8 +85,8 @@
         <option selected value="Continent">Continent</option>
         <option value="Asia">Asia</option>
         <option value="Europe">Europe</option>
-        <option value="North America">North America</option>
-        <option value="South America">South America</option>
+        <option value="North_America">North America</option>
+        <option value="South_America">South America</option>
         <option value="Africa">Afica</option>
         <option value="Australia">Australia</option>
       </select>
@@ -95,8 +95,13 @@
     <!-- S: CONTENTS -->
     <div class="contents-wrap">
       <div class="posts-wrap" id="posts-box">
-        {% for list in lists %} {% set url = 'images/' + list.url %}
-        <div class="post js-postDetail" onclick="goTour({{list}})">
+        {% for list in lists %} {% set url = 'images/' + list.url %} {% set
+        continent = list.continent %}
+        <div
+          class="post js-postDetail"
+          data-continent="{{continent}}"
+          onclick="goTour({{list}})"
+        >
           <div class="thumbnail">
             <img
               src="{{url_for('static', filename=url)}}"
@@ -437,38 +442,21 @@
 
       // Continent 필터 로직
       function filterByContinent() {
-        $("#posts-box").empty();
         const continent = $("#continent option:selected").val();
 
-        $.ajax({
-          type: "POST",
-          url: `/tour/continent`,
-          data: { continent },
-          success: function (response) {
-            let tours = response["tour_list"];
-            for (let i = 0; i < tours.length; i++) {
-              let title = tours[i]["title"];
-              let location = tours[i]["location"];
-              let content = tours[i]["content"];
-              let url = tours[i]["url"];
+        let cards = $(".post");
 
-              let temp_html = `
-                  <div class="post">
-                    <div class="thumbnail">
-                      <img src="../static/images/${url}" alt=${location} />
-                    </div>
-                    <div class="post-desc">
-                      <strong class="post-location">${title}</strong>
-                      <span class="">${location}</span>
-                      <p class="post-detail ellipse">${content}</p>
-                    </div>
-                  </div>
-                `;
-
-              $("#posts-box").append(temp_html);
+        if (continent == "all") $(".post").show();
+        else {
+          $(".post").show();
+          for (let card of cards) {
+            console.log(card.getAttribute("data-continent"));
+            if (card.getAttribute("data-continent") != continent) {
+              card.style.display = "none";
             }
-          },
-        });
+          }
+        }
+        console.log(cards);
       }
 
       // 게시물 보기
