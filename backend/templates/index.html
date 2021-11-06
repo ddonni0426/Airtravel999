@@ -329,21 +329,6 @@
         });
       }
 
-      // 게시물 삭제하기
-      function deleteTour(id) {
-        $.ajax({
-          type: "DELETE",
-          url: `/tour/${id}`,
-          success: function (response) {
-            if (response["result"] === "success") {
-              window.location.reload();
-            } else {
-              alert(response["msg"]);
-            }
-          },
-        });
-      }
-
       // 로그인하기 로직
       function userLogin() {
         const userID = $("#userID").val();
@@ -456,7 +441,6 @@
             }
           }
         }
-        console.log(cards);
       }
 
       // 게시물 보기
@@ -495,7 +479,7 @@
         </div>
         <div class="modal-footer">
           <button class="btn btn-light">수정</button>
-        <button class="btn btn-primary" onclick="deleteTour(${list._id})">삭제</button>
+          <button class="btn btn-primary js-close">닫기</button>
         </div>
       </div>
         `;

@@ -106,7 +106,7 @@ def getTour(tour_id):
 # 투어 카드 대륙별로 받아오기
 @tour.route("/continent", methods=["POST"], strict_slashes=False)
 def filterByContinent():
-    continent = request.form["continent"]
+    continent = request.form["continent"]    
     if continent == "Continent":
         tour_list = list(db.card.find({}))
     else:
