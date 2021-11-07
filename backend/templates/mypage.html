@@ -276,6 +276,8 @@
     }
   </script>
   <script type="text/javascript">
+    let curCard;
+
     $(".visual-slider").slick();
 
     // 좋아요
@@ -312,13 +314,14 @@
 
     // 게시물 보기
     function goTour(list) {
+      curCard = list
       $("#postDetail").empty();
 
       const temp = `
         <div class="modal-container">
         <div class="modal-header">
           <h5 class="modal-title ellipse ellipse-1">${list.title}</h5>
-          <button type="button" class="btn-close">닫기</button>
+          <button onclick="closeDetailViewModal()" type="button" class="btn-close">닫기</button>
         </div>
         <div class="modal-body modal-postDetail" style="padding-bottom: 30px">
           <div class="thumbnail-area">
@@ -344,11 +347,143 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-primary js-close">닫기</button>
+          <button onclick="openUpdateModal()" id="viewUpdateBtn" class="btn btn-light">수정</button>
+          <button onclick="deleteCardData()" id="viewDeleteBtn" class="btn btn-warning">삭제</button>
         </div>
       </div>
         `;
       $("#postDetail").append(temp);
+    }
+
+    function openUpdateModal() {
+      $("#postDetail").removeClass("show");
+      $("#addPost").empty();
+      temp = `
+        <!-- S: Modal Container -->
+          <div class="modal-container">
+            <!-- S: Modal Header -->
+            <div class="modal-header">
+              <h5 class="modal-title">Create Post</h5>
+              <button onclick="closeUpdateModal()" type="button" class="btn-close">닫기</button>
+            </div>
+
+            <!-- S: Modal Body -->
+            <div class="modal-body modal-addpost" style="padding-bottom: 30px">
+              <div class="thumbnail-area">
+                <!-- <img src="" alt=""> -->
+              </div>
+              <div class="form form-file js-form-file">
+                <label for="input-file" class="input-file">파일 선택</label>
+                <input id="input-file" type="file" required />
+              </div>
+              <p class="form__alert-msg">여행사진을 첨부해주세요!</p>
+              <p class="form__guide-msg">
+                <span class="emoji"> 📌 </span> 이미지는 하나만 첨부해주세요.
+              </p>
+              <div class="options-wrap">
+                <select name="" id="input-continent">
+                  <option id="o_continent" value="" disabled selected>continent</option>
+                  <option id="o_Asia" value="Asia">Asia</option>
+                  <option id="o_Europe" value="Europe">Europe</option>
+                  <option id="o_North_America" value="North_America">North America</option>
+                  <option id="o_South_America" value="South_America">South America</option>
+                  <option id="o_Africa" value="Africa">Afica</option>
+                  <option id="o_Australia" value="Australia">Australia</option>
+                </select>
+                <div class="form-date">
+                  <input id="input-date" type="date" placeholder="날짜를 입력해주세요." />
+                </div>
+              </div>
+
+              <div class="form form-title">
+                <label for="input-title" class="input-title">제목</label>
+                <input id="input-title" type="text" placeholder=" 제목을 입력해주세요" />
+              </div>
+              <div class="form form-location">
+                <label for="input-location" class="input-location">여행지</label>
+                <input id="input-location" type="text" placeholder=" 여행지를 입력해주세요" />
+              </div>
+              <textarea name="" id="addPostTextarea" rows="7" placeholder=" 내용을 입력하세요.">${curCard.content}</textarea>
+            </div>
+
+            <!-- S: Modal Footer -->
+            <div class="modal-footer">
+              <button onclick="closeUpdateModal()" class="btn btn-light">취소</button>
+              <button class="btn btn-primary formcheck" onclick="updateCardData()">
+                수정하기
+              </button>
+            </div>
+          </div>
+          <!-- E: Modal Container -->
+      `
+
+      $("#addPost").append(temp);
+      $("#input-title").val(curCard.title);
+      $("#input-location").val(curCard.location);
+      $("#o_continent").removeAttr("selected");
+      $(`#o_${curCard.continent}`).attr("selected", true);
+      console.log(curCard.date)
+      let yyyy = curCard.date.split("-")[0];
+      let mm = curCard.date.split("-")[1];
+      let dd = curCard.date.split("-")[2];
+      // console.log(new Date(yyyy, mm, dd).toISOString().substr(0, 10));
+      $("#input-date").val(new Date(yyyy, String(Number(mm) - 1), String(Number(dd) + 1)).toISOString().substr(0, 10));
+      $("#addPost").addClass("show");
+    }
+
+
+    function deleteCardData() {
+      $.ajax({
+        type: "DELETE",
+        url: `/tour/${curCard["_id"]}`,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+          if (response["result"] === "success") {
+            window.location.reload();
+          }
+        },
+      });
+    }
+
+    function closeUpdateModal() {
+      $("#addPost").removeClass("show");
+    }
+
+    function updateCardData() {
+      const formData = new FormData();
+      // const file = $("#input-file")[0].files[0];
+      const tour_title = document.querySelector("#input-title").value;
+      const tour_location = document.querySelector("#input-location").value;
+      const tour_continent = $("#input-continent option:selected").val();
+      const tour_date = document.querySelector("#input-date").value;
+      const tour_content = document.querySelector("#addPostTextarea").value;
+
+      // formData.append("file", file);
+      formData.append("tour_title", tour_title);
+      formData.append("tour_location", tour_location);
+      formData.append("tour_continent", tour_continent);
+      formData.append("tour_date", tour_date);
+      formData.append("tour_content", tour_content);
+
+
+      $.ajax({
+        type: "PUT",
+        url: `/tour/${curCard["_id"]}`,
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (response) {
+          if (response["result"] === "success") {
+            window.location.reload();
+          }
+        },
+      });
+    }
+
+    function closeDetailViewModal() {
+
+      $("#postDetail").removeClass("show");
     }
   </script>
 </body>
