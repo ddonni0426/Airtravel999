@@ -31,7 +31,6 @@ def getTours():
 @tour.route("/", methods=["POST"], strict_slashes=False)
 def createTour():
     tour_url = request.files['file']
-    print('@@@@', tour_url)
     tour_url.save(os.path.join(UPLOADS_PATH, secure_filename(tour_url.filename)))
     tour_title = request.form["tour_title"]
     tour_location = request.form["tour_location"]
