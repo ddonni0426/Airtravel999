@@ -217,3 +217,7 @@ body {
   background-position: center;
   background-size: cover;
 }
+
+.btn.hidden {
+  display: none;
+}

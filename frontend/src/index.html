@@ -211,7 +211,7 @@
     <div class="modal-container">
       <!-- S: Modal Header -->
       <div class="modal-header">
-        <h5 class="modal-title ellipse ellipse-1">✨타이페이 여행 10일차 기록 제목 글자수 제한 필요할 듯s✨</h5>
+        <h5 class="modal-title ellipse ellipse-1">타이페이 여행 10일차 기록 제목 글자수 제한 필요할 듯s✨</h5>
         <button type="button" class="btn-close">닫기</button>
       </div>
 
@@ -234,57 +234,50 @@
         </div>
         <div class="content-wrap scroll-style">
           <p class="post-content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat, iusto dignissimos tenetur
-            illum
-            velit odio
-            saepe sit nesciunt ipsum ab eos delectus! Praesentium, temporibus doloremque at provident atque libero ea
-            asperiores consequuntur harum molestias quidem dicta odio eos suscipit id! Aspernatur nulla atque aut
-            excepturi adipisci? Eligendi aliquam nihil laboriosam, neque delectus asperiores minus nobis beatae
-            voluptatibus ipsam quia repellendus cum repudiandae illo ullam
-            saepe sit nesciunt ipsum ab eos delectus! Praesentium, temporibus doloremque at provident atque libero ea
-            asperiores consequuntur harum molestias quidem dicta odio eos suscipit id! Aspernatur nulla atque aut
-            excepturi adipisci? Eligendi aliquam nihil laboriosam, neque delectus asperiores minus nobis beatae
-            voluptatibus ipsam quia repellendus cum repudiandae illo ullam exercitationem vero, veniam ut accusamus
-            velit.
-            Accusantium nostrum, voluptates ex, maiores iusto natus ratione non officia quores minus nobis beatae
-            voluptatibus ipsam quia repellendus cum repudiandae illo ullam
-            saepe sit nesciunt ipsum ab eos delectus! Praesentium, temporibus doloremque at provident atque libero ea
-            asperiores consequuntur harum molestias quidem dicta odio eos suscipit id! Aspernatur nulla atque aut
-            excepturi adipisci? Eligendi aliquam nihil laboriosam, neque delectus asperiores minus no
-            saepe sit nesciunt ipsum ab eos delectus! Praesentium, temporibus doloremque at provident atque libero ea
-            asperiores consequuntur harum molestias quidem dicta odio eos suscipit id! Aspernatur nulla atque aut
-            excepturi adipisci? Eligendi aliquam nihil laboriosam, neque delectus asperiores minus nobis beatae
-            voluptatibus ipsam quia repellendus cum repudiandae illo ullam
-            saepe sit nesciunt ipsum ab eos delectus! Praesentium, temporibus doloremque at provident atque libero ea
-            asperiores consequuntur harum molestias quidem dicta odio eos suscipit id! Aspernatur nulla atque aut
-            excepturi adipisci? Eligendi aliquam nihil laboriosam, neque delectus asperiores minus nobis beatae
-            voluptatibus ipsam quia repellendus cum repudiandae illo ullam exercitationem vero, veniam ut accusamus
-            velit.
-            Accusantium nostrum, voluptates ex, maiores iusto natus ratione non officia quores minus nobis beatae
-            voluptatibus ipsam quia repellendus cum repudiandae illo ullam
-            saepe sit nesciunt ipsum ab eos delectus! Praesentium, temporibus doloremque at provident atque libero ea
-            asperiores consequuntur harum molestias quidem dicta odio eos suscipit id! Aspernatur nulla atque aut
-            excepturi adipisci? Eligendi aliquam nihil laboriosam, neque delectus asperiores minus nobis beatae
-            voluptatibus ipsam quia repellendus cum repudiandae illo ullam exercitationem vero, veniam ut accusamus
-            velit.
-            Accusantium nostrum, voluptates ex, maiores iusto natus ratione non officia quores minus nobis beatae
-            voluptatibus ipsam quia repellendus cum repudiandae illo ullam
-            saepe sit nesciunt ipsum ab eos delectus! Praesentium, temporibus doloremque at provident atque libero ea
-            asperiores consequuntur harum molestias quidem dicta odio eos suscipit id! Aspernatur nulla atque aut
-            excepturi adipisci? Eligendi aliquam nihil laboriosam, neque delectus asperiores minus nobis beatae
-            voluptatibus ipsam quia repellendus cum repudiandae illo ullam exercitationem vero, veniam ut accusamus
-            velit.
-            Accusantium nostrum, voluptates ex, maiores iusto natus ratione non officia quisquam voluptate dolores,
-            tempore debitis laborum magni repudiandae quibusdam ipsam ad repellendus. Assumenda totam nihil maxime
-            dolorum
-            cum architecto officiis.</p>
+            문자열 좌우에서 공백을 제거하는 함수가 trim() 함수 입니다. 대부분의 언어에서 기본 제공하고 있고, 좌/우 측만 trim 하는 함수를 제공하기도 합니다.
+
+
+
+            자바스크립트에서도 사용할 일이 자주 있는 편인데, IE8 이하에서는 제공되지 않습니다. 사이트가 IE 8 도 지원해야 한다면 보통 많이 사용하는 방법이 IE 조건부 주석을 사용해서 IE
+            8이하일때 String 객체의 prototype 에 trim() 함수를 추가하여 IE 8이하에서도 IE 9이상과 동일하게 사용할 수 있도록 지원하는 것입니다.
+
+
+
+            다른 방법은 jQuery를 사용한다면 jQuery의 $.trim(); 메소드를 사용하여 처리하는 방법입니다.
+
+
+
+            다음은 각각의 방법을 적용해본 예제입니다.
+
+
+
+            문자열 좌우에서 공백을 제거하는 함수가 trim() 함수 입니다. 대부분의 언어에서 기본 제공하고 있고, 좌/우 측만 trim 하는 함수를 제공하기도 합니다.
+
+
+
+            자바스크립트에서도 사용할 일이 자주 있는 편인데, IE8 이하에서는 제공되지 않습니다. 사이트가 IE 8 도 지원해야 한다면 보통 많이 사용하는 방법이 IE 조건부 주석을 사용해서 IE
+            8이하일때 String 객체의 prototype 에 trim() 함수를 추가하여 IE 8이하에서도 IE 9이상과 동일하게 사용할 수 있도록 지원하는 것입니다.
+
+
+
+            다른 방법은 jQuery를 사용한다면 jQuery의 $.trim(); 메소드를 사용하여 처리하는 방법입니다.
+
+
+
+            다음은 각각의 방법을 적용해본 예제입니다.
+
+
+
+
+          </p>
         </div>
 
       </div>
 
       <!-- S: Modal Footer -->
       <div class="modal-footer">
-        <button class="btn btn-primary js-close">닫기</button>
+        <button class="btn btn-primary js-edit">수정</button>
+        <button class="btn btn-primary js-save hidden">저장</button>
       </div>
 
     </div>
@@ -294,7 +287,8 @@
 
   <!-- E: 회원가입 모달 -->
   <script src="assets/js/jquery-3.6.0.min.js"></script>
-  <script type="text/javascript" src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+  <script type="text/javascript"
+    src="http://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slgit checick/slick.min.js"></script>
   <script src="./assets/js/front_ui.js"></script>
   <script type="text/javascript">
     $('.visual-slider').slick();

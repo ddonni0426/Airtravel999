@@ -1,10 +1,10 @@
 (() => {
   const clear__inputs = (inputs) => {
-    if(!inputs.length) return;
+    if (!inputs.length) return;
     inputs.map((item, idx) => {
-      item.value = ''
+      item.value = "";
     });
-  }
+  };
   //S: 모달 밖 클릭 시 모달 닫기
   $(document).on("click", ".modal-bg.show", (e) => {
     e.target.classList.remove("show");
@@ -13,12 +13,15 @@
   //S: 모달 푸터 취소 박스 클릭 시 모달 닫기
   $(document).on("click", ".js-close", (e) => {
     e.target.closest(".modal-bg").classList.remove("show");
-    const target = $(e.target).parent().siblings().closest('.modal-body');
-    const inputs = Array.from(target.find('input'))
-    const texts = Array.from(target.find('textarea'))
-    clear__inputs(inputs)
-    clear__inputs(texts)
-    if($('.file-badge')) $('.file-badge').remove();
+    const target = $(e.target)
+      .parent()
+      .siblings()
+      .closest(".modal-body");
+    const inputs = Array.from(target.find("input"));
+    const texts = Array.from(target.find("textarea"));
+    clear__inputs(inputs);
+    clear__inputs(texts);
+    if ($(".file-badge")) $(".file-badge").remove();
   });
 
   //S: 공통 form 검증 함수
@@ -29,7 +32,6 @@
         : item.parentNode.classList.remove("empty-input");
     });
   };
-
 
   //S: scroll-top
   const scrollTop = document.querySelector(".scrolltop");
@@ -59,10 +61,9 @@
       login_background.classList.remove("show");
       const inputs = Array.from(
         document.querySelectorAll(".modal-login .form  input")
-        );
-        clear__inputs(inputs);
-      }
-    );
+      );
+      clear__inputs(inputs);
+    });
 
     login_formcheck.addEventListener("click", () => {
       const inputs = Array.from(
@@ -121,11 +122,11 @@
 
     modal_closeAddPost.addEventListener("click", () => {
       addPost_background.classList.remove("show");
-      const inputs = Array.from($(".modal-addpost").find('input'));
-      const options = document.querySelector(".modal-addpost select")
-      const texts = document.querySelector(".modal-addpost textarea")
-      texts.value = ''
-      $('.file-badge').remove();
+      const inputs = Array.from($(".modal-addpost").find("input"));
+      const options = document.querySelector(".modal-addpost select");
+      const texts = document.querySelector(".modal-addpost textarea");
+      texts.value = "";
+      $(".file-badge").remove();
       clear__inputs(inputs);
     });
 
@@ -139,12 +140,12 @@
     //첨부파일 뱃지 추가
     inputs.addEventListener("change", () => {
       const file = inputs.value.split("\\"); //경로
-      const baseUrl = '../images/'
-      //preview      
-      const [image] = inputs.files
+      const baseUrl = "../images/";
+      //preview
+      const [image] = inputs.files;
       if (image) {
-        const preView = document.querySelector('#addPost .thumbnail-area');
-        preView.style = `background-image: url(${URL.createObjectURL(image)})`
+        const preView = document.querySelector("#addPost .thumbnail-area");
+        preView.style = `background-image: url(${URL.createObjectURL(image)})`;
       }
 
       if (!file[0].length) return;
@@ -174,7 +175,9 @@
     if (document.querySelector("#postDetail") === null) return;
 
     const detailPosts = Array.from(document.querySelectorAll(".js-postDetail"));
-    const detailPost_background = document.querySelector("#postDetail.modal-bg");
+    const detailPost_background = document.querySelector(
+      "#postDetail.modal-bg"
+    );
     const modal_closeAddPost = document.querySelector("#postDetail .btn-close");
     const detailPost_formcheck = document.querySelector(
       "#postDetail .btn.formcheck"
@@ -184,11 +187,60 @@
       card.addEventListener("click", (e) => {
         detailPost_background.classList.toggle("show");
       });
-    })
-    $(document).on('click','#postDetail .btn-close', () =>{
+    });
+    $(document).on("click", "#postDetail .btn-close", () => {
       detailPost_background.classList.remove("show");
-    })
+    });
 
+    let old_content = "";
+    let old_title = "";
+
+    $(document).on("click", ".js-edit", (e) => {
+      old_content = $(".post-content").text();
+      old_title = $(this).closest(".modal-title").text();
+      $("h5.modal-title").empty();
+      $(".content-wrap").empty();
+      $("h5.modal-title").append(`<input class="input-title" style="width:80%" value ="${old_title}"/>`
+      );
+      $(".content-wrap").append(
+        `<textarea id="addPostTextarea" class="edit-textarea scroll-style" rows="7">${old_content.replace(
+          / /gi,
+          ""
+        )} </textarea>`
+      );
+      $(".js-edit").addClass("hidden");
+      $(".js-save").removeClass("hidden");
+    });
+
+    let new_content = "";
+    let new_title = "";
+
+    $(document).on("change", ".input-title", (e) => {
+      new_title = e.target.value;
+    });
+
+    $(document).on("change", ".edit-textarea", (e) => {                                           
+      new_content = e.target.value;
+    });
+
+    $(document).on("click", ".js-save", () => {
+      if(new_content.length) {
+        $(".content-wrap").empty();
+        $(".content-wrap").append(`<p class="post-content"> ${new_content} </p>`);
+      }else{
+        $(".content-wrap").empty();
+        $(".content-wrap").append(`<p class="post-content"> ${old_content} </p>`);
+      }
+      if(new_title.length) {
+        $("h5.modal-title").empty();
+        $("h5.modal-title").text(new_title);
+      }else{
+        $("h5.modal-title").empty();
+        $("h5.modal-title").text(old_title);
+      }
+      $(".js-save").addClass("hidden");
+      $(".js-edit").removeClass("hidden");
+    });
   };
 
   onPostDetailHandler();
