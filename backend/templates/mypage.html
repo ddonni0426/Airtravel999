@@ -48,7 +48,9 @@
     <!-- S: HEADER -->
     <section class="mainpage-header">
       <div class="mainpage-nav">
-        <h1 class="mainpage-logo"><a href="#">Airtravel</a></h1>
+        <h1 class="mainpage-logo">
+          <a href="javascript:goHome()">Airtravel</a>
+        </h1>
         <ul class="mainpage-utils">
           <li><a href="/" type="button" class="btn js-login">Home</a></li>
           <li>
@@ -211,6 +213,11 @@
 
     <!-- 추후 삭제할 것 -->
     <script>
+      // 시작 페이지로 가기
+      function goHome() {
+        location.href = "/";
+      }
+
       //S:게시물 추가 모달
       const addPost = document.querySelector(".js-addPost");
       const addPost_background = document.querySelector("#addPost.modal-bg");
