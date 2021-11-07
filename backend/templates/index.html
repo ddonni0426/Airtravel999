@@ -462,7 +462,7 @@
         </div>
         <div class="modal-footer">
           <button onclick="openUpdateModal()" id="viewUpdateBtn" class="btn btn-light">수정</button>
-          <button class="btn btn-primary js-close">닫기</button>
+          <button onclick="deleteCardData()" class="btn btn-warning">삭제</button>
         </div>
       </div>
         `;
@@ -590,6 +590,20 @@
 
     function openSignUpModal() {
       $("#signupModal").addClass("show");
+    }
+
+    function deleteCardData() {
+      $.ajax({
+        type: "DELETE",
+        url: `/tour/${curCard["_id"]}`,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+          if (response["result"] === "success") {
+            window.location.reload();
+          }
+        },
+      });
     }
   </script>
 </body>
