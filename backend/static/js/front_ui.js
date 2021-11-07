@@ -41,34 +41,34 @@
   });
 
   //S:로그인 모달
-  const onLoginHandler = () => {
-    if (document.querySelector("#loginModal") === null) return;
+  // const onLoginHandler = () => {
+  //   if (document.querySelector("#loginModal") === null) return;
 
-    const login = document.querySelector(".js-login");
-    const login_background = document.querySelector("#loginModal.modal-bg");
-    const modal_closeLogin = document.querySelector("#loginModal .btn-close");
-    const login_formcheck = document.querySelector(
-      "#loginModal .btn.formcheck"
-    );
-    login.addEventListener("click", () =>
-      login_background.classList.toggle("show")
-    );
+  //   const login = document.querySelector(".js-login");
+  //   const login_background = document.querySelector("#loginModal.modal-bg");
+  //   const modal_closeLogin = document.querySelector("#loginModal .btn-close");
+  //   const login_formcheck = document.querySelector(
+  //     "#loginModal .btn.formcheck"
+  //   );
+  //   login.addEventListener("click", () =>
+  //     login_background.classList.toggle("show")
+  //   );
 
-    modal_closeLogin.addEventListener("click", () => {
-      login_background.classList.remove("show");
-      const inputs = Array.from(
-        document.querySelectorAll(".modal-login .form  input")
-      );
-      clear__inputs(inputs);
-    });
+  //   modal_closeLogin.addEventListener("click", () => {
+  //     login_background.classList.remove("show");
+  //     const inputs = Array.from(
+  //       document.querySelectorAll(".modal-login .form  input")
+  //     );
+  //     clear__inputs(inputs);
+  //   });
 
-    login_formcheck.addEventListener("click", () => {
-      const inputs = Array.from(
-        document.querySelectorAll(".modal-login .form  input")
-      );
-      empty__inputs(inputs);
-    });
-  };
+  //   login_formcheck.addEventListener("click", () => {
+  //     const inputs = Array.from(
+  //       document.querySelectorAll(".modal-login .form  input")
+  //     );
+  //     empty__inputs(inputs);
+  //   });
+  // };
 
   //S:회원가입 모달
   const onSignupHandler = () => {

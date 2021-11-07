@@ -41,8 +41,8 @@
           <a type="button" class="btn" href="/mytour">My Tour</a>
         </li>
         {% endif %} {% if userNickName is none %}
-        <li><a type="button" class="btn js-login">Login</a></li>
-        <li><a type="button" class="btn js-signup">Sign-up</a></li>
+        <li><a onclick="openLoginModal()" type="button" class="btn js-login">Login</a></li>
+        <li><a onclick="openSignUpModal()" type="button" class="btn js-signup">Sign-up</a></li>
         {% endif %} {% if userNickName %}
         <li>
           <a type="button" onclick="userLogout()" class="btn"> Logout </a>
@@ -238,6 +238,8 @@
 
   <!-- E: 게시물 보기 모달 -->
   <div id="postDetail" class="modal-bg"></div>
+  <!-- 게시물 수정 모달 -->
+  <div id="addPost" class="modal-bg"></div>
   <!-- E: 회원가입 모달 -->
   <script src="../static/js/front_ui.js"></script>
   <script type="text/javascript">
@@ -455,12 +457,80 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-light">수정</button>
+          <button onclick="openUpdateModal()" class="btn btn-light">수정</button>
           <button class="btn btn-primary js-close">닫기</button>
         </div>
       </div>
         `;
       $("#postDetail").append(temp);
+    }
+
+    function openUpdateModal() {
+      $("#postDetail").removeClass("show");
+
+      temp = `
+        <!-- S: Modal Container -->
+          <div class="modal-container">
+            <!-- S: Modal Header -->
+            <div class="modal-header">
+              <h5 class="modal-title">Update Post</h5>
+              <button type="button" class="btn-close">닫기</button>
+            </div>
+
+            <!-- S: Modal Body -->
+            <div class="modal-body modal-addpost" style=" padding-bottom: 30px;">
+              <div class="thumbnail-area">
+                이미지 영역
+              </div>
+              <div class="form form-file js-form-file">
+                <label for="input-file" class="input-file">파일 선택</label>
+                <input id="input-file" type="file" required>
+              </div>
+              <p class="form__alert-msg">여행사진을 첨부해주세요!</p>
+              <div class="options-wrap">
+                <select name="" id="">
+                  <option value="" disabled selected>여행지</option>
+                  <option value="">여행지1</option>
+                  <option value="">여행지2</option>
+                  <option value="">여행지3</option>
+                </select>
+                <select name="" id="">
+                  <option value="" disabled selected>대륙</option>
+                  <option value="">대륙1</option>
+                  <option value="">대륙2</option>
+                  <option value="">대륙3</option>
+                </select>
+                <select name="" id="">
+                  <option value="" selected>날짜</option>
+                </select>
+              </div>
+              <textarea name="" id="addPostTextarea" rows="10"> 내용을 입력하세요.</textarea>
+            </div>
+
+            <!-- S: Modal Footer -->
+            <div class="modal-footer">
+              <button onclick="closeUpdateModal()" class="btn btn-light">취소</button>
+              <button class="btn btn-primary formcheck">수정하기</button>
+            </div>
+
+          </div>
+          <!-- E: Modal Container -->
+      `
+
+      $("#addPost").append(temp);
+      $("#addPost").addClass("show");
+    }
+
+    function closeUpdateModal() {
+      $("#addPost").removeClass("show");
+    }
+
+    function openLoginModal() {
+      $("#loginModal").addClass("show");
+    }
+
+    function openSignUpModal() {
+      $("#signupModal").addClass("show");
     }
   </script>
 </body>
