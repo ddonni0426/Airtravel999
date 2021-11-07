@@ -273,43 +273,6 @@
       });
     }
 
-    // 게시물 수정하기
-    function editTour(list) {
-      const tour_title = list.title;
-      const tour_content = list.content;
-
-      $.ajax({
-        type: "PUT",
-        url: `/tour/${list["_id"]}`,
-        data: {
-          tour_title,
-          tour_content,
-        },
-        success: function (response) {
-          if (response["result"] === "success") {
-            window.location.reload();
-          } else {
-            alert(response["msg"]);
-          }
-        },
-      });
-    }
-
-    // 게시물 삭제하기
-    function deleteTour(id) {
-      $.ajax({
-        type: "DELETE",
-        url: `/tour/${id}`,
-        success: function (response) {
-          if (response["result"] === "success") {
-            window.location.reload();
-          } else {
-            alert(response["msg"]);
-          }
-        },
-      });
-    }
-
     // 로그인하기 로직
     function userLogin() {
       const userID = $("#userID").val();
@@ -483,23 +446,12 @@
           <div class="modal-container">
             <!-- S: Modal Header -->
             <div class="modal-header">
-              <h5 class="modal-title">Create Post</h5>
+              <h5 class="modal-title">Edit Post</h5>
               <button onclick="closeUpdateModal()" type="button" class="btn-close">닫기</button>
             </div>
 
             <!-- S: Modal Body -->
             <div class="modal-body modal-addpost" style="padding-bottom: 30px">
-              <div class="thumbnail-area">
-                <!-- <img src="" alt=""> -->
-              </div>
-              <div class="form form-file js-form-file">
-                <label for="input-file" class="input-file">파일 선택</label>
-                <input id="input-file" type="file" required />
-              </div>
-              <p class="form__alert-msg">여행사진을 첨부해주세요!</p>
-              <p class="form__guide-msg">
-                <span class="emoji"> 📌 </span> 이미지는 하나만 첨부해주세요.
-              </p>
               <div class="options-wrap">
                 <select name="" id="input-continent">
                   <option id="o_continent" value="" disabled selected>continent</option>

@@ -58,7 +58,8 @@
     <div class="posts-wrap">
       <!-- S: Post Elem -->
       {% for list in lists %} {% set url = 'images/' + list.url %}
-      <div class="post js-postDetail" onclick="goTour({{list}})">
+      {% set like = list["user_like"] %}
+      <div class="post js-postDetail" data-like="{{like}}" onclick="goTour({{list}})">
         <div class="thumbnail">
           <img src="{{url_for('static', filename=url)}}" alt=" {{list.location}}" />
         </div>
@@ -363,23 +364,13 @@
           <div class="modal-container">
             <!-- S: Modal Header -->
             <div class="modal-header">
-              <h5 class="modal-title">Create Post</h5>
+              <h5 class="modal-title">Edit Post</h5>
               <button onclick="closeUpdateModal()" type="button" class="btn-close">닫기</button>
             </div>
 
             <!-- S: Modal Body -->
             <div class="modal-body modal-addpost" style="padding-bottom: 30px">
-              <div class="thumbnail-area">
-                <!-- <img src="" alt=""> -->
-              </div>
-              <div class="form form-file js-form-file">
-                <label for="input-file" class="input-file">파일 선택</label>
-                <input id="input-file" type="file" required />
-              </div>
-              <p class="form__alert-msg">여행사진을 첨부해주세요!</p>
-              <p class="form__guide-msg">
-                <span class="emoji"> 📌 </span> 이미지는 하나만 첨부해주세요.
-              </p>
+              
               <div class="options-wrap">
                 <select name="" id="input-continent">
                   <option id="o_continent" value="" disabled selected>continent</option>
@@ -476,6 +467,28 @@
         success: function (response) {
           if (response["result"] === "success") {
             window.location.reload();
+          }
+        },
+      });
+    }
+
+    function showLikeCards() {
+      let cards = $(".posts-wrap").empty();
+
+      // for (let card of cards) {
+      //   console.log(card.getAttribute("data-like"));
+      //   if (card.getAttribute("data-like") != 1) {
+      //     card.style.display = "none";
+      //   }
+      // }
+      $.ajax({
+        type: "GET",
+        url: `/like`,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+          if (response["result"] === "success") {
+            print(response.data)
           }
         },
       });
