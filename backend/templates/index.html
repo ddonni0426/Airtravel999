@@ -461,12 +461,16 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button onclick="openUpdateModal()" class="btn btn-light">수정</button>
+          <button onclick="openUpdateModal()" id="viewUpdateBtn" class="btn btn-light">수정</button>
           <button class="btn btn-primary js-close">닫기</button>
         </div>
       </div>
         `;
       $("#postDetail").append(temp);
+      console.log(list["user_own"])
+      if (list["user_own"] == 0)
+        $("#viewUpdateBtn").hide();
+
     }
 
     function openUpdateModal() {
