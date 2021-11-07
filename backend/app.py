@@ -46,15 +46,24 @@ def home():
 @app.route("/mytour", methods=["GET"])
 def getTourByUser():
     token_receive = request.cookies.get("mytoken")
+    user_info = ""
     if token_receive is None:
         return ({"result": "fail", "msg": "로그인을 해주세요"})
     else: 
         payload = jwt.decode(token_receive, config["SECRET_KEY"], algorithms=["HS256"])
+        user_info = db.user.find_one({"user_id": payload["user_id"]}, {"_id": False})
 
         tour_list = list(db.card.find({"author_id": payload["user_id"]}))
 
         for tour in tour_list:
+            if user_info:
+                user_like = db.like.find_one({"user_id": payload["user_id"], "card_id": tour["_id"]})
             tour["_id"] = str(tour["_id"])
+            if user_info:
+                if user_like is not None:
+                    tour["user_like"] = 1
+                else:
+                    tour["user_like"] = 0
         return render_template("mypage.html", lists=tour_list)
 
 
