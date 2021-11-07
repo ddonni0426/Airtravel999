@@ -6,7 +6,7 @@ from config import config
 import os
 from os.path import join, dirname, realpath
 
-UPLOADS_PATH = join(dirname(realpath(__file__)), 'static\\images')
+UPLOADS_PATH = join(dirname(realpath(__file__)), 'static', 'images')
 
 import jwt
 import datetime
