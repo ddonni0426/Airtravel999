@@ -462,14 +462,16 @@
         </div>
         <div class="modal-footer">
           <button onclick="openUpdateModal()" id="viewUpdateBtn" class="btn btn-light">수정</button>
-          <button onclick="deleteCardData()" class="btn btn-warning">삭제</button>
+          <button onclick="deleteCardData()" id="viewDeleteBtn" class="btn btn-warning">삭제</button>
         </div>
       </div>
         `;
       $("#postDetail").append(temp);
       console.log(list["user_own"])
-      if (list["user_own"] == 0)
+      if (list["user_own"] == 0) {
         $("#viewUpdateBtn").hide();
+        $("#viewDeleteBtn").hide();
+      }
 
     }
 
