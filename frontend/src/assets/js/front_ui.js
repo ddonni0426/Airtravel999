@@ -197,7 +197,7 @@
 
     $(document).on("click", ".js-edit", (e) => {
       old_content = $(".post-content").text();
-      old_title = $(this).closest(".modal-title").text();
+      old_title = $(e.target).parent().find('.modal-header').closest(".modal-title").text();
       $("h5.modal-title").empty();
       $(".content-wrap").empty();
       $("h5.modal-title").append(`<input class="input-title" style="width:80%" value ="${old_title}"/>`
@@ -248,3 +248,8 @@
   onLoginHandler();
   onSignupHandler();
 })();
+
+
+
+
+sdfadsfsasdf
