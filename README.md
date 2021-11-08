@@ -1,5 +1,7 @@
 # 웹 미니 프로젝트
+
 <img src="https://images.velog.io/images/suyeonpi/post/200e545e-83b3-4bed-876a-6afbe7014877/Airtravel.jpg">
+
 ## Airtravel
 ### 여행을 사진과 함께 기록하고 공유하는 웹 어플리케이션
 
