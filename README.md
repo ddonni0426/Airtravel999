@@ -34,8 +34,8 @@
 - 프론트엔드: 김도은, 신경준
 - 백엔드: 피수연, 전상혁
 
-<img src="https://images.velog.io/images/suyeonpi/post/153d550e-0661-4021-8445-6f06932a5b44/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-11-07%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%208.06.29.png" width="800" height="600">
-<img src="https://images.velog.io/images/suyeonpi/post/c6bb5a94-57cc-4cc2-bffe-226139569fb4/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-11-07%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%207.56.07.png" width="800" height="600">
+<img src="https://images.velog.io/images/suyeonpi/post/153d550e-0661-4021-8445-6f06932a5b44/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-11-07%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%208.06.29.png" width="700" height="600">
+<img src="https://images.velog.io/images/suyeonpi/post/c6bb5a94-57cc-4cc2-bffe-226139569fb4/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-11-07%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%207.56.07.png" width="700" height="600">
 
 
 <br>
