@@ -130,7 +130,7 @@
       <!-- S: Modal Header -->
       <div class="modal-header">
         <h5 class="modal-title">Login</h5>
-        <button type="button" class="btn-close">닫기</button>
+        <button onclick="closeLoginModal()" type="button" class="btn-close">닫기</button>
       </div>
 
       <!-- S: Modal Body -->
@@ -176,7 +176,7 @@
       <!-- S: Modal Header -->
       <div class="modal-header">
         <h5 class="modal-title">Sign up</h5>
-        <button type="button" class="btn-close">닫기</button>
+        <button onclick="closeSignUpModal()" type="button" class="btn-close">닫기</button>
       </div>
 
       <!-- S: Modal Body -->
@@ -246,6 +246,14 @@
     let curCard;
 
     $(".visual-slider").slick();
+
+    function closeSignUpModal() {
+      $("#signupModal").removeClass("show")
+    }
+
+    function closeLoginModal() {
+      $("#loginModal").removeClass("show")
+    }
 
     // 좋아요
     function likeCard(list) {
